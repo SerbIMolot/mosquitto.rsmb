@@ -3,11 +3,11 @@
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
- * and Eclipse Distribution License v1.0 which accompany this distribution. 
+ * and Eclipse Distribution License v1.0 which accompany this distribution.
  *
- * The Eclipse Public License is available at 
+ * The Eclipse Public License is available at
  *    http://www.eclipse.org/legal/epl-v10.html
- * and the Eclipse Distribution License is available at 
+ * and the Eclipse Distribution License is available at
  *   http://www.eclipse.org/org/documents/edl-v10.php.
  *
  * Contributors:
@@ -271,6 +271,22 @@ int main(int argc, char* argv[])
 	Log(LOG_INFO, 53, "Version %s, %s", BrokerState.version, BrokerState.timestamp);
 	Log(LOG_INFO, 54, "Features included: %s", features);
 	Log(LOG_INFO, 9993, "Authors: Ian Craggs (icraggs@uk.ibm.com), Nicholas O'Leary");
+    #if WIN32
+    {
+      WORD wVersionRequested;
+      WSADATA wsaData;
+      int err;
+      // Use the MAKEWORD(lowbyte, highbyte) macro declared in Windef.h */
+      wVersionRequested = MAKEWORD(2, 2);
+      err = WSAStartup(wVersionRequested, &wsaData);
+      if (err != 0) {
+        /* Tell the user that we could not find a usable */
+        /* Winsock DLL.                                  */
+        printf("WSAStartup failed with error: %d\n", err);
+        return 1;
+      }
+    }
+    #endif // WIN32
 
 	if ((rc = Broker_startup()) == 0)
 	{
@@ -326,7 +342,7 @@ int Broker_startup()
 	#if !defined(_DEBUG)
 		set_sigsegv();
 	#endif
-	
+
 	BrokerState.clients = TreeInitialize(clientSocketCompare);
 	TreeAddIndex(BrokerState.clients, clientIDCompare);
 	BrokerState.disconnected_clients = TreeInitialize(clientIDCompare);

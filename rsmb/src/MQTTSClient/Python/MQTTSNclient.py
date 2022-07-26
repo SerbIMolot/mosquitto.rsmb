@@ -16,7 +16,8 @@
  *******************************************************************************/
 """
 
-import MQTTSN, socket, time, MQTTSNinternal, thread, types, sys, struct
+#import MQTTSN, socket, time, MQTTSNinternal, thread, types, sys, struct
+import MQTTSN, socket,  MQTTSNinternal,  types,  struct
 
 
 class Callback:
@@ -26,18 +27,18 @@ class Callback:
     self.registered = {}
 
   def connectionLost(self, cause):
-    print "default connectionLost", cause
+    print ("default connectionLost", cause)
     self.events.append("disconnected")
 
   def messageArrived(self, topicName, payload, qos, retained, msgid):
-    print "default publishArrived", topicName, payload, qos, retained, msgid
+    print ("default publishArrived", topicName, payload, qos, retained, msgid)
     return True
 
   def deliveryComplete(self, msgid):
-    print "default deliveryComplete"
+    print ("default deliveryComplete")
   
   def advertise(self, address, gwid, duration):
-    print "advertise", address, gwid, duration
+    print ("advertise", address, gwid, duration)
 
   def register(self, topicid, topicName):
     self.registered[topicId] = topicName
@@ -96,7 +97,7 @@ class Client:
     connect.ClientId = self.clientid
     connect.CleanSession = cleansession
     connect.KeepAliveTimer = 0
-    self.sock.send(connect.pack())
+    self.sock.send(bytearray(connect.pack()))
 
     response, address = MQTTSN.unpackPacket(MQTTSN.getPacket(self.sock))
     assert response.mh.MsgType == MQTTSN.CONNACK
@@ -174,7 +175,7 @@ class Client:
       publish.MsgId = 0
     else:
       publish.MsgId = self.__nextMsgid()
-      print "MsgId", publish.MsgId
+      print ("MsgId", publish.MsgId)
       self.__receiver.outMsgs[publish.MsgId] = publish
     publish.Data = payload
     self.sock.send(publish.pack())
@@ -215,7 +216,7 @@ def publish(topic, payload, retained=False, port=1883, host="localhost"):
     publish.Flags.TopicIdType = MQTTSN.TOPIC_NORMAL
     publish.TopicId = topic
   publish.MsgId = 0
-  print "payload", payload
+  print ("payload", payload)
   publish.Data = payload
   sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
   sock.sendto(publish.pack(), (host, port))
@@ -263,9 +264,9 @@ if __name__ == "__main__":
 	aclient.connect()
 
 	rc, topic1 = aclient.subscribe("topic1")
-	print "topic id for topic1 is", topic1
+	print ("topic id for topic1 is", topic1)
 	rc, topic2 = aclient.subscribe("topic2")
-	print "topic id for topic2 is", topic2
+	print ("topic id for topic2 is", topic2)
 	aclient.publish(topic1, "aaaa", qos=0)
 	aclient.publish(topic2, "bbbb", qos=0)
 	aclient.unsubscribe("topic1")

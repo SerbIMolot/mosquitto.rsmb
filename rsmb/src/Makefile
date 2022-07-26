@@ -7,15 +7,17 @@ ifeq ($(OS), Windows_NT)
 all: broker.exe broker_mqtts.exe rsmb.ini
 
 broker.exe: *.c *.h
-	vcvars32.bat
-	cl -O2 -DWIN32 ws2_32.lib *.c /W3 /D _CRT_SECURE_NO_WARNINGS /D UNICODE /MD /Zp4 /Febroker.exe /link /MANIFEST
-	mt -manifest broker.exe.manifest -outputresource:broker.exe\;1
+	#vcvars32.bat
+	#cl -O2 -DWIN32 ws2_32.lib *.c /W3 /D _CRT_SECURE_NO_WARNINGS /D UNICODE /MD /Zp4 /Febroker.exe /link /MANIFEST
+	#mt -manifest broker.exe.manifest -outputresource:broker.exe\;1
+	$(CC) -Wall -Os *.c -o broker
 
 
 broker_mqtts.exe: *.c *.h
-	vcvars32.bat
-	cl -O2 -DWIN32 Iphlpapi.lib ws2_32.lib *.c /W3 /D _CRT_SECURE_NO_WARNINGS /D UNICODE /MD /DMQTTS /Zp4 /Febroker_mqtts.exe /link /MANIFEST
-	mt -manifest broker_mqtts.exe.manifest -outputresource:broker_mqtts.exe\;1
+	#vcvars32.bat
+	#cl -O2 -DWIN32 Iphlpapi.lib ws2_32.lib *.c /W3 /D _CRT_SECURE_NO_WARNINGS /D UNICODE /MD /DMQTTS /Zp4 /Febroker_mqtts.exe /link /MANIFEST
+	#mt -manifest broker_mqtts.exe.manifest -outputresource:broker_mqtts.exe\;1
+	$(CC) -DMQTTS -Wall -Os *.c -o broker_mqtts -lws2_32
 
 rsmb.ini: *.h
 	perl tools\\be\\be.pl

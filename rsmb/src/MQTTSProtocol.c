@@ -3,11 +3,11 @@
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
- * and Eclipse Distribution License v1.0 which accompany this distribution. 
+ * and Eclipse Distribution License v1.0 which accompany this distribution.
  *
- * The Eclipse Public License is available at 
+ * The Eclipse Public License is available at
  *    http://www.eclipse.org/legal/epl-v10.html
- * and the Eclipse Distribution License is available at 
+ * and the Eclipse Distribution License is available at
  *   http://www.eclipse.org/org/documents/edl-v10.php.
  *
  * Contributors:
@@ -115,7 +115,7 @@ static pf handle_packets[] =
 };
 #endif
 
-extern BrokerStates* bstate;
+BrokerStates* bstate;
 
 
 int registeredTopicNameCompare(void*a, void* b)
@@ -187,6 +187,18 @@ void MQTTSProtocol_housekeeping()
 	FUNC_EXIT;
 }
 
+int MQTTS_send_DISCONNECT(int socket, char* clientAddr)
+{
+	PacketBuffer buf;
+	int rc = 0;
+
+	FUNC_ENTRY;
+	buf = MQTTSPacketSerialize_ack(MQTTS_DISCONNECT, -1);
+	rc = MQTTSPacket_sendPacketBuffer(socket, clientAddr, buf);
+	free(buf.data);
+	FUNC_EXIT_RC(rc);
+	return rc;
+}
 
 void MQTTSProtocol_timeslice(int sock)
 {
@@ -243,7 +255,11 @@ void MQTTSProtocol_timeslice(int sock)
 			(pack->header.type != MQTTS_PUBLISH || ((MQTTS_Publish*)pack)->flags.QoS != 3))
 	{
 			Log(LOG_WARNING, 23, NULL, sock, Socket_getpeer(sock), MQTTSPacket_name(pack->header.type));
-			MQTTSPacket_free_packet(pack);
+			MQTTSPacket_free_packet(pack);  //			@  // @@ +AL
+			#if defined(MQTTS)
+				MQTTS_send_DISCONNECT(sock, clientAddr);
+	    #endif
+
 	}
 	else
 	{
@@ -367,7 +383,7 @@ int MQTTSProtocol_handleConnects(void* pack, int sock, char* clientAddr, Clients
 		if (client == NULL) /* this is a totally new connection */
 		{
 			int i;
-		
+
 			client = malloc(sizeof(Clients));
 			memset(client, '\0', sizeof(Clients));
 			client->protocol = PROTOCOL_MQTTS;
@@ -440,7 +456,7 @@ int MQTTSProtocol_handleConnects(void* pack, int sock, char* clientAddr, Clients
 		}
 		/* registrations are always cleared */
 		MQTTSProtocol_emptyRegistrationList(client->registrations);
-		
+
 		/* have to remove and re-add client so it is in the right order for new socket */
 		if (client->socket != sock)
 		{
@@ -467,7 +483,7 @@ int MQTTSProtocol_handleConnects(void* pack, int sock, char* clientAddr, Clients
 			rc = MQTTSPacket_send_connack(client,0); /* send response */
 		}
 	}
-	
+
 	if (existingClient)
 		MQTTProtocol_processQueued(client);
 

@@ -3,11 +3,11 @@
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
- * and Eclipse Distribution License v1.0 which accompany this distribution. 
+ * and Eclipse Distribution License v1.0 which accompany this distribution.
  *
- * The Eclipse Public License is available at 
+ * The Eclipse Public License is available at
  *    http://www.eclipse.org/legal/epl-v10.html
- * and the Eclipse Distribution License is available at 
+ * and the Eclipse Distribution License is available at
  *   http://www.eclipse.org/org/documents/edl-v10.php.
  *
  * Contributors:
@@ -144,7 +144,7 @@ void Socket_outInitialize()
 	signal(SIGPIPE, SIG_IGN);
 #endif
 	SocketBuffer_initialize();
-	
+
 #if !defined(USE_POLL)
 	s.clientsds = ListInitialize();
 	s.connect_pending = ListInitialize();
@@ -226,7 +226,7 @@ int win_inet_pton(int family, const char *src, void *dst)
 		struct sockaddr_in6 sockaddr;
 
 		mbstowcs(buf, src, sizeof(buf));
-		rc = WSAStringToAddress(buf, AF_INET6, NULL, (struct sockaddr*)&sockaddr, &buflen);
+		rc = WSAStringToAddressW(buf, AF_INET6, NULL, (struct sockaddr*)&sockaddr, &buflen);
 		memcpy(dst, &sockaddr.sin6_addr.s6_addr, sizeof(sockaddr.sin6_addr.s6_addr));
 	}
 	else
@@ -236,7 +236,7 @@ int win_inet_pton(int family, const char *src, void *dst)
 		struct sockaddr_in sockaddr;
 
 		mbstowcs(buf, src, sizeof(buf));
-		rc = WSAStringToAddress(buf, AF_INET, NULL, (struct sockaddr*)&sockaddr, &buflen);
+		rc = WSAStringToAddressW(buf, AF_INET, NULL, (struct sockaddr*)&sockaddr, &buflen);
 		memcpy(dst, &sockaddr.sin_addr.s_addr, sizeof(sockaddr.sin_addr.s_addr));
 	}
 	return rc;
@@ -251,7 +251,7 @@ int Socket_joinMulticastGroup(int sock, int ipv6, char* mcast)
 	char* mcast_interface = NULL;
 
 	/* if there is a space in the mcast string, it means we have address plus interface specified */
-	if ((mcast_interface = strchr(mcast, ' ')) != NULL)
+	if ((mcast_interface = strchr(mcast, ':')) != NULL)
 	{
 		*mcast_interface = '\0';
 		++mcast_interface;
@@ -318,7 +318,7 @@ int Socket_joinMulticastGroup(int sock, int ipv6, char* mcast)
 			if ((rc = win_inet_pton(AF_INET, mcast_interface, &mreq.imr_interface.s_addr)) == SOCKET_ERROR)
 				Socket_error("WSAStringToAddress interface", sock);
 
-			//mreq.imr_interface.s_addr = inet_addr(mcast_interface); /* can use inet_addr as this code is IPv4 specific */
+		//	mreq.imr_interface.s_addr = inet_addr(mcast_interface); /* can use inet_addr as this code is IPv4 specific */
 #else
 			struct ifreq ifreq;
 
@@ -687,9 +687,9 @@ NewSockets* Socket_getNew(int socket)
 {
 	NewSockets* rc = NULL;
 	ListElement* found = ListFindItem(s.newSockets, &socket, newSocketCompare);
-	
+
 	if (found)
-		rc = (NewSockets*)(found->content); 
+		rc = (NewSockets*)(found->content);
 	return rc;
 }
 
@@ -766,14 +766,14 @@ void Socket_cleanNew(time_t now)
 	while (elem)
 	{
 		ListElement* current = elem;
-		
+
 		ListNextElement(s.newSockets, &elem);
 		if (difftime(now, ((NewSockets*)(current->content))->opened) > 60)
 		{
-			Log(TRACE_MIN, 0, "Connect packet not received on socket %d within 60s. - closing socket", 
+			Log(TRACE_MIN, 0, "Connect packet not received on socket %d within 60s. - closing socket",
 				((NewSockets*)(current->content))->socket);
 			ListRemove(s.newSockets, current->content);
-		}			
+		}
 	}
 }
 
@@ -808,7 +808,7 @@ int isReady(struct socket_info* info)
 {
 	int rc = 0;
 	struct pollfd pollfd;
-	
+
 	/* the fact that we are here means the we are ready for reading */
 	pollfd.fd = info->fd;
 	pollfd.events = POLLOUT;
@@ -850,13 +850,13 @@ void newConnection(Listener* list)
 	unsigned int cliLen = sizeof(struct sockaddr_in6);
 	struct sockaddr_in6 addr6;
 	struct sockaddr *cliAddr = (struct sockaddr *)&addr6;
-					
+
 	if (list->ipv6 == 0)
 	{
 		cliLen = sizeof(struct sockaddr_in);
 		cliAddr = (struct sockaddr *)&addr;
 	}
-	
+
 	if ((newSd = accept(list->socket, (struct sockaddr *)cliAddr, &cliLen)) == SOCKET_ERROR)
 		Socket_error("accept", list->socket);
 	else
@@ -866,7 +866,7 @@ void newConnection(Listener* list)
 #if defined(USE_POLL)
 		struct socket_info* si;
 #endif
-		
+
 		if (list->ipv6)
 		{
 			Socket_getaddrname((struct sockaddr*)&addr6, addr6.sin6_port);
@@ -896,14 +896,14 @@ void Socket_epollprocess()
 	while (s.cur_sds < s.no_ready)
 	{
 		struct socket_info* cur_info = s.events[s.cur_sds].data.ptr;
-			
+
 		if (cur_info->event.events & EPOLLIN) /* if this socket is readable */
 		{
 			if (cur_info->listener && cur_info->listener->protocol == 0) /* if it is a listener, and not MQTTs */
 				newConnection(cur_info->listener);
 			else if (isReady(cur_info))
 				break;
-		}	
+		}
 		else if ((cur_info->event.events & EPOLLOUT)) /* has a pending write or connect */
 		{
 			if (cur_info->connect_pending)
@@ -980,7 +980,7 @@ int Socket_getReadySocket(int more_work, struct timeval *tp)
 		(ss.more_work_count)++;
 	else
 		(ss.not_more_work_count)++;
-		
+
 #if defined(USE_POLL)
 	if (timeout == 0)
 		(ss.timeout_zero_count)++;
@@ -1041,12 +1041,12 @@ int Socket_getReadySocket(int more_work, struct timeval *tp)
 		}
 		Log(TRACE_MAX, 9, NULL, rc1);
 		//printf("select rc %d rc1 %d\n", rc, rc1);
-		
+
 		if (rc == 0 && rc1 == 0)
 			goto exit; /* no work to do */
 #else
 	if (s.cur_sds >= s.no_ready)
-	{	
+	{
 		/* check for any readable sockets, or writeable for pending writes */
 		/* the events field has already been modified for pending writes in Socket_putdatas */
 		rc = epoll_wait(s.epoll_fds, s.events, MAX_EVENTS, timeout);
@@ -1056,7 +1056,7 @@ int Socket_getReadySocket(int more_work, struct timeval *tp)
 			goto exit;
 		}
 		Log(TRACE_MAX, 8, NULL, rc);
-		
+
 		if (rc == 0)
 			goto exit; /* no work to do */
 #endif
@@ -1250,11 +1250,11 @@ exit:
 
 #if defined(USE_POLL)
 int Socket_noPendingWrites(int socket)
-{	
+{
 	int rc = 1;
 	struct socket_info* si = NULL;
 	Node* elem = NULL;
-	
+
 	FUNC_ENTRY;
 	elem = TreeFind(s.fds_tree, &socket);
 	if (elem && ((si = (struct socket_info*)(elem->content)) != NULL))
@@ -1366,7 +1366,7 @@ int Socket_putdatas(int socket, char* buf0, int buf0len, int count, char** buffe
 #if !defined(USE_POLL)
 			int* sockmem = NULL;
 #endif
-			
+
 			Log(TRACE_MIN, 33, NULL, bytes, total, socket);
 			SocketBuffer_pendingWrite(socket, count+1, iovecs, total, bytes);
 #if defined(USE_POLL)
@@ -1436,7 +1436,7 @@ void Socket_close(int socket)
 #endif
 
 	Socket_close_only(socket);
-	
+
 #if !defined(USE_POLL)
 	FD_CLR((u_int)socket, &(s.rset_saved));
 	if (FD_ISSET((u_int)socket, &(s.pending_wset)))
@@ -1590,7 +1590,7 @@ int Socket_new_type(char* addr, int port, int* sock, int type)
 #if defined(USE_POLL)
 			struct socket_info* si = NULL;
 #endif
-			
+
 			Log(TRACE_MIN, 14, NULL, *sock, (family == AF_INET) ? addr : &addr[1], port);
 #if defined(USE_POLL)
 			if (Socket_addSocket(*sock, &si, 1) == SOCKET_ERROR)
@@ -1778,12 +1778,14 @@ char* Socket_getaddrname(struct sockaddr* sa, int sock)
 #if defined(WIN32)
 	int buflen = ADDRLEN*2;
 	wchar_t buf[ADDRLEN*2];
-	if (WSAAddressToString(sa, sizeof(struct sockaddr_in6), NULL, buf, (LPDWORD)&buflen) == SOCKET_ERROR)
+	if (WSAAddressToString(sa, sizeof(struct sockaddr_in6), NULL, buf, (LPDWORD)&buflen) == SOCKET_ERROR){
 		Socket_error("WSAAddressToString", sock);
-	else
-		wcstombs(addr_string, buf, sizeof(addr_string));
+	}else{
+		//wcstombs(addr_string, buf, sizeof(addr_string));
+		strncpy(addr_string, buf, sizeof(addr_string));
 	/* TODO: append the port information - format: [00:00:00::]:port */
 	/* strcpy(&addr_string[strlen(addr_string)], "what?"); */
+  }
 #else
 	if (sa->sa_family == AF_INET)
 	{

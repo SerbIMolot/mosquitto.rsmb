@@ -3,11 +3,11 @@
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
- * and Eclipse Distribution License v1.0 which accompany this distribution. 
+ * and Eclipse Distribution License v1.0 which accompany this distribution.
  *
- * The Eclipse Public License is available at 
+ * The Eclipse Public License is available at
  *    http://www.eclipse.org/legal/epl-v10.html
- * and the Eclipse Distribution License is available at 
+ * and the Eclipse Distribution License is available at
  *   http://www.eclipse.org/org/documents/edl-v10.php.
  *
  * Contributors:
@@ -690,7 +690,7 @@ void MQTTSPacket_free_willMsgUpd(void* pack)
 }
 
 
-int MQTTSPacket_sendPacketBuffer(int socket, char* addr, PacketBuffer buf)
+int MQTTSPacket_sendPacketBuffer(int sock, char* addr, PacketBuffer buf)
 {
 	char *port;
 	int rc = 0;
@@ -703,10 +703,15 @@ int MQTTSPacket_sendPacketBuffer(int socket, char* addr, PacketBuffer buf)
 		struct sockaddr_in6 cliaddr6;
 		memset(&cliaddr6, '\0', sizeof(cliaddr6));
 		cliaddr6.sin6_family = AF_INET6;
+#if defined(WIN32) // @@ AL
+		if ((rc = win_inet_pton(AF_INET6, addr, &cliaddr6.sin6_addr)) == SOCKET_ERROR)
+			Socket_error("WSAStringToAddress", sock);
+#else
 		if (inet_pton(cliaddr6.sin6_family, addr, &cliaddr6.sin6_addr) == 0)
 			Socket_error("inet_pton", socket);
+#endif
 		cliaddr6.sin6_port = htons(atoi(port));
-		if ((rc = sendto(socket, buf.data, buf.len, 0, (const struct sockaddr*)&cliaddr6, sizeof(cliaddr6))) == SOCKET_ERROR)
+		if ((rc = sendto(sock, buf.data, buf.len, 0, (const struct sockaddr*)&cliaddr6, sizeof(cliaddr6))) == SOCKET_ERROR)
 			Socket_error("sendto", socket);
 		else
 			rc = 0;
@@ -715,11 +720,16 @@ int MQTTSPacket_sendPacketBuffer(int socket, char* addr, PacketBuffer buf)
 	{
 		struct sockaddr_in cliaddr;
 		cliaddr.sin_family = AF_INET;
+#if defined(WIN32)
+		if ((rc = win_inet_pton(AF_INET, addr, &cliaddr.sin_addr.s_addr)) == SOCKET_ERROR)
+			Socket_error("WSAStringToAddress", socket);
+#else
 		if (inet_pton(cliaddr.sin_family, addr, &cliaddr.sin_addr.s_addr) == 0)
-			Socket_error("inet_pton", socket);
+			Socket_error("inet_pton", sock);
+#endif
 		cliaddr.sin_port = htons(atoi(port));
-		if ((rc = sendto(socket, buf.data, buf.len, 0, (const struct sockaddr*)&cliaddr, sizeof(cliaddr))) == SOCKET_ERROR)
-			Socket_error("sendto", socket);
+		if ((rc = sendto(sock, buf.data, buf.len, 0, (const struct sockaddr*)&cliaddr, sizeof(cliaddr))) == SOCKET_ERROR)
+			Socket_error("sendto", sock);
 		else
 			rc = 0;
 	}
@@ -816,7 +826,7 @@ int MQTTSPacket_send_connack(Clients* client, int returnCode)
 	buf = MQTTSSerialize_connack(returnCode);
 	rc = MQTTSPacket_sendPacketBuffer(client->socket, client->addr, buf);
 	free(buf.data);
-	Log(LOG_PROTOCOL, 40, NULL, socket, client->addr, client->clientID, returnCode, rc);	
+	Log(LOG_PROTOCOL, 40, NULL, socket, client->addr, client->clientID, returnCode, rc);
 	FUNC_EXIT;
 	return rc;
 }
@@ -1057,7 +1067,7 @@ int MQTTSPacket_send_advertise(int sock, char* address, unsigned char gateway_id
 
 	FUNC_ENTRY;
 	buf = MQTTSPacketSerialize_advertise(gateway_id, duration);
-	
+
 	rc = MQTTSPacket_sendPacketBuffer(sock, address, buf);
 	free(buf.data);
 
@@ -1077,7 +1087,7 @@ int MQTTSPacket_send_connect(Clients* client)
 
 	FUNC_ENTRY;
 	buf = MQTTSPacketSerialize_connect(client->cleansession, (client->will != NULL), 1, client->keepAliveInterval, client->clientID);
-	
+
 	rc = MQTTSPacket_sendPacketBuffer(client->socket, client->addr, buf);
 	free(buf.data);
 

@@ -3,11 +3,11 @@
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
- * and Eclipse Distribution License v1.0 which accompany this distribution. 
+ * and Eclipse Distribution License v1.0 which accompany this distribution.
  *
- * The Eclipse Public License is available at 
+ * The Eclipse Public License is available at
  *    http://www.eclipse.org/legal/epl-v10.html
- * and the Eclipse Distribution License is available at 
+ * and the Eclipse Distribution License is available at
  *   http://www.eclipse.org/org/documents/edl-v10.php.
  *
  * Contributors:
@@ -27,6 +27,8 @@
 #include <stdlib.h>
 #include <memory.h>
 #include <string.h>
+#include <unistd.h> // @@ AL getswd
+
 
 #if defined(WIN32)
 #define snprintf _snprintf
@@ -187,7 +189,7 @@ static char* trace_message_list[] =
 
 
 /**
- * Find the location of this program 
+ * Find the location of this program
  * @param buf a character buffer to hold the directory name
  * @param bufsize the size of buf
  * @return the success return code
@@ -198,9 +200,9 @@ int Messages_findMyLocation(char* buf, int bufsize)
 #if defined(WIN32)
 	wchar_t wbuf[256];
 #endif
- 	
+
 	FUNC_ENTRY;
-#if defined(WIN32) 	
+#if defined(WIN32)
 	rc = GetModuleFileName(NULL, wbuf, bufsize);
 	wcstombs(buf, wbuf, bufsize);
 #else /* Linux */
@@ -237,7 +239,17 @@ int Messages_initialize(BrokerStates* bstate)
 	int count = 0;
 	int rc = -99;
 	char fn[20] = "Messages.";
-
+{
+  #ifndef PATH_MAX
+   #define PATH_MAX 255
+  #endif // PATH_MAX
+   char cwd[PATH_MAX];
+   if (getcwd(cwd, sizeof(cwd)) != NULL) {
+       printf("Current working dir: %s\n", cwd);
+   } else {
+       perror("getcwd() error");
+   }
+}
 	FUNC_ENTRY;
 	strcat(fn, bstate->version);
 	if ((rfile = fopen(fn, "r")) == NULL)
@@ -249,7 +261,7 @@ int Messages_initialize(BrokerStates* bstate)
 			if (Messages_findMyLocation(fullfn, sizeof(fullfn)) == 0)
 			{
 				int dirlength = strlen(fullfn);
-				
+
 				snprintf(&fullfn[dirlength], sizeof(fullfn) - dirlength, "%c%s", sep, fn);
 				rfile = fopen(fullfn, "r");
 				if (rfile == NULL)

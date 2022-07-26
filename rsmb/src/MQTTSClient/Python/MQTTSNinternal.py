@@ -23,7 +23,7 @@ debug = False
 class Receivers:
 
   def __init__(self, socket):
-    print "initializing receiver"
+    print ("initializing receiver")
     self.socket = socket
     self.connected = False
     self.observe = None
@@ -66,16 +66,16 @@ class Receivers:
       packet, address = MQTTSN.unpackPacket(MQTTSN.getPacket(self.socket))
     except:
       if sys.exc_info()[0] != socket.timeout:
-        print "unexpected exception", sys.exc_info()
+        print ("unexpected exception", sys.exc_info())
         raise sys.exc_info()
     if packet == None:
       time.sleep(0.1)
       return
     elif debug:
-      print packet
+      print (packet)
 
     if self.observe == packet.mh.MsgType:
-      print "observed", packet
+      print ("observed", packet())
       self.observed.append(packet)
         
     elif packet.mh.MsgType == MQTTSN.ADVERTISE:
@@ -168,5 +168,5 @@ class Receivers:
         self.receive(callback)
     except:
       if sys.exc_info()[0] != socket.error:
-        print "unexpected exception", sys.exc_info()
+        print ("unexpected exception", sys.exc_info())
         traceback.print_exc()

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="mqtt-sn" />
+		<Option default_target="MQTT_SN" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="MQTT">
+				<Option output="_bin/mqtt" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="$(PROJECT_DIR)/src" />
+				<Option object_output="_obj/mqtt/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add library="ws2_32" />
+				</Linker>
+			</Target>
+			<Target title="MQTT_SN">
+				<Option output="_bin/mqtt-sn" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="$(PROJECT_DIR)/src" />
+				<Option object_output="_obj/mqtt-sn/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-DNO_BRIDGE_" />
+					<Add option="-DMQTTS" />
+				</Compiler>
+				<Linker>
+					<Add library="ws2_32" />
+				</Linker>
+			</Target>
+			<Target title="Linux">
+				<Option output="_unix/mqtt-sn" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="$(PROJECT_DIR)/src" />
+				<Option object_output="_obj/unix-mqtt-sn/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-DNO_BRIDGE_" />
+					<Add option="-DMQTTS" />
+				</Compiler>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="_bin/broker.cfg" />
+		<Unit filename="broker.cfg" />
+		<Unit filename="src/Bridge.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/Bridge.h" />
+		<Unit filename="src/Broker.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/Broker.h" />
+		<Unit filename="src/Clients.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/Clients.h" />
+		<Unit filename="src/Filter.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/Filter.h" />
+		<Unit filename="src/Heap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/Heap.h" />
+		<Unit filename="src/LinkedList.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/LinkedList.h" />
+		<Unit filename="src/Log.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/Log.h" />
+		<Unit filename="src/MQTTPacket.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/MQTTPacket.h" />
+		<Unit filename="src/MQTTPacketOut.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/MQTTPacketOut.h" />
+		<Unit filename="src/MQTTProtocol.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/MQTTProtocol.h" />
+		<Unit filename="src/MQTTProtocolClient.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/MQTTProtocolClient.h" />
+		<Unit filename="src/MQTTProtocolOut.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/MQTTProtocolOut.h" />
+		<Unit filename="src/MQTTSPacket.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/MQTTSPacket.h" />
+		<Unit filename="src/MQTTSPacketSerialize.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/MQTTSPacketSerialize.h" />
+		<Unit filename="src/MQTTSProtocol.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/MQTTSProtocol.h" />
+		<Unit filename="src/MQTTSProtocolOut.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/MQTTSProtocolOut.h" />
+		<Unit filename="src/Makefile" />
+		<Unit filename="src/Makefile.old" />
+		<Unit filename="src/Messages.1.3.0.2" />
+		<Unit filename="src/Messages.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/Messages.h" />
+		<Unit filename="src/Messages.txt" />
+		<Unit filename="src/Persistence.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/Persistence.h" />
+		<Unit filename="src/Protocol.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/Protocol.h" />
+		<Unit filename="src/Socket.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/Socket.h" />
+		<Unit filename="src/SocketBuffer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/SocketBuffer.h" />
+		<Unit filename="src/StackTrace.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/StackTrace.h" />
+		<Unit filename="src/SubsEngine.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/SubsEngine.h" />
+		<Unit filename="src/Topics.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/Topics.h" />
+		<Unit filename="src/Tree.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/Tree.h" />
+		<Unit filename="src/Users.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/Users.h" />
+		<Unit filename="src/broker.cfg" />
+		<Unit filename="src/rsmb.ini" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

@@ -3,20 +3,21 @@
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
- * and Eclipse Distribution License v1.0 which accompany this distribution. 
+ * and Eclipse Distribution License v1.0 which accompany this distribution.
  *
- * The Eclipse Public License is available at 
+ * The Eclipse Public License is available at
  *    http://www.eclipse.org/legal/epl-v10.html
- * and the Eclipse Distribution License is available at 
+ * and the Eclipse Distribution License is available at
  *   http://www.eclipse.org/org/documents/edl-v10.php.
  *
  * Contributors:
  *    Ian Craggs, Nicholas O'Leary - initial API and implementation and/or initial documentation
  *******************************************************************************/
 
-#if !defined(NO_BRIDGE) && defined(MQTTS)
+#if !defined(NO_BRIDGE) || defined(MQTTS)
 
 #include "MQTTSProtocolOut.h"
+#include "MQTTSPacket.h" // @@ AL
 #include "Clients.h"
 #include "Bridge.h"
 #include "Protocol.h"
@@ -42,6 +43,7 @@ void Bridge_subscribe(BridgeConnections* bc, Clients* client);
 Clients* MQTTSProtocol_create_multicast(char* ip_address, char* clientID, int loopback)
 { /* outgoing connection */
 	int i, port;
+	char* addr;                   // @@ AL
 	Clients* newc = NULL;
 	char* intface = NULL;
 	int ipv6 = 0;
@@ -68,9 +70,13 @@ Clients* MQTTSProtocol_create_multicast(char* ip_address, char* clientID, int lo
 		++intface;
 	}
 
-	MQTTProtocol_addressPort(ip_address, &port);
-	newc->addr = malloc(strlen(ip_address) + 1);
-	strcpy(newc->addr, ip_address);
+	// @@ AL MQTTProtocol_addressPort(ip_address, &port);
+	// @@ AL newc->addr = malloc(strlen(ip_address) + 1);
+	// @@ AL strcpy(newc->addr, ip_address);
+
+	addr = MQTTProtocol_addressPort(addr, &port); // @@ AL
+	newc->addr = malloc(strlen(addr) + 1); // @@ AL
+	strcpy(newc->addr, addr);              // @@ AL
 
 	ipv6 = (newc->addr[0] == '[');
 
@@ -84,7 +90,7 @@ Clients* MQTTSProtocol_create_multicast(char* ip_address, char* clientID, int lo
 		if (ipv6)
 		{
 			int index = 0;
-
+            #define if_nametoindex atoi
 			if ((index = if_nametoindex(intface)) == 0)
 				Socket_error("get interface index", newc->socket);
 			else if (setsockopt(newc->socket, IPPROTO_IPV6, IPV6_MULTICAST_IF, (const char*)&index, sizeof(index)) == SOCKET_ERROR)
@@ -94,6 +100,7 @@ Clients* MQTTSProtocol_create_multicast(char* ip_address, char* clientID, int lo
 		{
 			struct in_addr interface_addr;
 #if defined(WIN32)
+            int rc;
 			if ((rc = win_inet_pton(AF_INET, intface, &interface_addr)) == SOCKET_ERROR)
 				Socket_error("WSAStringToAddress interface", newc->socket);
 			else

@@ -1,0 +1,2631 @@
+# depslib dependency file v1.0
+1586361520 source:m:\al\2020\mqtt-sn\src\bridge.c
+	"Bridge.h"
+	"Log.h"
+	"MQTTProtocol.h"
+	"StackTrace.h"
+	"MQTTSProtocol.h"
+	"Topics.h"
+	"Messages.h"
+	"Protocol.h"
+	<string.h>
+	<stdio.h>
+	"Heap.h"
+
+1586357922 
+
+1586361520 m:\al\2020\mqtt-sn\src\bridge.h
+	"Clients.h"
+	"SubsEngine.h"
+	"MQTTPacket.h"
+
+1586357922 t.h"
+
+1586361520 m:\al\2020\mqtt-sn\src\clients.h
+	<time.h>
+	"LinkedList.h"
+	"Users.h"
+
+1586361520 m:\al\2020\mqtt-sn\src\linkedlist.h
+
+1586361521 m:\al\2020\mqtt-sn\src\users.h
+	"LinkedList.h"
+
+1586361521 m:\al\2020\mqtt-sn\src\subsengine.h
+	"LinkedList.h"
+	"Tree.h"
+
+1586361521 m:\al\2020\mqtt-sn\src\tree.h
+
+1586361520 m:\al\2020\mqtt-sn\src\mqttpacket.h
+	"Socket.h"
+	"LinkedList.h"
+	"Clients.h"
+	"MQTTPacketOut.h"
+
+1586357922 tOut.h"
+
+1586369671 m:\al\2020\mqtt-sn\src\socket.h
+	<sys/types.h>
+	<winsock2.h>
+	<ws2tcpip.h>
+	<sys/socket.h>
+	<sys/param.h>
+	<sys/time.h>
+	<netinet/in.h>
+	<netinet/tcp.h>
+	<arpa/inet.h>
+	<netdb.h>
+	<stdio.h>
+	<unistd.h>
+	<errno.h>
+	<fcntl.h>
+	"LinkedList.h"
+	"Tree.h"
+	<sys/epoll.h>
+	<sys/poll.h>
+
+1655457714 h>
+
+1586361520 m:\al\2020\mqtt-sn\src\mqttpacketout.h
+	"MQTTPacket.h"
+
+1586361520 m:\al\2020\mqtt-sn\src\log.h
+	<stdio.h>
+
+1586361520 m:\al\2020\mqtt-sn\src\mqttprotocol.h
+	"Broker.h"
+	"LinkedList.h"
+	"SubsEngine.h"
+	"MQTTPacket.h"
+	"Clients.h"
+	"MQTTProtocolClient.h"
+	"MQTTProtocolOut.h"
+
+1586357922 colOut.h"
+
+1586361520 m:\al\2020\mqtt-sn\src\broker.h
+	"SubsEngine.h"
+	"Bridge.h"
+	"Tree.h"
+
+1586361520 m:\al\2020\mqtt-sn\src\mqttprotocolclient.h
+	"Broker.h"
+	"LinkedList.h"
+	"SubsEngine.h"
+	"MQTTPacket.h"
+	"Clients.h"
+	"Log.h"
+	"MQTTProtocol.h"
+	"Messages.h"
+
+1586357922 h"
+
+1586361521 m:\al\2020\mqtt-sn\src\messages.h
+	"Broker.h"
+
+1586361520 m:\al\2020\mqtt-sn\src\mqttprotocolout.h
+	"Broker.h"
+	"LinkedList.h"
+	"SubsEngine.h"
+	"MQTTPacket.h"
+	"Clients.h"
+	"Log.h"
+	"Messages.h"
+	"MQTTProtocol.h"
+	"MQTTProtocolClient.h"
+
+1586721202 colClient.h"
+
+1586361521 m:\al\2020\mqtt-sn\src\stacktrace.h
+
+1586361521 m:\al\2020\mqtt-sn\src\mqttsprotocol.h
+	"Clients.h"
+	"Broker.h"
+	"MQTTSProtocolOut.h"
+
+1586357922 ocolOut.h"
+
+1586361521 m:\al\2020\mqtt-sn\src\mqttsprotocolout.h
+	"Broker.h"
+	"LinkedList.h"
+	"SubsEngine.h"
+	"MQTTSPacket.h"
+	"Clients.h"
+	"Log.h"
+	"Messages.h"
+	"MQTTSProtocol.h"
+
+1586715732 ocol.h"
+
+1586361521 m:\al\2020\mqtt-sn\src\mqttspacket.h
+	"Clients.h"
+	"Broker.h"
+	"MQTTSPacketSerialize.h"
+
+1586357922 etSerialize.h"
+
+1586361521 m:\al\2020\mqtt-sn\src\mqttspacketserialize.h
+
+1586361521 m:\al\2020\mqtt-sn\src\topics.h
+
+1586361521 m:\al\2020\mqtt-sn\src\protocol.h
+
+1586361520 m:\al\2020\mqtt-sn\src\heap.h
+	<stdio.h>
+	<memory.h>
+	<stdlib.h>
+
+1586361520 source:m:\al\2020\mqtt-sn\src\broker.c
+	<signal.h>
+	<stdlib.h>
+	<sys/time.h>
+	<sys/timeb.h>
+	"Broker.h"
+	"Log.h"
+	"StackTrace.h"
+	"Protocol.h"
+	"MQTTProtocol.h"
+	"Socket.h"
+	"SubsEngine.h"
+	"Persistence.h"
+	"Users.h"
+	"Heap.h"
+	"Messages.h"
+	"StackTrace.h"
+
+1586357922 e.h"
+
+1586361521 m:\al\2020\mqtt-sn\src\persistence.h
+	"Broker.h"
+	<stdio.h>
+
+1586361520 source:m:\al\2020\mqtt-sn\src\clients.c
+	"Clients.h"
+	<string.h>
+	<stdio.h>
+	"StackTrace.h"
+
+1586361520 source:m:\al\2020\mqtt-sn\src\filter.c
+	"Filter.h"
+
+1586361520 m:\al\2020\mqtt-sn\src\filter.h
+
+1586361520 source:m:\al\2020\mqtt-sn\src\heap.c
+	"Tree.h"
+	"Log.h"
+	"StackTrace.h"
+	<memory.h>
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+	<stddef.h>
+	"Heap.h"
+
+1586361520 source:m:\al\2020\mqtt-sn\src\linkedlist.c
+	"LinkedList.h"
+	<stdlib.h>
+	<string.h>
+	<memory.h>
+	"Heap.h"
+
+1586361520 source:m:\al\2020\mqtt-sn\src\log.c
+	"Log.h"
+	"MQTTPacket.h"
+	"MQTTProtocol.h"
+	"MQTTProtocolClient.h"
+	"Messages.h"
+	"LinkedList.h"
+	"StackTrace.h"
+	<stdio.h>
+	<stdarg.h>
+	<time.h>
+	<string.h>
+	<stdlib.h>
+	<syslog.h>
+	<sys/time.h>
+	<sys/timeb.h>
+	"Heap.h"
+
+1586361521 source:m:\al\2020\mqtt-sn\src\messages.c
+	"Messages.h"
+	"Log.h"
+	"StackTrace.h"
+	<stdio.h>
+	<stdlib.h>
+	<memory.h>
+	<string.h>
+	"Heap.h"
+
+1586361520 source:m:\al\2020\mqtt-sn\src\mqttpacket.c
+	"MQTTPacket.h"
+	"Log.h"
+	"Clients.h"
+	"Messages.h"
+	"StackTrace.h"
+	<stdlib.h>
+	<string.h>
+	"Heap.h"
+
+1586361520 source:m:\al\2020\mqtt-sn\src\mqttpacketout.c
+	"MQTTPacketOut.h"
+	"Log.h"
+	"StackTrace.h"
+	<string.h>
+	<stdlib.h>
+	"Heap.h"
+
+1586361520 source:m:\al\2020\mqtt-sn\src\mqttprotocol.c
+	"MQTTProtocol.h"
+	"MQTTProtocolClient.h"
+	"Log.h"
+	"Topics.h"
+	"Clients.h"
+	"Bridge.h"
+	"Messages.h"
+	"Protocol.h"
+	"Users.h"
+	"StackTrace.h"
+	"MQTTSProtocol.h"
+	<stdlib.h>
+	<stdio.h>
+	<time.h>
+	<string.h>
+	"Heap.h"
+
+1586361520 source:m:\al\2020\mqtt-sn\src\mqttprotocolclient.c
+	<stdlib.h>
+	"MQTTProtocolClient.h"
+	"MQTTSProtocol.h"
+	"Protocol.h"
+	"SocketBuffer.h"
+	"StackTrace.h"
+	"Heap.h"
+
+1586361521 m:\al\2020\mqtt-sn\src\socketbuffer.h
+	"winsock2.h"
+	<sys/socket.h>
+
+1586357922 t.h>
+
+1586361520 source:m:\al\2020\mqtt-sn\src\mqttprotocolout.c
+	<stdlib.h>
+	"MQTTProtocolOut.h"
+	"StackTrace.h"
+	"Heap.h"
+
+1586361521 source:m:\al\2020\mqtt-sn\src\mqttspacket.c
+	"MQTTSPacket.h"
+	"Log.h"
+	"Clients.h"
+	"Messages.h"
+	"Protocol.h"
+	"Socket.h"
+	"StackTrace.h"
+	<stdlib.h>
+	<string.h>
+	"Heap.h"
+
+1586361521 source:m:\al\2020\mqtt-sn\src\mqttspacketserialize.c
+	"MQTTSPacket.h"
+	"Log.h"
+	"StackTrace.h"
+	"Heap.h"
+	"MQTTSPacketSerialize.h"
+
+1586361521 source:m:\al\2020\mqtt-sn\src\mqttsprotocol.c
+	"MQTTSProtocol.h"
+	"MQTTSPacket.h"
+	"MQTTProtocol.h"
+	"Socket.h"
+	"Topics.h"
+	"Log.h"
+	"Messages.h"
+	"Protocol.h"
+	"StackTrace.h"
+	"MQTTSProtocolOut.h"
+	<stdlib.h>
+	<stdio.h>
+	<time.h>
+	<string.h>
+	<sys/timeb.h>
+	"Heap.h"
+
+1586369610 source:m:\al\2020\mqtt-sn\src\mqttsprotocolout.c
+	"MQTTSProtocolOut.h"
+	"Clients.h"
+	"Bridge.h"
+	"Protocol.h"
+	"MQTTProtocolClient.h"
+	"StackTrace.h"
+	<stdlib.h>
+	<Iphlpapi.h>
+	<sys/ioctl.h>
+	<net/if.h>
+	"Heap.h"
+
+1586361521 source:m:\al\2020\mqtt-sn\src\persistence.c
+	"Persistence.h"
+	"Log.h"
+	"Broker.h"
+	"Socket.h"
+	"SubsEngine.h"
+	"Bridge.h"
+	"MQTTProtocol.h"
+	"Topics.h"
+	"Messages.h"
+	"Clients.h"
+	"Users.h"
+	"StackTrace.h"
+	<stdio.h>
+	<string.h>
+	<stddef.h>
+	<memory.h>
+	<stdlib.h>
+	<sys/stat.h>
+	"Heap.h"
+
+1586361521 source:m:\al\2020\mqtt-sn\src\protocol.c
+	"Socket.h"
+	"Log.h"
+	"Messages.h"
+	"Protocol.h"
+	"MQTTPacket.h"
+	"MQTTProtocol.h"
+	"Topics.h"
+	"Persistence.h"
+	"StackTrace.h"
+	"Heap.h"
+	"MQTTSProtocol.h"
+	<string.h>
+
+1586369780 source:m:\al\2020\mqtt-sn\src\socket.c
+	"Socket.h"
+	"Log.h"
+	"SocketBuffer.h"
+	"Messages.h"
+	"StackTrace.h"
+	<stdlib.h>
+	<string.h>
+	<signal.h>
+	<ctype.h>
+	<Iphlpapi.h>
+	<sys/uio.h>
+	<net/if.h>
+	<sys/ioctl.h>
+	<sys/epoll.h>
+	"Heap.h"
+
+1586361521 source:m:\al\2020\mqtt-sn\src\socketbuffer.c
+	"SocketBuffer.h"
+	"LinkedList.h"
+	"Log.h"
+	"Messages.h"
+	"StackTrace.h"
+	<stdlib.h>
+	<stdio.h>
+	<memory.h>
+	"Heap.h"
+
+1586361521 source:m:\al\2020\mqtt-sn\src\stacktrace.c
+	"StackTrace.h"
+	"Log.h"
+	"LinkedList.h"
+	"Clients.h"
+	"Broker.h"
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	"Heap.h"
+	"StackTrace.h"
+
+1586361521 source:m:\al\2020\mqtt-sn\src\subsengine.c
+	"SubsEngine.h"
+	"Topics.h"
+	"Log.h"
+	"Persistence.h"
+	"Messages.h"
+	"StackTrace.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Heap.h"
+
+1586361521 source:m:\al\2020\mqtt-sn\src\topics.c
+	"Topics.h"
+	"Messages.h"
+	"StackTrace.h"
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	"Log.h"
+
+1586361521 source:m:\al\2020\mqtt-sn\src\tree.c
+	"Tree.h"
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<memory.h>
+	"Heap.h"
+
+1586361521 source:m:\al\2020\mqtt-sn\src\users.c
+	"LinkedList.h"
+	"Broker.h"
+	"SubsEngine.h"
+	"Topics.h"
+	"Log.h"
+	"StackTrace.h"
+	"Users.h"
+	<stdio.h>
+	"Heap.h"
+
+1586361520 source:d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\bridge.c
+	"Bridge.h"
+	"Log.h"
+	"MQTTProtocol.h"
+	"StackTrace.h"
+	"MQTTSProtocol.h"
+	"Topics.h"
+	"Messages.h"
+	"Protocol.h"
+	<string.h>
+	<stdio.h>
+	"Heap.h"
+
+1586361520 d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\bridge.h
+	"Clients.h"
+	"SubsEngine.h"
+	"MQTTPacket.h"
+
+1586361520 d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\clients.h
+	<time.h>
+	"LinkedList.h"
+	"Users.h"
+
+1586361520 d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\linkedlist.h
+
+1586361521 d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\users.h
+	"LinkedList.h"
+
+1586361521 d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\subsengine.h
+	"LinkedList.h"
+	"Tree.h"
+
+1586361521 d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\tree.h
+
+1586361520 d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\mqttpacket.h
+	"Socket.h"
+	"LinkedList.h"
+	"Clients.h"
+	"MQTTPacketOut.h"
+
+1586369671 d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\socket.h
+	<sys/types.h>
+	<winsock2.h>
+	<ws2tcpip.h>
+	<sys/socket.h>
+	<sys/param.h>
+	<sys/time.h>
+	<netinet/in.h>
+	<netinet/tcp.h>
+	<arpa/inet.h>
+	<netdb.h>
+	<stdio.h>
+	<unistd.h>
+	<errno.h>
+	<fcntl.h>
+	"LinkedList.h"
+	"Tree.h"
+	<sys/epoll.h>
+	<sys/poll.h>
+
+1586361520 d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\mqttpacketout.h
+	"MQTTPacket.h"
+
+1586361520 d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\log.h
+	<stdio.h>
+
+1586361520 d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\mqttprotocol.h
+	"Broker.h"
+	"LinkedList.h"
+	"SubsEngine.h"
+	"MQTTPacket.h"
+	"Clients.h"
+	"MQTTProtocolClient.h"
+	"MQTTProtocolOut.h"
+
+1586361520 d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\broker.h
+	"SubsEngine.h"
+	"Bridge.h"
+	"Tree.h"
+
+1586361520 d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\mqttprotocolclient.h
+	"Broker.h"
+	"LinkedList.h"
+	"SubsEngine.h"
+	"MQTTPacket.h"
+	"Clients.h"
+	"Log.h"
+	"MQTTProtocol.h"
+	"Messages.h"
+
+1586361521 d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\messages.h
+	"Broker.h"
+
+1586724801 d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\mqttprotocolout.h
+	"Broker.h"
+	"LinkedList.h"
+	"SubsEngine.h"
+	"MQTTPacket.h"
+	"Clients.h"
+	"Log.h"
+	"Messages.h"
+	"MQTTProtocol.h"
+	"MQTTProtocolClient.h"
+
+1586361521 d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\stacktrace.h
+
+1586361521 d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\mqttsprotocol.h
+	"Clients.h"
+	"Broker.h"
+	"MQTTSProtocolOut.h"
+
+1586719330 d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\mqttsprotocolout.h
+	"MQTTSPacket.h"
+	"Clients.h"
+	"MQTTSProtocol.h"
+
+1586361521 d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\mqttspacket.h
+	"Clients.h"
+	"Broker.h"
+	"MQTTSPacketSerialize.h"
+
+1586361521 d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\mqttspacketserialize.h
+
+1586361521 d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\topics.h
+
+1586361521 d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\protocol.h
+
+1586361520 d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\heap.h
+	<stdio.h>
+	<memory.h>
+	<stdlib.h>
+
+1586618367 source:d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\broker.c
+	<signal.h>
+	<stdlib.h>
+	<sys/time.h>
+	<sys/timeb.h>
+	"Broker.h"
+	"Log.h"
+	"StackTrace.h"
+	"Protocol.h"
+	"MQTTProtocol.h"
+	"Socket.h"
+	"SubsEngine.h"
+	"Persistence.h"
+	"Users.h"
+	"Heap.h"
+	"Messages.h"
+	"StackTrace.h"
+
+1586361521 d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\persistence.h
+	"Broker.h"
+	<stdio.h>
+
+1586361520 source:d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\clients.c
+	"Clients.h"
+	<string.h>
+	<stdio.h>
+	"StackTrace.h"
+
+1586361520 source:d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\filter.c
+	"Filter.h"
+
+1586361520 d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\filter.h
+
+1586361520 source:d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\heap.c
+	"Tree.h"
+	"Log.h"
+	"StackTrace.h"
+	<memory.h>
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+	<stddef.h>
+	"Heap.h"
+
+1586361520 source:d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\linkedlist.c
+	"LinkedList.h"
+	<stdlib.h>
+	<string.h>
+	<memory.h>
+	"Heap.h"
+
+1586361520 source:d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\log.c
+	"Log.h"
+	"MQTTPacket.h"
+	"MQTTProtocol.h"
+	"MQTTProtocolClient.h"
+	"Messages.h"
+	"LinkedList.h"
+	"StackTrace.h"
+	<stdio.h>
+	<stdarg.h>
+	<time.h>
+	<string.h>
+	<stdlib.h>
+	<syslog.h>
+	<sys/time.h>
+	<sys/timeb.h>
+	"Heap.h"
+
+1586717815 source:d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\messages.c
+	"Messages.h"
+	"Log.h"
+	"StackTrace.h"
+	<stdio.h>
+	<stdlib.h>
+	<memory.h>
+	<string.h>
+	<unistd.h>
+	"Heap.h"
+
+1586361520 source:d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\mqttpacket.c
+	"MQTTPacket.h"
+	"Log.h"
+	"Clients.h"
+	"Messages.h"
+	"StackTrace.h"
+	<stdlib.h>
+	<string.h>
+	"Heap.h"
+
+1586361520 source:d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\mqttpacketout.c
+	"MQTTPacketOut.h"
+	"Log.h"
+	"StackTrace.h"
+	<string.h>
+	<stdlib.h>
+	"Heap.h"
+
+1586361520 source:d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\mqttprotocol.c
+	"MQTTProtocol.h"
+	"MQTTProtocolClient.h"
+	"Log.h"
+	"Topics.h"
+	"Clients.h"
+	"Bridge.h"
+	"Messages.h"
+	"Protocol.h"
+	"Users.h"
+	"StackTrace.h"
+	"MQTTSProtocol.h"
+	<stdlib.h>
+	<stdio.h>
+	<time.h>
+	<string.h>
+	"Heap.h"
+
+1586361520 source:d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\mqttprotocolclient.c
+	<stdlib.h>
+	"MQTTProtocolClient.h"
+	"MQTTSProtocol.h"
+	"Protocol.h"
+	"SocketBuffer.h"
+	"StackTrace.h"
+	"Heap.h"
+
+1586361521 d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\socketbuffer.h
+	"winsock2.h"
+	<sys/socket.h>
+
+1586724814 source:d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\mqttprotocolout.c
+	<stdlib.h>
+	"MQTTProtocolOut.h"
+	"StackTrace.h"
+	"Heap.h"
+
+1586361521 source:d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\mqttspacket.c
+	"MQTTSPacket.h"
+	"Log.h"
+	"Clients.h"
+	"Messages.h"
+	"Protocol.h"
+	"Socket.h"
+	"StackTrace.h"
+	<stdlib.h>
+	<string.h>
+	"Heap.h"
+
+1586361521 source:d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\mqttspacketserialize.c
+	"MQTTSPacket.h"
+	"Log.h"
+	"StackTrace.h"
+	"Heap.h"
+	"MQTTSPacketSerialize.h"
+
+1586716939 source:d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\mqttsprotocol.c
+	"MQTTSProtocol.h"
+	"MQTTSPacket.h"
+	"MQTTProtocol.h"
+	"Socket.h"
+	"Topics.h"
+	"Log.h"
+	"Messages.h"
+	"Protocol.h"
+	"StackTrace.h"
+	"MQTTSProtocolOut.h"
+	<stdlib.h>
+	<stdio.h>
+	<time.h>
+	<string.h>
+	<sys/timeb.h>
+	"Heap.h"
+
+1586724685 source:d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\mqttsprotocolout.c
+	"MQTTSProtocolOut.h"
+	"MQTTSPacket.h"
+	"Clients.h"
+	"Bridge.h"
+	"Protocol.h"
+	"MQTTProtocolClient.h"
+	"StackTrace.h"
+	<stdlib.h>
+	<Iphlpapi.h>
+	<sys/ioctl.h>
+	<net/if.h>
+	"Heap.h"
+
+1586361521 source:d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\persistence.c
+	"Persistence.h"
+	"Log.h"
+	"Broker.h"
+	"Socket.h"
+	"SubsEngine.h"
+	"Bridge.h"
+	"MQTTProtocol.h"
+	"Topics.h"
+	"Messages.h"
+	"Clients.h"
+	"Users.h"
+	"StackTrace.h"
+	<stdio.h>
+	<string.h>
+	<stddef.h>
+	<memory.h>
+	<stdlib.h>
+	<sys/stat.h>
+	"Heap.h"
+
+1586716421 source:d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\protocol.c
+	"Socket.h"
+	"Log.h"
+	"Messages.h"
+	"Protocol.h"
+	"MQTTPacket.h"
+	"MQTTProtocol.h"
+	"Topics.h"
+	"Persistence.h"
+	"StackTrace.h"
+	"Heap.h"
+	"MQTTSProtocol.h"
+	"MQTTSPacket.h"
+	<string.h>
+
+1586701787 source:d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\socket.c
+	"Socket.h"
+	"Log.h"
+	"SocketBuffer.h"
+	"Messages.h"
+	"StackTrace.h"
+	<stdlib.h>
+	<string.h>
+	<signal.h>
+	<ctype.h>
+	<Iphlpapi.h>
+	<sys/uio.h>
+	<net/if.h>
+	<sys/ioctl.h>
+	<sys/epoll.h>
+	"Heap.h"
+
+1586361521 source:d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\socketbuffer.c
+	"SocketBuffer.h"
+	"LinkedList.h"
+	"Log.h"
+	"Messages.h"
+	"StackTrace.h"
+	<stdlib.h>
+	<stdio.h>
+	<memory.h>
+	"Heap.h"
+
+1586361521 source:d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\stacktrace.c
+	"StackTrace.h"
+	"Log.h"
+	"LinkedList.h"
+	"Clients.h"
+	"Broker.h"
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	"Heap.h"
+	"StackTrace.h"
+
+1586361521 source:d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\subsengine.c
+	"SubsEngine.h"
+	"Topics.h"
+	"Log.h"
+	"Persistence.h"
+	"Messages.h"
+	"StackTrace.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Heap.h"
+
+1586361521 source:d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\topics.c
+	"Topics.h"
+	"Messages.h"
+	"StackTrace.h"
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	"Log.h"
+
+1586361521 source:d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\tree.c
+	"Tree.h"
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<memory.h>
+	"Heap.h"
+
+1586361521 source:d:\ugt\mqtirex\broker\mqtt-sn\mosquitto.rsmb\rsmb\src\users.c
+	"LinkedList.h"
+	"Broker.h"
+	"SubsEngine.h"
+	"Topics.h"
+	"Log.h"
+	"StackTrace.h"
+	"Users.h"
+	<stdio.h>
+	"Heap.h"
+
+1586357920 source:k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\bridge.c
+	"Bridge.h"
+	"Log.h"
+	"MQTTProtocol.h"
+	"StackTrace.h"
+	"MQTTSProtocol.h"
+	"Topics.h"
+	"Messages.h"
+	"Protocol.h"
+	<string.h>
+	<stdio.h>
+	"Heap.h"
+
+1586357920 k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\bridge.h
+	"Clients.h"
+	"SubsEngine.h"
+	"MQTTPacket.h"
+
+1586357920 k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\clients.h
+	<time.h>
+	"LinkedList.h"
+	"Users.h"
+
+1586357920 k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\linkedlist.h
+
+1586357921 k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\users.h
+	"LinkedList.h"
+
+1586357921 k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\subsengine.h
+	"LinkedList.h"
+	"Tree.h"
+
+1586357921 k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\tree.h
+
+1586357920 k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\mqttpacket.h
+	"Socket.h"
+	"LinkedList.h"
+	"Clients.h"
+	"MQTTPacketOut.h"
+
+1586366071 k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\socket.h
+	<sys/types.h>
+	<winsock2.h>
+	<ws2tcpip.h>
+	<sys/socket.h>
+	<sys/param.h>
+	<sys/time.h>
+	<netinet/in.h>
+	<netinet/tcp.h>
+	<arpa/inet.h>
+	<netdb.h>
+	<stdio.h>
+	<unistd.h>
+	<errno.h>
+	<fcntl.h>
+	"LinkedList.h"
+	"Tree.h"
+	<sys/epoll.h>
+	<sys/poll.h>
+
+1586357920 k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\mqttpacketout.h
+	"MQTTPacket.h"
+
+1586357920 k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\log.h
+	<stdio.h>
+
+1586357920 k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\mqttprotocol.h
+	"Broker.h"
+	"LinkedList.h"
+	"SubsEngine.h"
+	"MQTTPacket.h"
+	"Clients.h"
+	"MQTTProtocolClient.h"
+	"MQTTProtocolOut.h"
+
+1586357920 k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\broker.h
+	"SubsEngine.h"
+	"Bridge.h"
+	"Tree.h"
+
+1586357920 k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\mqttprotocolclient.h
+	"Broker.h"
+	"LinkedList.h"
+	"SubsEngine.h"
+	"MQTTPacket.h"
+	"Clients.h"
+	"Log.h"
+	"MQTTProtocol.h"
+	"Messages.h"
+
+1586357921 k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\messages.h
+	"Broker.h"
+
+1586721201 k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\mqttprotocolout.h
+	"Broker.h"
+	"LinkedList.h"
+	"SubsEngine.h"
+	"MQTTPacket.h"
+	"Clients.h"
+	"Log.h"
+	"Messages.h"
+	"MQTTProtocol.h"
+	"MQTTProtocolClient.h"
+
+1586357921 k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\stacktrace.h
+
+1586357921 k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\mqttsprotocol.h
+	"Clients.h"
+	"Broker.h"
+	"MQTTSProtocolOut.h"
+
+1586715730 k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\mqttsprotocolout.h
+	"MQTTSPacket.h"
+	"Clients.h"
+	"MQTTSProtocol.h"
+
+1586357921 k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\mqttspacket.h
+	"Clients.h"
+	"Broker.h"
+	"MQTTSPacketSerialize.h"
+
+1586357921 k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\mqttspacketserialize.h
+
+1586357921 k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\topics.h
+
+1586357921 k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\protocol.h
+
+1586357920 k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\heap.h
+	<stdio.h>
+	<memory.h>
+	<stdlib.h>
+
+1586614767 source:k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\broker.c
+	<signal.h>
+	<stdlib.h>
+	<sys/time.h>
+	<sys/timeb.h>
+	"Broker.h"
+	"Log.h"
+	"StackTrace.h"
+	"Protocol.h"
+	"MQTTProtocol.h"
+	"Socket.h"
+	"SubsEngine.h"
+	"Persistence.h"
+	"Users.h"
+	"Heap.h"
+	"Messages.h"
+	"StackTrace.h"
+
+1586357921 k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\persistence.h
+	"Broker.h"
+	<stdio.h>
+
+1586357920 source:k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\clients.c
+	"Clients.h"
+	<string.h>
+	<stdio.h>
+	"StackTrace.h"
+
+1586357920 source:k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\filter.c
+	"Filter.h"
+
+1586357920 k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\filter.h
+
+1586357920 source:k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\heap.c
+	"Tree.h"
+	"Log.h"
+	"StackTrace.h"
+	<memory.h>
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+	<stddef.h>
+	"Heap.h"
+
+1586357920 source:k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\linkedlist.c
+	"LinkedList.h"
+	<stdlib.h>
+	<string.h>
+	<memory.h>
+	"Heap.h"
+
+1586357920 source:k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\log.c
+	"Log.h"
+	"MQTTPacket.h"
+	"MQTTProtocol.h"
+	"MQTTProtocolClient.h"
+	"Messages.h"
+	"LinkedList.h"
+	"StackTrace.h"
+	<stdio.h>
+	<stdarg.h>
+	<time.h>
+	<string.h>
+	<stdlib.h>
+	<syslog.h>
+	<sys/time.h>
+	<sys/timeb.h>
+	"Heap.h"
+
+1586714215 source:k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\messages.c
+	"Messages.h"
+	"Log.h"
+	"StackTrace.h"
+	<stdio.h>
+	<stdlib.h>
+	<memory.h>
+	<string.h>
+	<unistd.h>
+	"Heap.h"
+
+1586357920 source:k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\mqttpacket.c
+	"MQTTPacket.h"
+	"Log.h"
+	"Clients.h"
+	"Messages.h"
+	"StackTrace.h"
+	<stdlib.h>
+	<string.h>
+	"Heap.h"
+
+1586357920 source:k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\mqttpacketout.c
+	"MQTTPacketOut.h"
+	"Log.h"
+	"StackTrace.h"
+	<string.h>
+	<stdlib.h>
+	"Heap.h"
+
+1651854502 source:k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\mqttprotocol.c
+	"MQTTProtocol.h"
+	"MQTTProtocolClient.h"
+	"Log.h"
+	"Topics.h"
+	"Clients.h"
+	"Bridge.h"
+	"Messages.h"
+	"Protocol.h"
+	"Users.h"
+	"StackTrace.h"
+	"MQTTSProtocol.h"
+	<stdlib.h>
+	<stdio.h>
+	<time.h>
+	<string.h>
+	"Heap.h"
+
+1586357920 source:k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\mqttprotocolclient.c
+	<stdlib.h>
+	"MQTTProtocolClient.h"
+	"MQTTSProtocol.h"
+	"Protocol.h"
+	"SocketBuffer.h"
+	"StackTrace.h"
+	"Heap.h"
+
+1586357921 k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\socketbuffer.h
+	"winsock2.h"
+	<sys/socket.h>
+
+1586721214 source:k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\mqttprotocolout.c
+	<stdlib.h>
+	"MQTTProtocolOut.h"
+	"StackTrace.h"
+	"Heap.h"
+
+1586357921 source:k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\mqttspacket.c
+	"MQTTSPacket.h"
+	"Log.h"
+	"Clients.h"
+	"Messages.h"
+	"Protocol.h"
+	"Socket.h"
+	"StackTrace.h"
+	<stdlib.h>
+	<string.h>
+	"Heap.h"
+
+1586357921 source:k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\mqttspacketserialize.c
+	"MQTTSPacket.h"
+	"Log.h"
+	"StackTrace.h"
+	"Heap.h"
+	"MQTTSPacketSerialize.h"
+
+1586713339 source:k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\mqttsprotocol.c
+	"MQTTSProtocol.h"
+	"MQTTSPacket.h"
+	"MQTTProtocol.h"
+	"Socket.h"
+	"Topics.h"
+	"Log.h"
+	"Messages.h"
+	"Protocol.h"
+	"StackTrace.h"
+	"MQTTSProtocolOut.h"
+	<stdlib.h>
+	<stdio.h>
+	<time.h>
+	<string.h>
+	<sys/timeb.h>
+	"Heap.h"
+
+1586721085 source:k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\mqttsprotocolout.c
+	"MQTTSProtocolOut.h"
+	"MQTTSPacket.h"
+	"Clients.h"
+	"Bridge.h"
+	"Protocol.h"
+	"MQTTProtocolClient.h"
+	"StackTrace.h"
+	<stdlib.h>
+	<Iphlpapi.h>
+	<sys/ioctl.h>
+	<net/if.h>
+	"Heap.h"
+
+1586357921 source:k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\persistence.c
+	"Persistence.h"
+	"Log.h"
+	"Broker.h"
+	"Socket.h"
+	"SubsEngine.h"
+	"Bridge.h"
+	"MQTTProtocol.h"
+	"Topics.h"
+	"Messages.h"
+	"Clients.h"
+	"Users.h"
+	"StackTrace.h"
+	<stdio.h>
+	<string.h>
+	<stddef.h>
+	<memory.h>
+	<stdlib.h>
+	<sys/stat.h>
+	"Heap.h"
+
+1586712821 source:k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\protocol.c
+	"Socket.h"
+	"Log.h"
+	"Messages.h"
+	"Protocol.h"
+	"MQTTPacket.h"
+	"MQTTProtocol.h"
+	"Topics.h"
+	"Persistence.h"
+	"StackTrace.h"
+	"Heap.h"
+	"MQTTSProtocol.h"
+	"MQTTSPacket.h"
+	<string.h>
+
+1651770293 source:k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\socket.c
+	"Socket.h"
+	"Log.h"
+	"SocketBuffer.h"
+	"Messages.h"
+	"StackTrace.h"
+	<stdlib.h>
+	<string.h>
+	<signal.h>
+	<ctype.h>
+	<Iphlpapi.h>
+	<sys/uio.h>
+	<net/if.h>
+	<sys/ioctl.h>
+	<sys/epoll.h>
+	"Heap.h"
+
+1586357921 source:k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\socketbuffer.c
+	"SocketBuffer.h"
+	"LinkedList.h"
+	"Log.h"
+	"Messages.h"
+	"StackTrace.h"
+	<stdlib.h>
+	<stdio.h>
+	<memory.h>
+	"Heap.h"
+
+1586357921 source:k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\stacktrace.c
+	"StackTrace.h"
+	"Log.h"
+	"LinkedList.h"
+	"Clients.h"
+	"Broker.h"
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	"Heap.h"
+	"StackTrace.h"
+
+1586357921 source:k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\subsengine.c
+	"SubsEngine.h"
+	"Topics.h"
+	"Log.h"
+	"Persistence.h"
+	"Messages.h"
+	"StackTrace.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Heap.h"
+
+1586357921 source:k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\topics.c
+	"Topics.h"
+	"Messages.h"
+	"StackTrace.h"
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	"Log.h"
+
+1586357921 source:k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\tree.c
+	"Tree.h"
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<memory.h>
+	"Heap.h"
+
+1586357921 source:k:\ncs\mqtt\mosquitto.rsmb\rsmb\src\users.c
+	"LinkedList.h"
+	"Broker.h"
+	"SubsEngine.h"
+	"Topics.h"
+	"Log.h"
+	"StackTrace.h"
+	"Users.h"
+	<stdio.h>
+	"Heap.h"
+
+1586357922 source:c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\bridge.c
+	"Bridge.h"
+	"Log.h"
+	"MQTTProtocol.h"
+	"StackTrace.h"
+	"MQTTSProtocol.h"
+	"Topics.h"
+	"Messages.h"
+	"Protocol.h"
+	<string.h>
+	<stdio.h>
+	"Heap.h"
+
+1586357922 c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\bridge.h
+	"Clients.h"
+	"SubsEngine.h"
+	"MQTTPacket.h"
+
+1586357922 c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\clients.h
+	<time.h>
+	"LinkedList.h"
+	"Users.h"
+
+1586357922 c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\linkedlist.h
+
+1586357922 c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\users.h
+	"LinkedList.h"
+
+1586357922 c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\subsengine.h
+	"LinkedList.h"
+	"Tree.h"
+
+1586357922 c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\tree.h
+
+1586357922 c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\mqttpacket.h
+	"Socket.h"
+	"LinkedList.h"
+	"Clients.h"
+	"MQTTPacketOut.h"
+
+1655457714 c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\socket.h
+	<sys/types.h>
+	<winsock2.h>
+	<ws2tcpip.h>
+	<sys/socket.h>
+	<sys/param.h>
+	<sys/time.h>
+	<netinet/in.h>
+	<netinet/tcp.h>
+	<arpa/inet.h>
+	<netdb.h>
+	<stdio.h>
+	<unistd.h>
+	<errno.h>
+	<fcntl.h>
+	"LinkedList.h"
+	"Tree.h"
+	<sys/epoll.h>
+	<sys/poll.h>
+
+1586357922 c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\mqttpacketout.h
+	"MQTTPacket.h"
+
+1586357922 c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\log.h
+	<stdio.h>
+
+1586357922 c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\mqttprotocol.h
+	"Broker.h"
+	"LinkedList.h"
+	"SubsEngine.h"
+	"MQTTPacket.h"
+	"Clients.h"
+	"MQTTProtocolClient.h"
+	"MQTTProtocolOut.h"
+
+1586357922 c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\broker.h
+	"SubsEngine.h"
+	"Bridge.h"
+	"Tree.h"
+
+1586357922 c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\mqttprotocolclient.h
+	"Broker.h"
+	"LinkedList.h"
+	"SubsEngine.h"
+	"MQTTPacket.h"
+	"Clients.h"
+	"Log.h"
+	"MQTTProtocol.h"
+	"Messages.h"
+
+1586357922 c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\messages.h
+	"Broker.h"
+
+1586721202 c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\mqttprotocolout.h
+	"Broker.h"
+	"LinkedList.h"
+	"SubsEngine.h"
+	"MQTTPacket.h"
+	"Clients.h"
+	"Log.h"
+	"Messages.h"
+	"MQTTProtocol.h"
+	"MQTTProtocolClient.h"
+
+1586357922 c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\stacktrace.h
+
+1586357922 c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\mqttsprotocol.h
+	"Clients.h"
+	"Broker.h"
+	"MQTTSProtocolOut.h"
+
+1586715732 c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\mqttsprotocolout.h
+	"MQTTSPacket.h"
+	"Clients.h"
+	"MQTTSProtocol.h"
+
+1586357922 c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\mqttspacket.h
+	"Clients.h"
+	"Broker.h"
+	"MQTTSPacketSerialize.h"
+
+1586357922 c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\mqttspacketserialize.h
+
+1586357922 c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\topics.h
+
+1586357922 c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\protocol.h
+
+1586357922 c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\heap.h
+	<stdio.h>
+	<memory.h>
+	<stdlib.h>
+
+1586614768 source:c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\broker.c
+	<signal.h>
+	<stdlib.h>
+	<sys/time.h>
+	<sys/timeb.h>
+	"Broker.h"
+	"Log.h"
+	"StackTrace.h"
+	"Protocol.h"
+	"MQTTProtocol.h"
+	"Socket.h"
+	"SubsEngine.h"
+	"Persistence.h"
+	"Users.h"
+	"Heap.h"
+	"Messages.h"
+	"StackTrace.h"
+
+1586357922 c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\persistence.h
+	"Broker.h"
+	<stdio.h>
+
+1586357922 source:c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\clients.c
+	"Clients.h"
+	<string.h>
+	<stdio.h>
+	"StackTrace.h"
+
+1586357922 source:c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\filter.c
+	"Filter.h"
+
+1586357922 c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\filter.h
+
+1586357922 source:c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\heap.c
+	"Tree.h"
+	"Log.h"
+	"StackTrace.h"
+	<memory.h>
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+	<stddef.h>
+	"Heap.h"
+
+1586357922 source:c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\linkedlist.c
+	"LinkedList.h"
+	<stdlib.h>
+	<string.h>
+	<memory.h>
+	"Heap.h"
+
+1586357922 source:c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\log.c
+	"Log.h"
+	"MQTTPacket.h"
+	"MQTTProtocol.h"
+	"MQTTProtocolClient.h"
+	"Messages.h"
+	"LinkedList.h"
+	"StackTrace.h"
+	<stdio.h>
+	<stdarg.h>
+	<time.h>
+	<string.h>
+	<stdlib.h>
+	<syslog.h>
+	<sys/time.h>
+	<sys/timeb.h>
+	"Heap.h"
+
+1655454572 source:c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\messages.c
+	"Messages.h"
+	"Log.h"
+	"StackTrace.h"
+	<stdio.h>
+	<stdlib.h>
+	<memory.h>
+	<string.h>
+	<unistd.h>
+	"Heap.h"
+
+1586357922 source:c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\mqttpacket.c
+	"MQTTPacket.h"
+	"Log.h"
+	"Clients.h"
+	"Messages.h"
+	"StackTrace.h"
+	<stdlib.h>
+	<string.h>
+	"Heap.h"
+
+1586357922 source:c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\mqttpacketout.c
+	"MQTTPacketOut.h"
+	"Log.h"
+	"StackTrace.h"
+	<string.h>
+	<stdlib.h>
+	"Heap.h"
+
+1651854504 source:c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\mqttprotocol.c
+	"MQTTProtocol.h"
+	"MQTTProtocolClient.h"
+	"Log.h"
+	"Topics.h"
+	"Clients.h"
+	"Bridge.h"
+	"Messages.h"
+	"Protocol.h"
+	"Users.h"
+	"StackTrace.h"
+	"MQTTSProtocol.h"
+	<stdlib.h>
+	<stdio.h>
+	<time.h>
+	<string.h>
+	"Heap.h"
+
+1586357922 source:c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\mqttprotocolclient.c
+	<stdlib.h>
+	"MQTTProtocolClient.h"
+	"MQTTSProtocol.h"
+	"Protocol.h"
+	"SocketBuffer.h"
+	"StackTrace.h"
+	"Heap.h"
+
+1586357922 c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\socketbuffer.h
+	"winsock2.h"
+	<sys/socket.h>
+
+1586721216 source:c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\mqttprotocolout.c
+	<stdlib.h>
+	"MQTTProtocolOut.h"
+	"StackTrace.h"
+	"Heap.h"
+
+1655458122 source:c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\mqttspacket.c
+	"MQTTSPacket.h"
+	"Log.h"
+	"Clients.h"
+	"Messages.h"
+	"Protocol.h"
+	"Socket.h"
+	"StackTrace.h"
+	<stdlib.h>
+	<string.h>
+	"Heap.h"
+
+1586357922 source:c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\mqttspacketserialize.c
+	"MQTTSPacket.h"
+	"Log.h"
+	"StackTrace.h"
+	"Heap.h"
+	"MQTTSPacketSerialize.h"
+
+1657003030 source:c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\mqttsprotocol.c
+	"MQTTSProtocol.h"
+	"MQTTSPacket.h"
+	"MQTTProtocol.h"
+	"Socket.h"
+	"Topics.h"
+	"Log.h"
+	"Messages.h"
+	"Protocol.h"
+	"StackTrace.h"
+	"MQTTSProtocolOut.h"
+	<stdlib.h>
+	<stdio.h>
+	<time.h>
+	<string.h>
+	<sys/timeb.h>
+	"Heap.h"
+
+1586721086 source:c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\mqttsprotocolout.c
+	"MQTTSProtocolOut.h"
+	"MQTTSPacket.h"
+	"Clients.h"
+	"Bridge.h"
+	"Protocol.h"
+	"MQTTProtocolClient.h"
+	"StackTrace.h"
+	<stdlib.h>
+	<Iphlpapi.h>
+	<sys/ioctl.h>
+	<net/if.h>
+	"Heap.h"
+
+1586357922 source:c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\persistence.c
+	"Persistence.h"
+	"Log.h"
+	"Broker.h"
+	"Socket.h"
+	"SubsEngine.h"
+	"Bridge.h"
+	"MQTTProtocol.h"
+	"Topics.h"
+	"Messages.h"
+	"Clients.h"
+	"Users.h"
+	"StackTrace.h"
+	<stdio.h>
+	<string.h>
+	<stddef.h>
+	<memory.h>
+	<stdlib.h>
+	<sys/stat.h>
+	"Heap.h"
+
+1586712822 source:c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\protocol.c
+	"Socket.h"
+	"Log.h"
+	"Messages.h"
+	"Protocol.h"
+	"MQTTPacket.h"
+	"MQTTProtocol.h"
+	"Topics.h"
+	"Persistence.h"
+	"StackTrace.h"
+	"Heap.h"
+	"MQTTSProtocol.h"
+	"MQTTSPacket.h"
+	<string.h>
+
+1655460505 source:c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\socket.c
+	"Socket.h"
+	"Log.h"
+	"SocketBuffer.h"
+	"Messages.h"
+	"StackTrace.h"
+	<stdlib.h>
+	<string.h>
+	<signal.h>
+	<ctype.h>
+	<Iphlpapi.h>
+	<sys/uio.h>
+	<net/if.h>
+	<sys/ioctl.h>
+	<sys/epoll.h>
+	"Heap.h"
+
+1586357922 source:c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\socketbuffer.c
+	"SocketBuffer.h"
+	"LinkedList.h"
+	"Log.h"
+	"Messages.h"
+	"StackTrace.h"
+	<stdlib.h>
+	<stdio.h>
+	<memory.h>
+	"Heap.h"
+
+1586357922 source:c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\stacktrace.c
+	"StackTrace.h"
+	"Log.h"
+	"LinkedList.h"
+	"Clients.h"
+	"Broker.h"
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	"Heap.h"
+	"StackTrace.h"
+
+1586357922 source:c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\subsengine.c
+	"SubsEngine.h"
+	"Topics.h"
+	"Log.h"
+	"Persistence.h"
+	"Messages.h"
+	"StackTrace.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Heap.h"
+
+1586357922 source:c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\topics.c
+	"Topics.h"
+	"Messages.h"
+	"StackTrace.h"
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	"Log.h"
+
+1586357922 source:c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\tree.c
+	"Tree.h"
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<memory.h>
+	"Heap.h"
+
+1586357922 source:c:\nrf\ncs\mqtt\mosquitto.rsmb\rsmb\src\users.c
+	"LinkedList.h"
+	"Broker.h"
+	"SubsEngine.h"
+	"Topics.h"
+	"Log.h"
+	"StackTrace.h"
+	"Users.h"
+	<stdio.h>
+	"Heap.h"
+
+1586368722 source:/home/jar/devel/rsmb_custom/rsmb/src/Bridge.c
+	"Bridge.h"
+	"Log.h"
+	"MQTTProtocol.h"
+	"StackTrace.h"
+	"MQTTSProtocol.h"
+	"Topics.h"
+	"Messages.h"
+	"Protocol.h"
+	<string.h>
+	<stdio.h>
+	"Heap.h"
+
+1586368722 /home/jar/devel/rsmb_custom/rsmb/src/Bridge.h
+	"Clients.h"
+	"SubsEngine.h"
+	"MQTTPacket.h"
+
+1586368722 /home/jar/devel/rsmb_custom/rsmb/src/Clients.h
+	<time.h>
+	"LinkedList.h"
+	"Users.h"
+
+1586368722 /home/jar/devel/rsmb_custom/rsmb/src/LinkedList.h
+
+1586368722 /home/jar/devel/rsmb_custom/rsmb/src/Users.h
+	"LinkedList.h"
+
+1586368722 /home/jar/devel/rsmb_custom/rsmb/src/SubsEngine.h
+	"LinkedList.h"
+	"Tree.h"
+
+1586368722 /home/jar/devel/rsmb_custom/rsmb/src/Tree.h
+
+1586368722 /home/jar/devel/rsmb_custom/rsmb/src/MQTTPacket.h
+	"Socket.h"
+	"LinkedList.h"
+	"Clients.h"
+	"MQTTPacketOut.h"
+
+1655468516 /home/jar/devel/rsmb_custom/rsmb/src/Socket.h
+	<sys/types.h>
+	<winsock2.h>
+	<ws2tcpip.h>
+	<sys/socket.h>
+	<sys/param.h>
+	<sys/time.h>
+	<netinet/in.h>
+	<netinet/tcp.h>
+	<arpa/inet.h>
+	<netdb.h>
+	<stdio.h>
+	<unistd.h>
+	<errno.h>
+	<fcntl.h>
+	"LinkedList.h"
+	"Tree.h"
+	<sys/epoll.h>
+	<sys/poll.h>
+
+1586368722 /home/jar/devel/rsmb_custom/rsmb/src/MQTTPacketOut.h
+	"MQTTPacket.h"
+
+1586368722 /home/jar/devel/rsmb_custom/rsmb/src/Log.h
+	<stdio.h>
+
+1586368722 /home/jar/devel/rsmb_custom/rsmb/src/MQTTProtocol.h
+	"Broker.h"
+	"LinkedList.h"
+	"SubsEngine.h"
+	"MQTTPacket.h"
+	"Clients.h"
+	"MQTTProtocolClient.h"
+	"MQTTProtocolOut.h"
+
+1586368722 /home/jar/devel/rsmb_custom/rsmb/src/Broker.h
+	"SubsEngine.h"
+	"Bridge.h"
+	"Tree.h"
+
+1586368722 /home/jar/devel/rsmb_custom/rsmb/src/MQTTProtocolClient.h
+	"Broker.h"
+	"LinkedList.h"
+	"SubsEngine.h"
+	"MQTTPacket.h"
+	"Clients.h"
+	"Log.h"
+	"MQTTProtocol.h"
+	"Messages.h"
+
+1586368722 /home/jar/devel/rsmb_custom/rsmb/src/Messages.h
+	"Broker.h"
+
+1586732002 /home/jar/devel/rsmb_custom/rsmb/src/MQTTProtocolOut.h
+	"Broker.h"
+	"LinkedList.h"
+	"SubsEngine.h"
+	"MQTTPacket.h"
+	"Clients.h"
+	"Log.h"
+	"Messages.h"
+	"MQTTProtocol.h"
+	"MQTTProtocolClient.h"
+
+1586368722 /home/jar/devel/rsmb_custom/rsmb/src/StackTrace.h
+
+1586368722 /home/jar/devel/rsmb_custom/rsmb/src/MQTTSProtocol.h
+	"Clients.h"
+	"Broker.h"
+	"MQTTSProtocolOut.h"
+
+1586726532 /home/jar/devel/rsmb_custom/rsmb/src/MQTTSProtocolOut.h
+	"MQTTSPacket.h"
+	"Clients.h"
+	"MQTTSProtocol.h"
+
+1586368722 /home/jar/devel/rsmb_custom/rsmb/src/MQTTSPacket.h
+	"Clients.h"
+	"Broker.h"
+	"MQTTSPacketSerialize.h"
+
+1586368722 /home/jar/devel/rsmb_custom/rsmb/src/MQTTSPacketSerialize.h
+
+1586368722 /home/jar/devel/rsmb_custom/rsmb/src/Topics.h
+
+1586368722 /home/jar/devel/rsmb_custom/rsmb/src/Protocol.h
+
+1586368722 /home/jar/devel/rsmb_custom/rsmb/src/Heap.h
+	<stdio.h>
+	<memory.h>
+	<stdlib.h>
+
+1586625568 source:/home/jar/devel/rsmb_custom/rsmb/src/Broker.c
+	<signal.h>
+	<stdlib.h>
+	<sys/time.h>
+	<sys/timeb.h>
+	"Broker.h"
+	"Log.h"
+	"StackTrace.h"
+	"Protocol.h"
+	"MQTTProtocol.h"
+	"Socket.h"
+	"SubsEngine.h"
+	"Persistence.h"
+	"Users.h"
+	"Heap.h"
+	"Messages.h"
+	"StackTrace.h"
+
+1586368722 /home/jar/devel/rsmb_custom/rsmb/src/Persistence.h
+	"Broker.h"
+	<stdio.h>
+
+1586368722 source:/home/jar/devel/rsmb_custom/rsmb/src/Clients.c
+	"Clients.h"
+	<string.h>
+	<stdio.h>
+	"StackTrace.h"
+
+1586368722 source:/home/jar/devel/rsmb_custom/rsmb/src/Filter.c
+	"Filter.h"
+
+1586368722 /home/jar/devel/rsmb_custom/rsmb/src/Filter.h
+
+1586368722 source:/home/jar/devel/rsmb_custom/rsmb/src/Heap.c
+	"Tree.h"
+	"Log.h"
+	"StackTrace.h"
+	<memory.h>
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+	<stddef.h>
+	"Heap.h"
+
+1586368722 source:/home/jar/devel/rsmb_custom/rsmb/src/LinkedList.c
+	"LinkedList.h"
+	<stdlib.h>
+	<string.h>
+	<memory.h>
+	"Heap.h"
+
+1586368722 source:/home/jar/devel/rsmb_custom/rsmb/src/Log.c
+	"Log.h"
+	"MQTTPacket.h"
+	"MQTTProtocol.h"
+	"MQTTProtocolClient.h"
+	"Messages.h"
+	"LinkedList.h"
+	"StackTrace.h"
+	<stdio.h>
+	<stdarg.h>
+	<time.h>
+	<string.h>
+	<stdlib.h>
+	<syslog.h>
+	<sys/time.h>
+	<sys/timeb.h>
+	"Heap.h"
+
+1655465374 source:/home/jar/devel/rsmb_custom/rsmb/src/Messages.c
+	"Messages.h"
+	"Log.h"
+	"StackTrace.h"
+	<stdio.h>
+	<stdlib.h>
+	<memory.h>
+	<string.h>
+	<unistd.h>
+	"Heap.h"
+
+1586368722 source:/home/jar/devel/rsmb_custom/rsmb/src/MQTTPacket.c
+	"MQTTPacket.h"
+	"Log.h"
+	"Clients.h"
+	"Messages.h"
+	"StackTrace.h"
+	<stdlib.h>
+	<string.h>
+	"Heap.h"
+
+1586368722 source:/home/jar/devel/rsmb_custom/rsmb/src/MQTTPacketOut.c
+	"MQTTPacketOut.h"
+	"Log.h"
+	"StackTrace.h"
+	<string.h>
+	<stdlib.h>
+	"Heap.h"
+
+1651865304 source:/home/jar/devel/rsmb_custom/rsmb/src/MQTTProtocol.c
+	"MQTTProtocol.h"
+	"MQTTProtocolClient.h"
+	"Log.h"
+	"Topics.h"
+	"Clients.h"
+	"Bridge.h"
+	"Messages.h"
+	"Protocol.h"
+	"Users.h"
+	"StackTrace.h"
+	"MQTTSProtocol.h"
+	<stdlib.h>
+	<stdio.h>
+	<time.h>
+	<string.h>
+	"Heap.h"
+
+1586368722 source:/home/jar/devel/rsmb_custom/rsmb/src/MQTTProtocolClient.c
+	<stdlib.h>
+	"MQTTProtocolClient.h"
+	"MQTTSProtocol.h"
+	"Protocol.h"
+	"SocketBuffer.h"
+	"StackTrace.h"
+	"Heap.h"
+
+1586368722 /home/jar/devel/rsmb_custom/rsmb/src/SocketBuffer.h
+	"winsock2.h"
+	<sys/socket.h>
+
+1586732016 source:/home/jar/devel/rsmb_custom/rsmb/src/MQTTProtocolOut.c
+	<stdlib.h>
+	"MQTTProtocolOut.h"
+	"StackTrace.h"
+	"Heap.h"
+
+1655468924 source:/home/jar/devel/rsmb_custom/rsmb/src/MQTTSPacket.c
+	"MQTTSPacket.h"
+	"Log.h"
+	"Clients.h"
+	"Messages.h"
+	"Protocol.h"
+	"Socket.h"
+	"StackTrace.h"
+	<stdlib.h>
+	<string.h>
+	"Heap.h"
+
+1586368722 source:/home/jar/devel/rsmb_custom/rsmb/src/MQTTSPacketSerialize.c
+	"MQTTSPacket.h"
+	"Log.h"
+	"StackTrace.h"
+	"Heap.h"
+	"MQTTSPacketSerialize.h"
+
+1657013832 source:/home/jar/devel/rsmb_custom/rsmb/src/MQTTSProtocol.c
+	"MQTTSProtocol.h"
+	"MQTTSPacket.h"
+	"MQTTProtocol.h"
+	"Socket.h"
+	"Topics.h"
+	"Log.h"
+	"Messages.h"
+	"Protocol.h"
+	"StackTrace.h"
+	"MQTTSProtocolOut.h"
+	<stdlib.h>
+	<stdio.h>
+	<time.h>
+	<string.h>
+	<sys/timeb.h>
+	"Heap.h"
+
+1586731886 source:/home/jar/devel/rsmb_custom/rsmb/src/MQTTSProtocolOut.c
+	"MQTTSProtocolOut.h"
+	"MQTTSPacket.h"
+	"Clients.h"
+	"Bridge.h"
+	"Protocol.h"
+	"MQTTProtocolClient.h"
+	"StackTrace.h"
+	<stdlib.h>
+	<Iphlpapi.h>
+	<sys/ioctl.h>
+	<net/if.h>
+	"Heap.h"
+
+1586368722 source:/home/jar/devel/rsmb_custom/rsmb/src/Persistence.c
+	"Persistence.h"
+	"Log.h"
+	"Broker.h"
+	"Socket.h"
+	"SubsEngine.h"
+	"Bridge.h"
+	"MQTTProtocol.h"
+	"Topics.h"
+	"Messages.h"
+	"Clients.h"
+	"Users.h"
+	"StackTrace.h"
+	<stdio.h>
+	<string.h>
+	<stddef.h>
+	<memory.h>
+	<stdlib.h>
+	<sys/stat.h>
+	"Heap.h"
+
+1586723622 source:/home/jar/devel/rsmb_custom/rsmb/src/Protocol.c
+	"Socket.h"
+	"Log.h"
+	"Messages.h"
+	"Protocol.h"
+	"MQTTPacket.h"
+	"MQTTProtocol.h"
+	"Topics.h"
+	"Persistence.h"
+	"StackTrace.h"
+	"Heap.h"
+	"MQTTSProtocol.h"
+	"MQTTSPacket.h"
+	<string.h>
+
+1655471306 source:/home/jar/devel/rsmb_custom/rsmb/src/Socket.c
+	"Socket.h"
+	"Log.h"
+	"SocketBuffer.h"
+	"Messages.h"
+	"StackTrace.h"
+	<stdlib.h>
+	<string.h>
+	<signal.h>
+	<ctype.h>
+	<Iphlpapi.h>
+	<sys/uio.h>
+	<net/if.h>
+	<sys/ioctl.h>
+	<sys/epoll.h>
+	"Heap.h"
+
+1586368722 source:/home/jar/devel/rsmb_custom/rsmb/src/SocketBuffer.c
+	"SocketBuffer.h"
+	"LinkedList.h"
+	"Log.h"
+	"Messages.h"
+	"StackTrace.h"
+	<stdlib.h>
+	<stdio.h>
+	<memory.h>
+	"Heap.h"
+
+1586368722 source:/home/jar/devel/rsmb_custom/rsmb/src/StackTrace.c
+	"StackTrace.h"
+	"Log.h"
+	"LinkedList.h"
+	"Clients.h"
+	"Broker.h"
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	"Heap.h"
+	"StackTrace.h"
+
+1586368722 source:/home/jar/devel/rsmb_custom/rsmb/src/SubsEngine.c
+	"SubsEngine.h"
+	"Topics.h"
+	"Log.h"
+	"Persistence.h"
+	"Messages.h"
+	"StackTrace.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Heap.h"
+
+1586368722 source:/home/jar/devel/rsmb_custom/rsmb/src/Topics.c
+	"Topics.h"
+	"Messages.h"
+	"StackTrace.h"
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	"Log.h"
+
+1586368722 source:/home/jar/devel/rsmb_custom/rsmb/src/Tree.c
+	"Tree.h"
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<memory.h>
+	"Heap.h"
+
+1586368722 source:/home/jar/devel/rsmb_custom/rsmb/src/Users.c
+	"LinkedList.h"
+	"Broker.h"
+	"SubsEngine.h"
+	"Topics.h"
+	"Log.h"
+	"StackTrace.h"
+	"Users.h"
+	<stdio.h>
+	"Heap.h"
+
+1586357922 source:e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\bridge.c
+	"Bridge.h"
+	"Log.h"
+	"MQTTProtocol.h"
+	"StackTrace.h"
+	"MQTTSProtocol.h"
+	"Topics.h"
+	"Messages.h"
+	"Protocol.h"
+	<string.h>
+	<stdio.h>
+	"Heap.h"
+
+1586357922 e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\bridge.h
+	"Clients.h"
+	"SubsEngine.h"
+	"MQTTPacket.h"
+
+1586357922 e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\clients.h
+	<time.h>
+	"LinkedList.h"
+	"Users.h"
+
+1586357922 e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\linkedlist.h
+
+1586357922 e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\users.h
+	"LinkedList.h"
+
+1586357922 e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\subsengine.h
+	"LinkedList.h"
+	"Tree.h"
+
+1586357922 e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\tree.h
+
+1586357922 e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\mqttpacket.h
+	"Socket.h"
+	"LinkedList.h"
+	"Clients.h"
+	"MQTTPacketOut.h"
+
+1655457716 e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\socket.h
+	<sys/types.h>
+	<winsock2.h>
+	<ws2tcpip.h>
+	<sys/socket.h>
+	<sys/param.h>
+	<sys/time.h>
+	<netinet/in.h>
+	<netinet/tcp.h>
+	<arpa/inet.h>
+	<netdb.h>
+	<stdio.h>
+	<unistd.h>
+	<errno.h>
+	<fcntl.h>
+	"LinkedList.h"
+	"Tree.h"
+	<sys/epoll.h>
+	<sys/poll.h>
+
+1586357922 e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\mqttpacketout.h
+	"MQTTPacket.h"
+
+1586357922 e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\log.h
+	<stdio.h>
+
+1586357922 e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\mqttprotocol.h
+	"Broker.h"
+	"LinkedList.h"
+	"SubsEngine.h"
+	"MQTTPacket.h"
+	"Clients.h"
+	"MQTTProtocolClient.h"
+	"MQTTProtocolOut.h"
+
+1586357922 e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\broker.h
+	"SubsEngine.h"
+	"Bridge.h"
+	"Tree.h"
+
+1586357922 e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\mqttprotocolclient.h
+	"Broker.h"
+	"LinkedList.h"
+	"SubsEngine.h"
+	"MQTTPacket.h"
+	"Clients.h"
+	"Log.h"
+	"MQTTProtocol.h"
+	"Messages.h"
+
+1586357922 e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\messages.h
+	"Broker.h"
+
+1586721202 e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\mqttprotocolout.h
+	"Broker.h"
+	"LinkedList.h"
+	"SubsEngine.h"
+	"MQTTPacket.h"
+	"Clients.h"
+	"Log.h"
+	"Messages.h"
+	"MQTTProtocol.h"
+	"MQTTProtocolClient.h"
+
+1586357922 e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\stacktrace.h
+
+1586357922 e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\mqttsprotocol.h
+	"Clients.h"
+	"Broker.h"
+	"MQTTSProtocolOut.h"
+
+1586715732 e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\mqttsprotocolout.h
+	"MQTTSPacket.h"
+	"Clients.h"
+	"MQTTSProtocol.h"
+
+1586357922 e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\mqttspacket.h
+	"Clients.h"
+	"Broker.h"
+	"MQTTSPacketSerialize.h"
+
+1586357922 e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\mqttspacketserialize.h
+
+1586357922 e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\topics.h
+
+1586357922 e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\protocol.h
+
+1586357922 e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\heap.h
+	<stdio.h>
+	<memory.h>
+	<stdlib.h>
+
+1586614768 source:e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\broker.c
+	<signal.h>
+	<stdlib.h>
+	<sys/time.h>
+	<sys/timeb.h>
+	"Broker.h"
+	"Log.h"
+	"StackTrace.h"
+	"Protocol.h"
+	"MQTTProtocol.h"
+	"Socket.h"
+	"SubsEngine.h"
+	"Persistence.h"
+	"Users.h"
+	"Heap.h"
+	"Messages.h"
+	"StackTrace.h"
+
+1586357922 e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\persistence.h
+	"Broker.h"
+	<stdio.h>
+
+1586357922 source:e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\clients.c
+	"Clients.h"
+	<string.h>
+	<stdio.h>
+	"StackTrace.h"
+
+1586357922 source:e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\filter.c
+	"Filter.h"
+
+1586357922 e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\filter.h
+
+1586357922 source:e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\heap.c
+	"Tree.h"
+	"Log.h"
+	"StackTrace.h"
+	<memory.h>
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+	<stddef.h>
+	"Heap.h"
+
+1586357922 source:e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\linkedlist.c
+	"LinkedList.h"
+	<stdlib.h>
+	<string.h>
+	<memory.h>
+	"Heap.h"
+
+1586357922 source:e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\log.c
+	"Log.h"
+	"MQTTPacket.h"
+	"MQTTProtocol.h"
+	"MQTTProtocolClient.h"
+	"Messages.h"
+	"LinkedList.h"
+	"StackTrace.h"
+	<stdio.h>
+	<stdarg.h>
+	<time.h>
+	<string.h>
+	<stdlib.h>
+	<syslog.h>
+	<sys/time.h>
+	<sys/timeb.h>
+	"Heap.h"
+
+1655454574 source:e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\messages.c
+	"Messages.h"
+	"Log.h"
+	"StackTrace.h"
+	<stdio.h>
+	<stdlib.h>
+	<memory.h>
+	<string.h>
+	<unistd.h>
+	"Heap.h"
+
+1586357922 source:e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\mqttpacket.c
+	"MQTTPacket.h"
+	"Log.h"
+	"Clients.h"
+	"Messages.h"
+	"StackTrace.h"
+	<stdlib.h>
+	<string.h>
+	"Heap.h"
+
+1586357922 source:e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\mqttpacketout.c
+	"MQTTPacketOut.h"
+	"Log.h"
+	"StackTrace.h"
+	<string.h>
+	<stdlib.h>
+	"Heap.h"
+
+1651854504 source:e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\mqttprotocol.c
+	"MQTTProtocol.h"
+	"MQTTProtocolClient.h"
+	"Log.h"
+	"Topics.h"
+	"Clients.h"
+	"Bridge.h"
+	"Messages.h"
+	"Protocol.h"
+	"Users.h"
+	"StackTrace.h"
+	"MQTTSProtocol.h"
+	<stdlib.h>
+	<stdio.h>
+	<time.h>
+	<string.h>
+	"Heap.h"
+
+1586357922 source:e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\mqttprotocolclient.c
+	<stdlib.h>
+	"MQTTProtocolClient.h"
+	"MQTTSProtocol.h"
+	"Protocol.h"
+	"SocketBuffer.h"
+	"StackTrace.h"
+	"Heap.h"
+
+1586357922 e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\socketbuffer.h
+	"winsock2.h"
+	<sys/socket.h>
+
+1586721216 source:e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\mqttprotocolout.c
+	<stdlib.h>
+	"MQTTProtocolOut.h"
+	"StackTrace.h"
+	"Heap.h"
+
+1655458124 source:e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\mqttspacket.c
+	"MQTTSPacket.h"
+	"Log.h"
+	"Clients.h"
+	"Messages.h"
+	"Protocol.h"
+	"Socket.h"
+	"StackTrace.h"
+	<stdlib.h>
+	<string.h>
+	"Heap.h"
+
+1586357922 source:e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\mqttspacketserialize.c
+	"MQTTSPacket.h"
+	"Log.h"
+	"StackTrace.h"
+	"Heap.h"
+	"MQTTSPacketSerialize.h"
+
+1657003032 source:e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\mqttsprotocol.c
+	"MQTTSProtocol.h"
+	"MQTTSPacket.h"
+	"MQTTProtocol.h"
+	"Socket.h"
+	"Topics.h"
+	"Log.h"
+	"Messages.h"
+	"Protocol.h"
+	"StackTrace.h"
+	"MQTTSProtocolOut.h"
+	<stdlib.h>
+	<stdio.h>
+	<time.h>
+	<string.h>
+	<sys/timeb.h>
+	"Heap.h"
+
+1586721086 source:e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\mqttsprotocolout.c
+	"MQTTSProtocolOut.h"
+	"MQTTSPacket.h"
+	"Clients.h"
+	"Bridge.h"
+	"Protocol.h"
+	"MQTTProtocolClient.h"
+	"StackTrace.h"
+	<stdlib.h>
+	<Iphlpapi.h>
+	<sys/ioctl.h>
+	<net/if.h>
+	"Heap.h"
+
+1586357922 source:e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\persistence.c
+	"Persistence.h"
+	"Log.h"
+	"Broker.h"
+	"Socket.h"
+	"SubsEngine.h"
+	"Bridge.h"
+	"MQTTProtocol.h"
+	"Topics.h"
+	"Messages.h"
+	"Clients.h"
+	"Users.h"
+	"StackTrace.h"
+	<stdio.h>
+	<string.h>
+	<stddef.h>
+	<memory.h>
+	<stdlib.h>
+	<sys/stat.h>
+	"Heap.h"
+
+1586712822 source:e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\protocol.c
+	"Socket.h"
+	"Log.h"
+	"Messages.h"
+	"Protocol.h"
+	"MQTTPacket.h"
+	"MQTTProtocol.h"
+	"Topics.h"
+	"Persistence.h"
+	"StackTrace.h"
+	"Heap.h"
+	"MQTTSProtocol.h"
+	"MQTTSPacket.h"
+	<string.h>
+
+1655460506 source:e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\socket.c
+	"Socket.h"
+	"Log.h"
+	"SocketBuffer.h"
+	"Messages.h"
+	"StackTrace.h"
+	<stdlib.h>
+	<string.h>
+	<signal.h>
+	<ctype.h>
+	<Iphlpapi.h>
+	<sys/uio.h>
+	<net/if.h>
+	<sys/ioctl.h>
+	<sys/epoll.h>
+	"Heap.h"
+
+1586357922 source:e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\socketbuffer.c
+	"SocketBuffer.h"
+	"LinkedList.h"
+	"Log.h"
+	"Messages.h"
+	"StackTrace.h"
+	<stdlib.h>
+	<stdio.h>
+	<memory.h>
+	"Heap.h"
+
+1586357922 source:e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\stacktrace.c
+	"StackTrace.h"
+	"Log.h"
+	"LinkedList.h"
+	"Clients.h"
+	"Broker.h"
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	"Heap.h"
+	"StackTrace.h"
+
+1586357922 source:e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\subsengine.c
+	"SubsEngine.h"
+	"Topics.h"
+	"Log.h"
+	"Persistence.h"
+	"Messages.h"
+	"StackTrace.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Heap.h"
+
+1586357922 source:e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\topics.c
+	"Topics.h"
+	"Messages.h"
+	"StackTrace.h"
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	"Log.h"
+
+1586357922 source:e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\tree.c
+	"Tree.h"
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<memory.h>
+	"Heap.h"
+
+1586357922 source:e:\serb\projects\rsmbcb\rsmb_linux\rsmb\src\users.c
+	"LinkedList.h"
+	"Broker.h"
+	"SubsEngine.h"
+	"Topics.h"
+	"Log.h"
+	"StackTrace.h"
+	"Users.h"
+	<stdio.h>
+	"Heap.h"
+

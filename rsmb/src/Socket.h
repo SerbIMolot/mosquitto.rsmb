@@ -1,13 +1,16 @@
+#ifndef HEADER_C6E5B16BFFC82B0D
+#define HEADER_C6E5B16BFFC82B0D
+
 /*******************************************************************************
  * Copyright (c) 2007, 2013 IBM Corp.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
- * and Eclipse Distribution License v1.0 which accompany this distribution. 
+ * and Eclipse Distribution License v1.0 which accompany this distribution.
  *
- * The Eclipse Public License is available at 
+ * The Eclipse Public License is available at
  *    http://www.eclipse.org/legal/epl-v10.html
- * and the Eclipse Distribution License is available at 
+ * and the Eclipse Distribution License is available at
  *   http://www.eclipse.org/org/documents/edl-v10.php.
  *
  * Contributors:
@@ -24,6 +27,19 @@
 #define FD_SETSIZE 1024
 #include <winsock2.h>
 #include <ws2tcpip.h>
+//#define inet_pton win_inet_pton
+#undef EAGAIN
+#undef EINTR
+#undef EINVAL
+#undef EINPROGRESS
+
+#undef ECONNRESET
+#undef EWOULSBLOCK
+#undef ENOTCONN
+#undef EWOULDBLOCK
+#undef EINTR
+#undef EINTR
+
 #define MAXHOSTNAMELEN 256
 #define EAGAIN WSAEWOULDBLOCK
 #define EINTR WSAEINTR
@@ -194,14 +210,14 @@ typedef struct
 } NewSockets;
 
 /*BE
- 
+
 def EPOLL_DATA union
 {
   n32 ptr VOID "ptr"
   n32 dec "fd"
   n32 dec "u32"
   n64 dec "u64"
-} 
+}
 
 def EPOLL_EVENT
 {
@@ -284,7 +300,7 @@ typedef struct
 	int maxfdp1; /**< max descriptor used +1 (again see select doc) */
 	List* clientsds; /**< list of client socket descriptors */
 	ListElement* cur_clientsds; /**< current client socket descriptor (iterator) */
-	fd_set pending_wset; /**< socket pending write set for select */	
+	fd_set pending_wset; /**< socket pending write set for select */
 	List* connect_pending; /**< list of sockets for which a connect is pending */
 	List* write_pending; /**< list of sockets for which a write is pending */
 #endif
@@ -337,5 +353,7 @@ Sockets* Socket_getSockets();
 NewSockets* Socket_getNew(int socket);
 int Socket_removeNew(int socket);
 void Socket_cleanNew(time_t now);
-
+int win_inet_pton(int family, const char *src, void *dst);
 #endif /* SOCKET_H */
+#endif // header guard
+

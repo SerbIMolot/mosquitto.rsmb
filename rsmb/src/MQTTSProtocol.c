@@ -115,7 +115,7 @@ static pf handle_packets[] =
 };
 #endif
 
-BrokerStates* bstate;
+static BrokerStates* bstate;
 
 
 int registeredTopicNameCompare(void*a, void* b)

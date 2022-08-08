@@ -97,7 +97,7 @@ static pf handle_packets[] =
 #endif
 
 MQTTProtocol state;		/**< MQTT protocol state shared with the other MQTTProtocol modules */
-BrokerStates* bstate;	/**< broker state shared with the other MQTTProtocol modules */
+extern BrokerStates* bstate;	/**< broker state shared with the other MQTTProtocol modules */
 static time_t last_keepalive;	/**< time of last keep alive processing */
 static int restarts = -1;	/**< number of MQTT protocol module restarts */
 

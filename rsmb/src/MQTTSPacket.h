@@ -3,11 +3,11 @@
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
- * and Eclipse Distribution License v1.0 which accompany this distribution. 
+ * and Eclipse Distribution License v1.0 which accompany this distribution.
  *
- * The Eclipse Public License is available at 
+ * The Eclipse Public License is available at
  *    http://www.eclipse.org/legal/epl-v10.html
- * and the Eclipse Distribution License is available at 
+ * and the Eclipse Distribution License is available at
  *   http://www.eclipse.org/org/documents/edl-v10.php.
  *
  * Contributors:
@@ -73,6 +73,9 @@ typedef union
 
 typedef struct
 {
+    char rawData[65535];
+    char clientName[23];
+    unsigned short client_id;
 	unsigned int len;
 	char type;
 } MQTTSHeader;
@@ -241,7 +244,8 @@ typedef MQTTS_Header MQTTS_WillMsgResp;
 int MQTTSPacket_initialize(BrokerStates* aBrokerState);
 void MQTTSPacket_terminate();
 char* MQTTSPacket_name(int ptype);
-void* MQTTSPacket_Factory(int sock, char** clientAddr, struct sockaddr* from, int* error);
+//void* MQTTSPacket_Factory(int sock, char** clientAddr, struct sockaddr* from, int* error);
+void* MQTTSPacket_Factory(int sock, char** clientAddr, struct sockaddr* from, int* error, char* clientName); // SERB Changed
 
 void* MQTTSPacket_header_only(MQTTSHeader header, char* data);
 void* MQTTSPacket_header_with_msgId(MQTTSHeader header, char* data);

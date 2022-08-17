@@ -186,7 +186,6 @@ void MQTTSProtocol_housekeeping()
 	}
 	FUNC_EXIT;
 }
-
 int MQTTS_send_DISCONNECT(int socket, char* clientAddr)
 {
 	PacketBuffer buf;
@@ -195,9 +194,45 @@ int MQTTS_send_DISCONNECT(int socket, char* clientAddr)
 	FUNC_ENTRY;
 	buf = MQTTSPacketSerialize_ack(MQTTS_DISCONNECT, -1);
 	rc = MQTTSPacket_sendPacketBuffer(socket, clientAddr, buf);
+	printf("socket: %d. Disconnect sent to %s\n", socket, clientAddr);
+	//Socket_close(socket);
 	free(buf.data);
 	FUNC_EXIT_RC(rc);
 	return rc;
+}
+
+Clients* Protocol_getclient(MQTTS_Header* pack, char* packet_data)
+{
+    Node* foundNode = NULL;
+    Clients* client = NULL;
+
+    FUNC_ENTRY;
+    int packetType = (int)pack->header.type;
+    if(  packetType == MQTTS_CONNECT )
+    {
+        foundNode = TreeFindIndex(bstate->mqtts_clients, pack->header.clientName, 1); //  1 - search by client name
+        if(foundNode != NULL) {
+            client = (Clients*)(foundNode->content);
+        }
+
+    }
+    else {
+        int clientID_index = pack->header.len - 2;
+        char id_raw[2];
+        for(int i = 0; clientID_index < pack->header.len; i++, clientID_index++) {
+            id_raw[i] = pack->header.rawData[clientID_index];
+        }
+        unsigned short id = ((id_raw[0] << 8) | id_raw[1]);
+        pack->header.client_id = id;
+        foundNode = TreeFindIndex(bstate->mqtts_clients, id, 2); //  1 - search by client id
+        if(foundNode != NULL) {
+            client = (Clients*)(foundNode->content);
+        }
+        pack->header.len -= 2;
+    }
+	FUNC_EXIT;
+
+    return client;
 }
 
 void MQTTSProtocol_timeslice(int sock)
@@ -205,14 +240,28 @@ void MQTTSProtocol_timeslice(int sock)
 	int error;
 	MQTTS_Header* pack = NULL;
 	char* clientAddr = NULL;
+	char clientName[23];
 	Clients* client = NULL;
 	struct sockaddr_in6 from;
+	//char packet_data[bstate->max_mqtts_packet_size];
+   // pack->header.rawData = (char*)malloc(bstate->max_mqtts_packet_size);
+    //pack->header.client_id = malloc(23);
 
 	FUNC_ENTRY;
-	pack = MQTTSPacket_Factory(sock, &clientAddr, (struct sockaddr *)&from, &error);
+	pack = MQTTSPacket_Factory(sock, &clientAddr, (struct sockaddr *)&from, &error, clientName);//, packet_data);
+    if(pack != NULL)
+    {
+       client = Protocol_getclient(pack, pack->header.rawData); // SERB Added search by id
+    }
 
-	if (clientAddr)
-		client = Protocol_getclientbyaddr(clientAddr);
+	//if (clientAddr)
+		//client = Protocol_getclientbyaddr(clientAddr);
+
+
+    if (client == NULL && clientAddr)
+        client = Protocol_getclientbyaddr(clientAddr);
+
+
 
 #if !defined(NO_BRIDGE)
 	if (client == NULL)
@@ -249,6 +298,9 @@ void MQTTSProtocol_timeslice(int sock)
 	{
 			Log(LOG_WARNING, 22, NULL, pack->header.type, handle_packets[(int)pack->header.type]);
 			MQTTSPacket_free_packet(pack);
+			#if defined(MQTTS)
+				MQTTS_send_DISCONNECT(sock, clientAddr);
+            #endif
 	}
 	else if (client == NULL &&  pack->header.type != MQTTS_CONNECT &&
 			pack->header.type != MQTTS_ADVERTISE && pack->header.type != MQTTS_SEARCHGW &&
@@ -258,7 +310,7 @@ void MQTTSProtocol_timeslice(int sock)
 			MQTTSPacket_free_packet(pack);  //			@  // @@ +AL
 			#if defined(MQTTS)
 				MQTTS_send_DISCONNECT(sock, clientAddr);
-	    #endif
+            #endif
 
 	}
 	else
@@ -269,9 +321,132 @@ void MQTTSProtocol_timeslice(int sock)
 		 *  - centralise calls to time( &(c->lastContact) ); (currently in each _handle* function
 		 */
 	}
+	//Socket_close(sockt);
+	//free(pack->header.rawData);
+	//free(pack->header.client_id);
 	FUNC_EXIT;
 }
 
+
+void MQTTS_UGT_Protocol_timeslice(int sock)
+{
+	int error;
+	MQTTS_Header* pack = NULL;
+	char* clientAddr = NULL;
+	char clientName[23];
+	Clients* client = NULL;
+	struct sockaddr_in6 from;
+	//char packet_data[bstate->max_mqtts_packet_size];
+   // pack->header.rawData = (char*)malloc(bstate->max_mqtts_packet_size);
+    //pack->header.client_id = malloc(23);
+
+	FUNC_ENTRY;
+    int sockt = 0;
+    if ((sockt = Socket_getReadySocket(0, NULL)) == SOCKET_ERROR)
+	{
+#if defined(WIN32)
+#undef errno
+		int errno;
+		errno = WSAGetLastError();
+#endif
+		if (errno != EINTR && errno != EAGAIN && errno != EINPROGRESS && errno != EWOULDBLOCK)
+		{
+			Log(LOG_SEVERE, 0, "Restarting MQTT protocol to resolve socket problems");
+			MQTTProtocol_shutdown(0);
+			SubscriptionEngines_save(bstate->se);
+			MQTTProtocol_reinitialize();
+//			goto exit;
+		}
+	}
+	pack = MQTTSPacket_Factory(sockt, &clientAddr, (struct sockaddr *)&from, &error, clientName);//, packet_data);
+    if(pack != NULL)
+    {
+       client = Protocol_getclient(pack, pack->header.rawData);
+    }
+
+	//if (clientAddr)
+		//client = Protocol_getclientbyaddr(clientAddr);
+
+    if( pack != NULL && (int)pack->header.type == MQTTS_CONNECT )
+    {
+        if (clientName)  // SERB Added search by id
+        {
+            Node* node = TreeFindIndex(bstate->mqtts_clients, clientName, 1);
+            if ( node != NULL ) {
+                client = (Clients*)(node->content);
+            }
+            int test = 1;
+        }
+
+    }
+
+    if (client == NULL && clientAddr)
+        client = Protocol_getclientbyaddr(clientAddr);
+
+
+#if !defined(NO_BRIDGE)
+	if (client == NULL)
+		client = Protocol_getoutboundclient(sockt);
+#endif
+
+	if (pack == NULL)
+	{
+		if (error == SOCKET_ERROR || error == UDPSOCKET_INCOMPLETE)
+		{
+			if (client != NULL)
+			{
+				client->good = 0; /* make sure we don't try and send messages to ourselves */
+				//client->connected = 0;
+				if (error == SOCKET_ERROR)
+					Log(LOG_WARNING, 18, NULL, client->clientID, client->socket,
+							Socket_getpeer(client->socket));
+				else
+					Log(LOG_WARNING, 19, NULL, client->clientID, client->socket,
+							Socket_getpeer(client->socket));
+				MQTTProtocol_closeSession(client, 0);
+			}
+			else
+			{
+				if (error == SOCKET_ERROR)
+					Log(LOG_WARNING, 20, NULL, sockt, Socket_getpeer(sockt));
+				else
+					Log(LOG_WARNING, 21, NULL, sockt, Socket_getpeer(sockt));
+				/*Socket_close(sock);*/
+			}
+		}
+	}
+	else if (handle_packets[(int)pack->header.type] == NULL)
+	{
+			Log(LOG_WARNING, 22, NULL, pack->header.type, handle_packets[(int)pack->header.type]);
+			MQTTSPacket_free_packet(pack);
+			#if defined(MQTTS)
+				MQTTS_send_DISCONNECT(sockt, clientAddr);
+            #endif
+	}
+	else if (client == NULL &&  pack->header.type != MQTTS_CONNECT &&
+			pack->header.type != MQTTS_ADVERTISE && pack->header.type != MQTTS_SEARCHGW &&
+			(pack->header.type != MQTTS_PUBLISH || ((MQTTS_Publish*)pack)->flags.QoS != 3))
+	{
+			Log(LOG_WARNING, 23, NULL, sockt, Socket_getpeer(sockt), MQTTSPacket_name(pack->header.type));
+			MQTTSPacket_free_packet(pack);  //			@  // @@ +AL
+			#if defined(MQTTS)
+				MQTTS_send_DISCONNECT(sockt, clientAddr);
+            #endif
+
+	}
+	else
+	{
+		(*handle_packets[(int)pack->header.type])(pack, sockt, clientAddr, client);
+		/* TODO:
+		 *  - error handling
+		 *  - centralise calls to time( &(c->lastContact) ); (currently in each _handle* function
+		 */
+	}
+	Socket_close(sockt);
+	//free(pack->header.rawData);
+	//free(pack->header.client_id);
+	FUNC_EXIT;
+}
 
 int MQTTSProtocol_handleAdvertises(void* pack, int sock, char* clientAddr, Clients* client)
 {
@@ -319,8 +494,75 @@ int MQTTSProtocol_handleGwInfos(void* pack, int sock, char* clientAddr, Clients*
 {
 	return 0;
 }
+/* convert character array to integer */
+int char2int (char *array, size_t n)
+{
+    int number = 0;
+    int mult = 1;
+
+    n = (int)n < 0 ? -n : n;       /* quick absolute value check  */
+
+    /* for each character in array */
+    while (n--)
+    {
+        /* if not digit or '-', check if number > 0, break or continue */
+        if ((array[n] < '0' || array[n] > '9') && array[n] != '-') {
+            if (number)
+                break;
+            else
+                continue;
+        }
+
+        if (array[n] == '-') {      /* if '-' if number, negate, break */
+            if (number) {
+                number = -number;
+                break;
+            }
+        }
+        else {                      /* convert digit to numeric value   */
+            number += (array[n] - '0') * mult;
+            mult *= 10;
+        }
+    }
+
+    return number;
+}
+
+#define MAX_CLIENTID_NUM 65535
+
+static int clientID = 0;
+static bool registeredIDs[MAX_CLIENTID_NUM] = {false};
 
 
+void MQTTS_free_id( unsigned short id ){
+    registeredIDs[id] = false;
+}
+unsigned short MQTTSProtocol_generateID(char* clientName) { //SERB GENERATE NEW CLIENT ID
+    //int size = 0;
+    //char* chr = clientName;
+    //bool foundStart = false;
+
+    //char resultArr[5];
+    //for(int i = 0; *chr != '\0'; chr++ ){
+
+    //    if(foundStart) {
+    //        resultArr[size] = chr[0];
+    //        size++;
+    //    }
+    //   if(chr[0] == '_') {
+    //        foundStart = true;
+    //    }
+    //}
+    //unsigned short result = (unsigned short)char2int(resultArr, 5);
+    for(int i = 0; i < MAX_CLIENTID_NUM; i++){
+        if(registeredIDs[i] == false) {
+            registeredIDs[i] = true;
+            return i+1;
+        }
+    }
+
+    return clientID++;
+}
 int MQTTSProtocol_handleConnects(void* pack, int sock, char* clientAddr, Clients* client)
 {
 	MQTTS_Connect* connect = (MQTTS_Connect*)pack;
@@ -352,7 +594,7 @@ int MQTTSProtocol_handleConnects(void* pack, int sock, char* clientAddr, Clients
 			terminate = 1;
 
 		}
-		else if (connect->protocolID != 1)
+		else if (connect->protocolID != 1 && connect->protocolID != 3)
 		{
 			Log(LOG_WARNING, 32, NULL, "MQTT-S", connect->protocolID);
 			/* TODO: why is this commented out? delete if not needed
@@ -375,18 +617,23 @@ int MQTTSProtocol_handleConnects(void* pack, int sock, char* clientAddr, Clients
 		 * TODO: clean out 'old' Client (that may be 'connected')
 		 */
 	}
-
+    bool isReconnect = false;
 	elem = TreeFindIndex(bstate->mqtts_clients, connect->clientID, 1);
-	if (elem == NULL)
+	//bool isReconnect = client ? ((Clients*)elem->content)->clientID == client->clientID : false;
+	if (elem == NULL || isReconnect)
 	{
-		client = TreeRemoveKey(bstate->disconnected_mqtts_clients, connect->clientID);
-		if (client == NULL) /* this is a totally new connection */
+	    //if(!isReconnect){
+        //    client = TreeRemoveKey(bstate->disconnected_mqtts_clients, connect->clientID);
+	   // }
+
+		if (client == NULL && !isReconnect ) /* this is a totally new connection */
 		{
 			int i;
 
 			client = malloc(sizeof(Clients));
 			memset(client, '\0', sizeof(Clients));
-			client->protocol = PROTOCOL_MQTTS;
+			//client->protocol = PROTOCOL_MQTTS;
+			client->protocol = connect->protocolID; // SERB added custom protocol for MQTTS
 			client->outboundMsgs = ListInitialize();
 			client->inboundMsgs = ListInitialize();
 			for (i = 0; i < PRIORITY_MAX; ++i)
@@ -394,6 +641,7 @@ int MQTTSProtocol_handleConnects(void* pack, int sock, char* clientAddr, Clients
 			client->registrations = ListInitialize();
 			client->noLocal = 0; /* (connect->version == PRIVATE_PROTOCOL_VERSION) ? 1 : 0; */
 			client->clientID = connect->clientID;
+			client->client_ID = MQTTSProtocol_generateID(connect->clientID);
 			connect->clientID = NULL; /* don't want to free this space as it is being used in the clients tree below */
 		}
 		else /* there is an existing disconnected client */
@@ -408,6 +656,10 @@ int MQTTSProtocol_handleConnects(void* pack, int sock, char* clientAddr, Clients
 		client->socket = sock;
 		client->addr = malloc(strlen(clientAddr)+1);
 		strcpy(client->addr, clientAddr);
+	    //if(isReconnect){
+        //    TreeRemoveKey(bstate->mqtts_clients, client->clientID);
+	    //}
+
 		TreeAdd(bstate->mqtts_clients, client, sizeof(Clients) + strlen(client->clientID)+1 + 3*sizeof(List));
 
 		if (client->cleansession)
@@ -430,8 +682,12 @@ int MQTTSProtocol_handleConnects(void* pack, int sock, char* clientAddr, Clients
 		if (client->connected)
 		{
 			Log(LOG_INFO, 34, NULL, connect->clientID, clientAddr);
-			if (client->socket != sock)
+			if (client->socket != sock){
+				#if defined(MQTTS)
+                    MQTTS_send_DISCONNECT(client->socket, client->addr);
+                #endif
 				Socket_close(client->socket);
+			}
 		}
 		client->socket = sock;
 		client->connected = 0; /* Do not connect until we know the connack has been sent */

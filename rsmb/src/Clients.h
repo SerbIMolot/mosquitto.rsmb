@@ -3,11 +3,11 @@
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
- * and Eclipse Distribution License v1.0 which accompany this distribution. 
+ * and Eclipse Distribution License v1.0 which accompany this distribution.
  *
- * The Eclipse Public License is available at 
+ * The Eclipse Public License is available at
  *    http://www.eclipse.org/legal/epl-v10.html
- * and the Eclipse Distribution License is available at 
+ * and the Eclipse Distribution License is available at
  *   http://www.eclipse.org/org/documents/edl-v10.php.
  *
  * Contributors:
@@ -27,7 +27,7 @@
 
 enum protocols
 {
-	PROTOCOL_MQTT, PROTOCOL_MQTTS, PROTOCOL_MQTTS_MULTICAST
+	PROTOCOL_MQTT, PROTOCOL_MQTTS, PROTOCOL_MQTTS_MULTICAST, PROTOCOL_MQTTS_UGT
 };
 
 /*BE
@@ -275,6 +275,7 @@ typedef struct
 	int protocol;                   /**< 0=MQTT 1=MQTTS */
 	int sleep_state;                /***< MQTT-S sleep state: asleep, active, awake, lost */
 	List* registrations;
+	unsigned short client_ID;
 	PendingRegistration* pendingRegistration;
 #if !defined(NO_BRIDGE)
 	PendingSubscription* pendingSubscription;
@@ -285,6 +286,7 @@ typedef struct
 #	pragma pack()
 #endif
 int clientIDCompare(void* a, void* b, int);
+int clientIDsCompare(void* a, void* b, int);
 int clientSocketCompare(void* a, void* b, int);
 int queuedMsgsCount(Clients*);
 

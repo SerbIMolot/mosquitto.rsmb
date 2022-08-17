@@ -88,14 +88,14 @@ static char* protocol_message_list[] =
     "%d %s %s <- MQTT-S CONNACK returncode %d", /* 41 */
     "%d %s %s -> MQTT-S WILLTOPICREQ (%d)", /* 42 */
     "%d %s %s <- MQTT-S WILLTOPICREQ", /* 43 */
-    "%d %s %s -> MQTT-S WILLTOPIC qos: %d retained: %d: topicname %.10s (%d)", /* 44 */
-    "%d %s %s <- MQTT-S WILLTOPIC qos: %d retained: %d: topicname %.10s", /* 45 */
+    "%d %s %s -> MQTT-S WILLTOPIC qos: %d retained: %d: topicname %.23s (%d)", /* 44 */
+    "%d %s %s <- MQTT-S WILLTOPIC qos: %d retained: %d: topicname %.23s", /* 45 */
     "%d %s %s -> MQTT-S WILLMSGREQ (%d)", /* 46 */
     "%d %s %s <- MQTT-S WILLMSGREQ", /* 47 */
     "%d %s %s -> MQTT-S WILLMSG msg: %.20s (%d)", /* 48 */
     "%d %s %s <- MQTT-S WILLMSG msg: %.20s", /* 49 */
-    "%d %s %s -> MQTT-S REGISTER msgid: %d topicid: %d topicname: %.10s (%d)", /* 50 */
-    "%d %s %s <- MQTT-S REGISTER msgid: %d topicid: %d topicname: %.10s", /* 51 */
+    "%d %s %s -> MQTT-S REGISTER msgid: %d topicid: %d topicname: %.23s (%d)", /* 50 */
+    "%d %s %s <- MQTT-S REGISTER msgid: %d topicid: %d topicname: %.23s", /* 51 */
     "%d %s %s -> MQTT-S REGACK msgid: %d topicid: %d returncode: %d (%d)", /* 52 */
     "%d %s %s <- MQTT-S REGACK msgid: %d topicid: %d returncode: %d", /* 53 */
 	"%d %s %s -> MQTT-S PUBLISH msgid: %d qos: %d retained: %d (%d)", /* 54 */
@@ -130,8 +130,8 @@ static char* protocol_message_list[] =
 	"%d %s %s <- MQTT-S WILLTOPICUPD msgid: %d", /* 83 */
 	"%d %s %s -> MQTT-S WILLTOPICRESP returnCode: %d (%d)", /* 84 */
 	"%d %s %s <- MQTT-S WILLTOPICRESP returnCode: %d", /* 85 */
-	"%d %s %s -> MQTT-S WILLMSGUPD message: %.10s (%d)", /* 86 */
-	"%d %s %s <- MQTT-S WILLMSGUPD message: %.10s", /* 87 */
+	"%d %s %s -> MQTT-S WILLMSGUPD message: %.s (%d)", /* 86 */
+	"%d %s %s <- MQTT-S WILLMSGUPD message: %.s", /* 87 */
 	"%d %s %s -> MQTT-S WILLMSGRESP returnCode: %d (%d)", /* 88 */
 	"%d %s %s <- MQTT-S WILLMSGRESP returnCode: %d", /* 89 */
 #endif

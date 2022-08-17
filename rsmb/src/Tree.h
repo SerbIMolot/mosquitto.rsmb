@@ -3,11 +3,11 @@
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
- * and Eclipse Distribution License v1.0 which accompany this distribution. 
+ * and Eclipse Distribution License v1.0 which accompany this distribution.
  *
- * The Eclipse Public License is available at 
+ * The Eclipse Public License is available at
  *    http://www.eclipse.org/legal/epl-v10.html
- * and the Eclipse Distribution License is available at 
+ * and the Eclipse Distribution License is available at
  *   http://www.eclipse.org/org/documents/edl-v10.php.
  *
  * Contributors:
@@ -24,7 +24,7 @@ map TREE_BITS
 	"heap_tracking" 1 : .
 	"allow_duplicates" 2 : .
 }
- 
+
 defm defTree(T) // macro to define a tree
 
 def T concat Node
@@ -82,7 +82,7 @@ typedef struct
 	{
 		Node *root;	/**< root node pointer */
 		int (*compare)(void*, void*, int); /**< comparison function */
-	} index[2];
+	} index[3];
 	int indexes, /**< no of indexes into tree */
 		count,  /**< no of items */
 		size;  /**< heap storage used */

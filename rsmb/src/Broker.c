@@ -245,8 +245,8 @@ int main(int argc, char* argv[])
 {
 	int rc = 0;
 #define BUILD_TIMESTAMP __DATE__ " " __TIME__ /* __TIMESTAMP__ */
-#define BROKER_VERSION "1.3.0.2" /* __VERSION__ */
-#define PRODUCT_NAME "Really Small Message Broker"
+#define BROKER_VERSION "1.3.0.2_CB" /* __VERSION__ */
+#define PRODUCT_NAME "Really Small Message Broker (MODIFIED)"
 
 	static char* broker_version_eye ATTR_UNUSED = NULL;
 	static char* broker_timestamp_eye ATTR_UNUSED = NULL;
@@ -271,6 +271,8 @@ int main(int argc, char* argv[])
 	Log(LOG_INFO, 53, "Version %s, %s", BrokerState.version, BrokerState.timestamp);
 	Log(LOG_INFO, 54, "Features included: %s", features);
 	Log(LOG_INFO, 9993, "Authors: Ian Craggs (icraggs@uk.ibm.com), Nicholas O'Leary");
+	//Log(LOG_INFO, 9993, "Modifyed by : AL (), Alexander Lor'evich");
+	//Log(LOG_INFO, 9993, "Modifyed by : Andrii Serb (serb979@gmail.com)");
     #if WIN32
     {
       WORD wVersionRequested;
@@ -347,8 +349,10 @@ int Broker_startup()
 	TreeAddIndex(BrokerState.clients, clientIDCompare);
 	BrokerState.disconnected_clients = TreeInitialize(clientIDCompare);
 #if defined(MQTTS)
+	//BrokerState.mqtts_clients = TreeInitialize(clientAddrCompare);
 	BrokerState.mqtts_clients = TreeInitialize(clientAddrCompare);
 	TreeAddIndex(BrokerState.mqtts_clients, clientIDCompare);
+	TreeAddIndex(BrokerState.mqtts_clients, clientIDsCompare);// SERB: Added search by generated client_id address
 	BrokerState.disconnected_mqtts_clients = TreeInitialize(clientIDCompare);
 #endif
 #if !defined(SINGLE_LISTENER)

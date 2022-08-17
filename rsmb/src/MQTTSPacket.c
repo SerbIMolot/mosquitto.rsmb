@@ -139,7 +139,7 @@ void MQTTSPacket_terminate()
 }
 
 
-void* MQTTSPacket_Factory(int sock, char** clientAddr, struct sockaddr* from, int* error)
+void* MQTTSPacket_Factory(int sock, char** clientAddr, struct sockaddr* from, int* error, char* clientName)
 {
 	static MQTTSHeader header;
 	int ptype;
@@ -147,9 +147,11 @@ void* MQTTSPacket_Factory(int sock, char** clientAddr, struct sockaddr* from, in
 	/*struct sockaddr_in cliAddr;*/
 	int n;
 	char* data = &msg[0];
+	char* testData = &msg[0];
 	socklen_t len = sizeof(struct sockaddr_in6);
 
 	FUNC_ENTRY;
+	//char* clientName = &msg[6];
 /* #if !defined(NO_BRIDGE)
 	client = Protocol_getoutboundclient(sock);
 	FUNC_ENTRY;
@@ -164,6 +166,7 @@ void* MQTTSPacket_Factory(int sock, char** clientAddr, struct sockaddr* from, in
 	 * on reduced-memory systems.
 	 */
 	n = recvfrom(sock, msg, max_packet_size, 0, from, &len);
+	int nameLen = 0;
 	if (n == SOCKET_ERROR)
 	{
 		int en = Socket_error("UDP read error", sock);
@@ -173,8 +176,9 @@ void* MQTTSPacket_Factory(int sock, char** clientAddr, struct sockaddr* from, in
 		*error = SOCKET_ERROR;
 		goto exit;
 	}
-
 	*clientAddr = Socket_getaddrname(from, sock);
+	//char* testData;
+    //memcpy(&testData, data, n);
 /*
 	printf("%d bytes of data on socket %d from %s\n",n,sock,*clientAddr);
 	if (n>0) {
@@ -184,17 +188,23 @@ void* MQTTSPacket_Factory(int sock, char** clientAddr, struct sockaddr* from, in
 		printf("\n");
 	}
 */
+
 	*error = SOCKET_ERROR;  // indicate whether an error occurred, or not
 	if (n < 2)
+    {
 		goto exit;
-
+	}
 	if (msg[0] == 1)
 	{
 		++data;
 		header.len = readInt(&data);
 	}
-	else
+	else {
 		header.len = *(unsigned char*)data++;
+	}
+	//memcpy(packet_data, msg, header.len);
+	memcpy(header.rawData, msg, header.len);
+    //memcpy(clientName, data + 6, 23);
 	header.type = *data++;
 	//printf("header.type is %d, header.len is %d, n is %d\n", header.type, header.len, n);
     if (header.len != n)
@@ -210,6 +220,19 @@ void* MQTTSPacket_Factory(int sock, char** clientAddr, struct sockaddr* from, in
 		else if ((pack = (*new_mqtts_packets[ptype])(header, data)) == NULL)
 			*error = BAD_MQTTS_PACKET;
 	}
+	if( header.type == MQTTS_CONNECT ){
+        int nameIndex = 0;
+        for (int i=6; i < header.len; i++) {
+
+            char c = testData[i];
+            //printf(c);
+            clientName[nameIndex] = c;
+            nameIndex++;
+        }
+        memcpy(header.clientName, clientName, nameIndex);
+
+	}
+    //printf("\n");
 exit:
    	FUNC_EXIT_RC(*error);
    	return pack;
@@ -823,10 +846,11 @@ int MQTTSPacket_send_connack(Clients* client, int returnCode)
 	int rc = 0;
 
 	FUNC_ENTRY;
-	buf = MQTTSSerialize_connack(returnCode);
+	buf = MQTTSSerialize_connack_id(returnCode, client->client_ID);
 	rc = MQTTSPacket_sendPacketBuffer(client->socket, client->addr, buf);
 	free(buf.data);
-	Log(LOG_PROTOCOL, 40, NULL, socket, client->addr, client->clientID, returnCode, rc);
+	//Log(LOG_PROTOCOL, 40, NULL, socket, client->addr, client->clientID, returnCode, rc);
+	Log(LOG_PROTOCOL, 40, NULL, client->socket, client->addr, client->clientID, returnCode, rc);
 	FUNC_EXIT;
 	return rc;
 }

@@ -3,11 +3,11 @@
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
- * and Eclipse Distribution License v1.0 which accompany this distribution. 
+ * and Eclipse Distribution License v1.0 which accompany this distribution.
  *
- * The Eclipse Public License is available at 
+ * The Eclipse Public License is available at
  *    http://www.eclipse.org/legal/epl-v10.html
- * and the Eclipse Distribution License is available at 
+ * and the Eclipse Distribution License is available at
  *   http://www.eclipse.org/org/documents/edl-v10.php.
  *
  * Contributors:
@@ -23,6 +23,7 @@
 
 #define NO_HEAP_TRACKING 1
 
+#include "Clients.h"
 #include "Tree.h"
 
 #include <stdlib.h>
@@ -216,7 +217,8 @@ void* TreeAddByIndex(Tree* aTree, void* content, int size, int index)
 
 	while (curnode)
 	{
-		result = aTree->index[index].compare(curnode->content, content, 1);
+        result = aTree->index[index].compare(curnode->content, content, 1);
+
 		left = (result > 0);
 		if (result == 0)
 			break;
@@ -226,7 +228,7 @@ void* TreeAddByIndex(Tree* aTree, void* content, int size, int index)
 			curnode = curnode->child[left];
 		}
 	}
-	
+
 	if (result == 0)
 	{
 		if (aTree->allow_duplicates)
@@ -284,6 +286,7 @@ Node* TreeFindIndex1(Tree* aTree, void* key, int index, int value)
 
 	while (curnode)
 	{
+
 		result = aTree->index[index].compare(curnode->content, key, value);
 		if (result == 0)
 			break;
@@ -293,10 +296,50 @@ Node* TreeFindIndex1(Tree* aTree, void* key, int index, int value)
 	return curnode;
 }
 
+Node* TreeFindIndex2(Tree* aTree, void* key, int index, int value)
+{
+	int result = 0;
+	Node* curnode = aTree->index[index].root;
+
+	while (curnode)
+	{
+
+	    result = clientIDsCompare(curnode->content, key, value);
+		//result = aTree->index[index].compare(curnode->content, key, value); SER
+		if (result == 0)
+			break;
+		else
+			curnode = curnode->child[result > 0];
+	}
+	return curnode;
+}
+
+Clients* TreeFindIndex3(Tree* aTree, void* key, int index, int value)
+{
+	int result = 0;
+	Node* curnode = aTree->index[index].root;
+
+	while (curnode)
+	{
+
+	    result = clientIDsCompare(curnode->content, key, value);
+		//result = aTree->index[index].compare(curnode->content, key, value); SER
+		if (result == 0)
+			break;
+		else
+			curnode = curnode->child[result > 0];
+	}
+	return curnode? (Clients*)(curnode->content) : NULL;
+}
 
 Node* TreeFindIndex(Tree* aTree, void* key, int index)
 {
 	return TreeFindIndex1(aTree, key, index, 0);
+}
+
+Node* TreeFindClientName(Tree* aTree, void* key)
+{
+	return TreeFindIndex(aTree, key, 1);
 }
 
 

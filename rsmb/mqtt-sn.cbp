@@ -29,6 +29,7 @@
 					<Add option="-g" />
 					<Add option="-DNO_BRIDGE_" />
 					<Add option="-DMQTTS" />
+					<Add option="-DWIN32" />
 				</Compiler>
 				<Linker>
 					<Add library="ws2_32" />
@@ -162,9 +163,6 @@
 		<Unit filename="src/Users.h" />
 		<Unit filename="src/broker.cfg" />
 		<Unit filename="src/rsmb.ini" />
-		<Extensions>
-			<code_completion />
-			<debugger />
-		</Extensions>
+		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

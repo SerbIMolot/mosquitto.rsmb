@@ -743,8 +743,12 @@ int MQTTProtocol_handleConnects(void* pack, int sock, Clients* client)
 		if (client->connected)
 		{
 			Log(LOG_INFO, 34, NULL, connect->clientID, Socket_getpeer(sock));
-			if (client->socket != sock)
+			if (client->socket != sock){
+				#if defined(MQTTS)
+                    MQTTS_send_DISCONNECT(client->socket, Socket_getpeer(sock));
+                #endif
 				Socket_close(client->socket);
+			}
 		}
 
 		if (connect->flags.bits.cleanstart)

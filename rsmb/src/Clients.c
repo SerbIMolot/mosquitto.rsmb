@@ -3,11 +3,11 @@
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
- * and Eclipse Distribution License v1.0 which accompany this distribution. 
+ * and Eclipse Distribution License v1.0 which accompany this distribution.
  *
- * The Eclipse Public License is available at 
+ * The Eclipse Public License is available at
  *    http://www.eclipse.org/legal/epl-v10.html
- * and the Eclipse Distribution License is available at 
+ * and the Eclipse Distribution License is available at
  *   http://www.eclipse.org/org/documents/edl-v10.php.
  *
  * Contributors:
@@ -39,6 +39,18 @@ int clientIDCompare(void* a, void* b, int value)
 	char* bs = (value) ? ((Clients*)b)->clientID : (char*)b;
 
 	return strcmp(as, bs);
+}
+int clientIDsCompare(void* client, void* other_name, int value)
+{
+    unsigned short as = ((Clients*)client)->client_ID;
+	unsigned short bs = ((unsigned short)other_name);
+
+	//char* as = ((Clients*)a)->clientID;
+	//char* bs = (value) ? ((Clients*)b)->clientID : (char*)b;
+    if(as > bs) return 1;
+    if(as < bs) return -1;
+    if(as == bs) return 0;
+	//return as == bs ? 0;//strcmp(as, bs);
 }
 
 
@@ -72,7 +84,7 @@ int queuedMsgsCount(Clients* aClient)
 int clientAddrCompare(void* a, void* b, int value)
 {
 	//Clients* client = (Clients*)a;
-	
+
 	/* if client->addr is NULL (which it can be, for Bridge clients for example), return false. */
 	//return (client->addr) ? strcmp(client->addr, (char*)b) == 0 : 0;
 

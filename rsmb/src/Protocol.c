@@ -178,8 +178,13 @@ void Protocol_timeslice()
 #endif
 				MQTTProtocol_timeslice(sock, client);
 #if defined(MQTTS)
-			else if (protocol == PROTOCOL_MQTTS)
+			else if (protocol == PROTOCOL_MQTTS || protocol == PROTOCOL_MQTTS_UGT) {
+			    //MQTTS_UGT_Protocol_timeslice(sock);
 			    MQTTSProtocol_timeslice(sock);
+			} else if (protocol == PROTOCOL_MQTTS_UGT) {
+
+			    //MQTTS_UGT_Protocol_timeslice(sock);
+            }
 		}
 #endif
 	}
@@ -393,6 +398,23 @@ Clients* Protocol_getclientbyaddr(char* addr)
 	FUNC_EXIT;
 	return client;
 }
+
+Clients* Protocol_getclientbyid(char* client_name)
+{
+	Node* node = NULL;
+	Clients* client = NULL;
+
+	FUNC_ENTRY;
+	//node = TreeFindClientName(bstate->mqtts_clients, client_name);
+	node = TreeFindIndex(bstate->mqtts_clients, client_name, 1);
+	//client = TreeFindIndex3(bstate->mqtts_clients, client_name, 0, 0);
+	if ( node != NULL ) {
+		client = (Clients*)(node->content);
+	}
+	FUNC_EXIT;
+	return client;
+}
+
 
 #if !defined(NO_BRIDGE)
 Clients* Protocol_getoutboundclient(int sock)

@@ -227,8 +227,8 @@ Clients* Protocol_getclient(MQTTS_Header* pack, char* packet_data)
         foundNode = TreeFindIndex(bstate->mqtts_clients, id, 2); //  1 - search by client id
         if(foundNode != NULL) {
             client = (Clients*)(foundNode->content);
+            pack->header.len -= 2;
         }
-        pack->header.len -= 2;
     }
 	FUNC_EXIT;
 

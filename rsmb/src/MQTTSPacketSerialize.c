@@ -138,7 +138,7 @@ PacketBuffer MQTTSSerialize_connack_id(int returnCode, unsigned short clientID)
 	PacketBuffer buf;
 
 	FUNC_ENTRY;
-	header.len = 5;
+	header.len = 3;
 	header.type = MQTTS_CONNACK;
 	byte clientID_raw[4];
 	getBytesFromUnsShort(clientID, clientID_raw);

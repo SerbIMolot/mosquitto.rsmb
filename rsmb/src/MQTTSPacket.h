@@ -78,6 +78,7 @@ typedef struct
     unsigned short client_id;
 	unsigned int len;
 	char type;
+	int protocolId;
 } MQTTSHeader;
 
 typedef struct

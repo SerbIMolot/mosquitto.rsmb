@@ -194,7 +194,7 @@ int MQTTS_send_DISCONNECT(int socket, char* clientAddr)
 	FUNC_ENTRY;
 	buf = MQTTSPacketSerialize_ack(MQTTS_DISCONNECT, -1);
 	rc = MQTTSPacket_sendPacketBuffer(socket, clientAddr, buf);
-	printf("socket: %d. Disconnect sent to %s\n", socket, clientAddr);
+	printf("\n socket: %d. Disconnect sent to %s\n", socket, clientAddr);
 	//Socket_close(socket);
 	free(buf.data);
 	FUNC_EXIT_RC(rc);
@@ -207,6 +207,8 @@ Clients* Protocol_getclient(MQTTS_Header* pack, char* packet_data)
     Clients* client = NULL;
 
     FUNC_ENTRY;
+
+
     int packetType = (int)pack->header.type;
     if(  packetType == MQTTS_CONNECT )
     {
@@ -215,11 +217,12 @@ Clients* Protocol_getclient(MQTTS_Header* pack, char* packet_data)
             client = (Clients*)(foundNode->content);
         }
 
-    }
-    else {
-        int clientID_index = pack->header.len - 2;
+    } else if( pack->header.protocolId == PROTOCOL_MQTTS_UGT ){
+        int clientID_index = pack->header.len;// - 2;
+        int maxLenght = pack->header.len+2;
         char id_raw[2];
-        for(int i = 0; clientID_index < pack->header.len; i++, clientID_index++) {
+
+        for(int i = 0; clientID_index < maxLenght; i++, clientID_index++) {
             id_raw[i] = pack->header.rawData[clientID_index];
         }
         unsigned short id = ((id_raw[0] << 8) | id_raw[1]);
@@ -227,7 +230,7 @@ Clients* Protocol_getclient(MQTTS_Header* pack, char* packet_data)
         foundNode = TreeFindIndex(bstate->mqtts_clients, id, 2); //  1 - search by client id
         if(foundNode != NULL) {
             client = (Clients*)(foundNode->content);
-            pack->header.len -= 2;
+           // pack->header.len -= 2; // TODO: Need to find better method of differentiation for protocols
         }
     }
 	FUNC_EXIT;
@@ -257,11 +260,9 @@ void MQTTSProtocol_timeslice(int sock)
 	//if (clientAddr)
 		//client = Protocol_getclientbyaddr(clientAddr);
 
-
-    if (client == NULL && clientAddr)
+    if (client == NULL && clientAddr){
         client = Protocol_getclientbyaddr(clientAddr);
-
-
+    }
 
 #if !defined(NO_BRIDGE)
 	if (client == NULL)
@@ -276,12 +277,14 @@ void MQTTSProtocol_timeslice(int sock)
 			{
 				client->good = 0; /* make sure we don't try and send messages to ourselves */
 				//client->connected = 0;
-				if (error == SOCKET_ERROR)
+				if (error == SOCKET_ERROR) {
 					Log(LOG_WARNING, 18, NULL, client->clientID, client->socket,
 							Socket_getpeer(client->socket));
-				else
+				}
+				else {
 					Log(LOG_WARNING, 19, NULL, client->clientID, client->socket,
 							Socket_getpeer(client->socket));
+				}
 				MQTTProtocol_closeSession(client, 0);
 			}
 			else

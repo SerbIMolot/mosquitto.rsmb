@@ -147,7 +147,7 @@ void* MQTTSPacket_Factory(int sock, char** clientAddr, struct sockaddr* from, in
 	/*struct sockaddr_in cliAddr;*/
 	int n;
 	char* data = &msg[0];
-	char* testData = &msg[0];
+
 	socklen_t len = sizeof(struct sockaddr_in6);
 
 	FUNC_ENTRY;
@@ -177,8 +177,6 @@ void* MQTTSPacket_Factory(int sock, char** clientAddr, struct sockaddr* from, in
 		goto exit;
 	}
 	*clientAddr = Socket_getaddrname(from, sock);
-	//char* testData;
-    //memcpy(&testData, data, n);
 /*
 	printf("%d bytes of data on socket %d from %s\n",n,sock,*clientAddr);
 	if (n>0) {
@@ -202,12 +200,18 @@ void* MQTTSPacket_Factory(int sock, char** clientAddr, struct sockaddr* from, in
 	else {
 		header.len = *(unsigned char*)data++;
 	}
+	if( header.len + 2 == n ) {
+        header.protocolId = PROTOCOL_MQTTS_UGT;
+        memcpy(header.rawData, msg, header.len+2);
+	} else if( header.len == n) {
+	    header.protocolId = PROTOCOL_MQTTS;
+        memcpy(header.rawData, msg, header.len);
+	}
 	//memcpy(packet_data, msg, header.len);
-	memcpy(header.rawData, msg, header.len);
     //memcpy(clientName, data + 6, 23);
 	header.type = *data++;
 	//printf("header.type is %d, header.len is %d, n is %d\n", header.type, header.len, n);
-    if (header.len != n)
+    if (header.len != n && header.len+2 != n )
     {
 		*error = UDPSOCKET_INCOMPLETE;
 		goto exit;
@@ -224,8 +228,7 @@ void* MQTTSPacket_Factory(int sock, char** clientAddr, struct sockaddr* from, in
         int nameIndex = 0;
         for (int i=6; i < header.len; i++) {
 
-            char c = testData[i];
-            //printf(c);
+            char c = data[i];
             clientName[nameIndex] = c;
             nameIndex++;
         }
@@ -825,6 +828,19 @@ int MQTTSPacket_send_ack(Clients* client, char type)
 	return rc;
 }
 
+int MQTTSPacket_send_ack_with_ClientID(Clients* client, char type)
+{
+	PacketBuffer buf;
+	int rc = 0;
+
+	FUNC_ENTRY;
+	buf = MQTTSPacketSerialize_ack(type, client->client_ID );
+	rc = MQTTSPacket_sendPacketBuffer(client->socket, client->addr, buf);
+	free(buf.data);
+	FUNC_EXIT_RC(rc);
+	return rc;
+}
+
 
 int MQTTSPacket_send_ack_with_msgId(Clients* client, char type, int msgId)
 {
@@ -832,9 +848,11 @@ int MQTTSPacket_send_ack_with_msgId(Clients* client, char type, int msgId)
 	int rc = 0;
 
 	FUNC_ENTRY;
-	buf = MQTTSPacketSerialize_ack(type, msgId);
+
+    buf = MQTTSPacketSerialize_ack(type, msgId);
 	rc = MQTTSPacket_sendPacketBuffer(client->socket, client->addr, buf);
 	free(buf.data);
+
 	FUNC_EXIT_RC(rc);
 	return rc;
 }
@@ -858,7 +876,12 @@ int MQTTSPacket_send_connack(Clients* client, int returnCode)
 
 int MQTTSPacket_send_willTopicReq(Clients* client)
 {
-	int rc = MQTTSPacket_send_ack(client, MQTTS_WILLTOPICREQ);
+    int rc = -1;
+    if(client->protocol == PROTOCOL_MQTTS_UGT) {
+        rc = MQTTSPacket_send_ack_with_ClientID(client, MQTTS_WILLTOPICREQ);
+    } else {
+        rc = MQTTSPacket_send_ack(client, MQTTS_WILLTOPICREQ);
+    }
 	Log(LOG_PROTOCOL, 42, NULL, client->socket, client->addr, client->clientID, rc);
 	return rc;
 }

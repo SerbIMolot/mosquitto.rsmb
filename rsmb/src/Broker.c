@@ -271,8 +271,8 @@ int main(int argc, char* argv[])
 	Log(LOG_INFO, 53, "Version %s, %s", BrokerState.version, BrokerState.timestamp);
 	Log(LOG_INFO, 54, "Features included: %s", features);
 	Log(LOG_INFO, 9993, "Authors: Ian Craggs (icraggs@uk.ibm.com), Nicholas O'Leary");
-	//Log(LOG_INFO, 9993, "Modifyed by : AL (), Alexander Lor'evich");
-	//Log(LOG_INFO, 9993, "Modifyed by : Andrii Serb (serb979@gmail.com)");
+	Log(LOG_INFO, 9993, "Modified by : AL ()");
+	Log(LOG_INFO, 9993, "Modified by : Andrii Serb (serb979@gmail.com)");
     #if WIN32
     {
       WORD wVersionRequested;

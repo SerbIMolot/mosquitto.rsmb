@@ -352,7 +352,7 @@ int Broker_startup()
 	//BrokerState.mqtts_clients = TreeInitialize(clientAddrCompare);
 	BrokerState.mqtts_clients = TreeInitialize(clientAddrCompare);
 	TreeAddIndex(BrokerState.mqtts_clients, clientIDCompare);
-	TreeAddIndex(BrokerState.mqtts_clients, clientIDsCompare);// SERB: Added search by generated client_id address
+	TreeAddIndex(BrokerState.mqtts_clients, clientIndexCompare);// SERB: Added search by generated client_index
 	BrokerState.disconnected_mqtts_clients = TreeInitialize(clientIDCompare);
 #endif
 #if !defined(SINGLE_LISTENER)

@@ -286,7 +286,7 @@ typedef struct
 #	pragma pack()
 #endif
 int clientIDCompare(void* a, void* b, int);
-int clientIDsCompare(void* a, void* b, int);
+int clientIndexCompare(void* a, void* b, int);
 int clientSocketCompare(void* a, void* b, int);
 int queuedMsgsCount(Clients*);
 

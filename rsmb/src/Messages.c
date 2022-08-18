@@ -74,66 +74,66 @@ static char* protocol_message_list[] =
 	"%d %s -> DISCONNECT (%d)", /* 28 */
 	"%d %s -- reserved", /* 29 */
 #if defined(MQTTS)
-	"%d %s %s -> MQTT-S ADVERTISE gateway_id: %d duration: %d (%d)", /* 30 */
-	"%d %s %s <- MQTT-S ADVERTISE gateway_id: %d duration: %d", /* 31 */
-    "%d %s %s -> MQTT-S SEARCHGW", /* 32 */
-    "%d %s %s <- MQTT-S SEARCHGW", /* 33 */
-    "%d %s %s -> MQTT-S GWINFO", /* 34 */
-    "%d %s %s <- MQTT-S GWINFO", /* 35 */
+	"%d %s %s <- MQTT-S ADVERTISE gateway_id: %d duration: %d (%d)", /* 30 */
+	"%d %s %s -> MQTT-S ADVERTISE gateway_id: %d duration: %d", /* 31 */
+    "%d %s %s <- MQTT-S SEARCHGW", /* 32 */
+    "%d %s %s -> MQTT-S SEARCHGW", /* 33 */
+    "%d %s %s <- MQTT-S GWINFO", /* 34 */
+    "%d %s %s -> MQTT-S GWINFO", /* 35 */
     "reserved", /* 36 */
     "reserved", /* 37 */
-    "%d %s %s -> MQTT-S CONNECT cleansession: %d (%d)", /* 38 */
-    "%d %s %s <- MQTT-S CONNECT cleansession: %d", /* 39 */
-    "%d %s %s -> MQTT-S CONNACK returncode %d (%d)", /* 40 */
-    "%d %s %s <- MQTT-S CONNACK returncode %d", /* 41 */
-    "%d %s %s -> MQTT-S WILLTOPICREQ (%d)", /* 42 */
-    "%d %s %s <- MQTT-S WILLTOPICREQ", /* 43 */
-    "%d %s %s -> MQTT-S WILLTOPIC qos: %d retained: %d: topicname %.23s (%d)", /* 44 */
-    "%d %s %s <- MQTT-S WILLTOPIC qos: %d retained: %d: topicname %.23s", /* 45 */
-    "%d %s %s -> MQTT-S WILLMSGREQ (%d)", /* 46 */
-    "%d %s %s <- MQTT-S WILLMSGREQ", /* 47 */
-    "%d %s %s -> MQTT-S WILLMSG msg: %.20s (%d)", /* 48 */
-    "%d %s %s <- MQTT-S WILLMSG msg: %.20s", /* 49 */
-    "%d %s %s -> MQTT-S REGISTER msgid: %d topicid: %d topicname: %.23s (%d)", /* 50 */
-    "%d %s %s <- MQTT-S REGISTER msgid: %d topicid: %d topicname: %.23s", /* 51 */
-    "%d %s %s -> MQTT-S REGACK msgid: %d topicid: %d returncode: %d (%d)", /* 52 */
-    "%d %s %s <- MQTT-S REGACK msgid: %d topicid: %d returncode: %d", /* 53 */
-	"%d %s %s -> MQTT-S PUBLISH msgid: %d qos: %d retained: %d (%d)", /* 54 */
-	"%d %s %s <- MQTT-S PUBLISH msgid: %d qos: %d retained: %d", /* 55 */
-	"%d %s %s -> MQTT-S PUBACK msgid: %d (%d)", /* 56 */
-	"%d %s %s <- MQTT-S PUBACK msgid: %d", /* 57 */
-	"%d %s %s -> MQTT-S PUBCOMP msgid: %d (%d)", /* 58 */
-	"%d %s %s <- MQTT-S PUBCOMP msgid: %d", /* 59 */
-	"%d %s %s -> MQTT-S PUBREC msgid: %d (%d)", /* 60 */
-	"%d %s %s <- MQTT-S PUBREC msgid: %d", /* 61 */
-	"%d %s %s -> MQTT-S PUBREL msgid: %d (%d)", /* 62 */
-	"%d %s %s <- MQTT-S PUBREL msgid: %d", /* 63 */
+    "%d %s %s <- MQTT-S CONNECT cleansession: %d (%d)", /* 38 */
+    "%d %s %s -> MQTT-S CONNECT cleansession: %d", /* 39 */
+    "%d %s %s <- MQTT-S CONNACK returncode %d (%d)", /* 40 */
+    "%d %s %s -> MQTT-S CONNACK returncode %d", /* 41 */
+    "%d %s %s <- MQTT-S WILLTOPICREQ (%d)", /* 42 */
+    "%d %s %s -> MQTT-S WILLTOPICREQ", /* 43 */
+    "%d %s %s <- MQTT-S WILLTOPIC qos: %d retained: %d: topicname %.23s (%d)", /* 44 */
+    "%d %s %s -> MQTT-S WILLTOPIC qos: %d retained: %d: topicname %.23s", /* 45 */
+    "%d %s %s <- MQTT-S WILLMSGREQ (%d)", /* 46 */
+    "%d %s %s -> MQTT-S WILLMSGREQ", /* 47 */
+    "%d %s %s <- MQTT-S WILLMSG msg: %.20s (%d)", /* 48 */
+    "%d %s %s -> MQTT-S WILLMSG msg: %.20s", /* 49 */
+    "%d %s %s <- MQTT-S REGISTER msgid: %d topicid: %d topicname: %.23s (%d)", /* 50 */
+    "%d %s %s -> MQTT-S REGISTER msgid: %d topicid: %d topicname: %.23s", /* 51 */
+    "%d %s %s <- MQTT-S REGACK msgid: %d topicid: %d returncode: %d (%d)", /* 52 */
+    "%d %s %s -> MQTT-S REGACK msgid: %d topicid: %d returncode: %d", /* 53 */
+	"%d %s %s <- MQTT-S PUBLISH msgid: %d qos: %d retained: %d (%d)", /* 54 */
+	"%d %s %s -> MQTT-S PUBLISH msgid: %d qos: %d retained: %d", /* 55 */
+	"%d %s %s <- MQTT-S PUBACK msgid: %d (%d)", /* 56 */
+	"%d %s %s -> MQTT-S PUBACK msgid: %d", /* 57 */
+	"%d %s %s <- MQTT-S PUBCOMP msgid: %d (%d)", /* 58 */
+	"%d %s %s -> MQTT-S PUBCOMP msgid: %d", /* 59 */
+	"%d %s %s <- MQTT-S PUBREC msgid: %d (%d)", /* 60 */
+	"%d %s %s -> MQTT-S PUBREC msgid: %d", /* 61 */
+	"%d %s %s <- MQTT-S PUBREL msgid: %d (%d)", /* 62 */
+	"%d %s %s -> MQTT-S PUBREL msgid: %d", /* 63 */
     "reserved", /* 64 */
     "reserved", /* 65 */
-	"%d %s %s -> MQTT-S SUBSCRIBE msgid: %d qos: %d topicIdType %d", /* 66 */
-	"%d %s %s <- MQTT-S SUBSCRIBE msgid: %d qos: %d topicIdType %d", /* 67 */
-	"%d %s %s -> MQTT-S SUBACK msgid: %d topicid: %d returncode: %d (%d)", /* 68 */
-	"%d %s %s <- MQTT-S SUBACK msgid: %d topicid: %d returncode: %d", /* 69 */
-	"%d %s %s -> MQTT-S UNSUBSCRIBE msgid: %d qos: %d topicIdType %d", /* 70 */
-	"%d %s %s <- MQTT-S UNSUBSCRIBE msgid: %d qos: %d topicIdType %d", /* 71 */
-	"%d %s %s -> MQTT-S UNSUBACK msgid: %d (%d)", /* 72 */
-	"%d %s %s <- MQTT-S UNSUBACK msgid: %d", /* 73 */
-	"%d %s %s -> MQTT-S PINGREQ (%d)", /* 74 */
-	"%d %s %s <- MQTT-S PINGREQ", /* 75 */
-	"%d %s %s -> MQTT-S PINGRESP (%d)", /* 76 */
-	"%d %s %s <- MQTT-S PINGRESP", /* 77 */
-	"%d %s %s -> MQTT-S DISCONNECT duration: %d (%d)", /* 78 */
-	"%d %s %s <- MQTT-S DISCONNECT duration: %d", /* 79 */
+	"%d %s %s <- MQTT-S SUBSCRIBE msgid: %d qos: %d topicIdType %d", /* 66 */
+	"%d %s %s -> MQTT-S SUBSCRIBE msgid: %d qos: %d topicIdType %d", /* 67 */
+	"%d %s %s <- MQTT-S SUBACK msgid: %d topicid: %d returncode: %d (%d)", /* 68 */
+	"%d %s %s -> MQTT-S SUBACK msgid: %d topicid: %d returncode: %d", /* 69 */
+	"%d %s %s <- MQTT-S UNSUBSCRIBE msgid: %d qos: %d topicIdType %d", /* 70 */
+	"%d %s %s -> MQTT-S UNSUBSCRIBE msgid: %d qos: %d topicIdType %d", /* 71 */
+	"%d %s %s <- MQTT-S UNSUBACK msgid: %d (%d)", /* 72 */
+	"%d %s %s -> MQTT-S UNSUBACK msgid: %d", /* 73 */
+	"%d %s %s <- MQTT-S PINGREQ (%d)", /* 74 */
+	"%d %s %s -> MQTT-S PINGREQ", /* 75 */
+	"%d %s %s <- MQTT-S PINGRESP (%d)", /* 76 */
+	"%d %s %s -> MQTT-S PINGRESP", /* 77 */
+	"%d %s %s <- MQTT-S DISCONNECT duration: %d (%d)", /* 78 */
+	"%d %s %s -> MQTT-S DISCONNECT duration: %d", /* 79 */
     "reserved", /* 80 */
     "reserved", /* 81 */
-	"%d %s %s -> MQTT-S WILLTOPICUPD msgid: %d (%d)", /* 82 */
-	"%d %s %s <- MQTT-S WILLTOPICUPD msgid: %d", /* 83 */
-	"%d %s %s -> MQTT-S WILLTOPICRESP returnCode: %d (%d)", /* 84 */
-	"%d %s %s <- MQTT-S WILLTOPICRESP returnCode: %d", /* 85 */
-	"%d %s %s -> MQTT-S WILLMSGUPD message: %.s (%d)", /* 86 */
-	"%d %s %s <- MQTT-S WILLMSGUPD message: %.s", /* 87 */
-	"%d %s %s -> MQTT-S WILLMSGRESP returnCode: %d (%d)", /* 88 */
-	"%d %s %s <- MQTT-S WILLMSGRESP returnCode: %d", /* 89 */
+	"%d %s %s <- MQTT-S WILLTOPICUPD msgid: %d (%d)", /* 82 */
+	"%d %s %s -> MQTT-S WILLTOPICUPD msgid: %d", /* 83 */
+	"%d %s %s <- MQTT-S WILLTOPICRESP returnCode: %d (%d)", /* 84 */
+	"%d %s %s -> MQTT-S WILLTOPICRESP returnCode: %d", /* 85 */
+	"%d %s %s <- MQTT-S WILLMSGUPD message: %.s (%d)", /* 86 */
+	"%d %s %s -> MQTT-S WILLMSGUPD message: %.s", /* 87 */
+	"%d %s %s <- MQTT-S WILLMSGRESP returnCode: %d (%d)", /* 88 */
+	"%d %s %s -> MQTT-S WILLMSGRESP returnCode: %d", /* 89 */
 #endif
 };
 

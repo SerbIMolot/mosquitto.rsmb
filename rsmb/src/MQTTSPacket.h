@@ -75,7 +75,7 @@ typedef struct
 {
     char rawData[65535];
     char clientName[23];
-    unsigned short client_id;
+    unsigned short client_index;
 	unsigned int len;
 	char type;
 	int protocolId;

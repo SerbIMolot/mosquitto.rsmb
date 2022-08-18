@@ -304,7 +304,7 @@ Node* TreeFindIndex2(Tree* aTree, void* key, int index, int value)
 	while (curnode)
 	{
 
-	    result = clientIDsCompare(curnode->content, key, value);
+	    result = clientIndexCompare(curnode->content, key, value);
 		//result = aTree->index[index].compare(curnode->content, key, value); SER
 		if (result == 0)
 			break;
@@ -322,7 +322,7 @@ Clients* TreeFindIndex3(Tree* aTree, void* key, int index, int value)
 	while (curnode)
 	{
 
-	    result = clientIDsCompare(curnode->content, key, value);
+	    result = clientIndexCompare(curnode->content, key, value);
 		//result = aTree->index[index].compare(curnode->content, key, value); SER
 		if (result == 0)
 			break;

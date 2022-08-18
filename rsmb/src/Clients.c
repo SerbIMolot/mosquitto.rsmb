@@ -40,7 +40,7 @@ int clientIDCompare(void* a, void* b, int value)
 
 	return strcmp(as, bs);
 }
-int clientIDsCompare(void* client, void* other_name, int value)
+int clientIndexCompare(void* client, void* other_name, int value)
 {
     unsigned short as = ((Clients*)client)->client_ID;
 	unsigned short bs = ((unsigned short)other_name);

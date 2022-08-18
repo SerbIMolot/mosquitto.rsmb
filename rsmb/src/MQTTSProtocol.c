@@ -226,7 +226,7 @@ Clients* Protocol_getclient(MQTTS_Header* pack, char* packet_data)
             id_raw[i] = pack->header.rawData[clientID_index];
         }
         unsigned short id = ((id_raw[0] << 8) | id_raw[1]);
-        pack->header.client_id = id;
+        pack->header.client_index = id;
         foundNode = TreeFindIndex(bstate->mqtts_clients, id, 2); //  1 - search by client id
         if(foundNode != NULL) {
             client = (Clients*)(foundNode->content);
@@ -248,7 +248,7 @@ void MQTTSProtocol_timeslice(int sock)
 	struct sockaddr_in6 from;
 	//char packet_data[bstate->max_mqtts_packet_size];
    // pack->header.rawData = (char*)malloc(bstate->max_mqtts_packet_size);
-    //pack->header.client_id = malloc(23);
+    //pack->header.client_index = malloc(23);
 
 	FUNC_ENTRY;
 	pack = MQTTSPacket_Factory(sock, &clientAddr, (struct sockaddr *)&from, &error, clientName);//, packet_data);
@@ -326,7 +326,7 @@ void MQTTSProtocol_timeslice(int sock)
 	}
 	//Socket_close(sockt);
 	//free(pack->header.rawData);
-	//free(pack->header.client_id);
+	//free(pack->header.client_index);
 	FUNC_EXIT;
 }
 
@@ -341,7 +341,7 @@ void MQTTS_UGT_Protocol_timeslice(int sock)
 	struct sockaddr_in6 from;
 	//char packet_data[bstate->max_mqtts_packet_size];
    // pack->header.rawData = (char*)malloc(bstate->max_mqtts_packet_size);
-    //pack->header.client_id = malloc(23);
+    //pack->header.client_index = malloc(23);
 
 	FUNC_ENTRY;
     int sockt = 0;
@@ -447,7 +447,7 @@ void MQTTS_UGT_Protocol_timeslice(int sock)
 	}
 	Socket_close(sockt);
 	//free(pack->header.rawData);
-	//free(pack->header.client_id);
+	//free(pack->header.client_index);
 	FUNC_EXIT;
 }
 

@@ -7,14 +7,11 @@ The main reason for using RSMB over the main [Mosquitto](http://mosquitto.org/) 
 
 
 ## Project History
-
-After several IBM servers were produced during the 2000s, Really Small Message Broker (RSMB) was released onto IBM alphaWorks in 2008. It's aim was to be a minimalist MQTT server, and according to the usual alphaWorks practices, was closed source and released under an evaluation-only license. During the following two years, it gained a small but enthusiastic following. In 2010, Roger Light learned about MQTT and RSMB from an Andy Stanford-Clark presentation. He created Mosquitto to be an open source alternative to RSMB.
-
-RSMB has had MQTT-SN capabilities added but not released outside of IBM. Now we have the chance to bring Mosquitto and RSMB back together as one Eclipse project, taking advantage of the collaboration of the authors of both previous projects.
+Modified RSMB broker, that is able to differentiate clients by Client ID, which is sent in responce to CONNECT, with CONNACK or WILLTOPICREQ. 
+To use modified MQTT-SN protocol client need to receive Client ID(unsigned short) from broker and append at the end these 2 bytes to all packets that will be send to broker. 
 
 You can read more about the background of RSMB on the Eclipse project page for Mosquitto:
 https://www.eclipse.org/proposals/technology.mosquitto/
-
 
 ## Getting started
 

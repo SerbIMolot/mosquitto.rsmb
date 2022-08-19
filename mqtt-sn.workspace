@@ -2,5 +2,6 @@
 <CodeBlocks_workspace_file>
 	<Workspace title="Workspace">
 		<Project filename="rsmb/mqtt-sn.cbp" />
+		<Project filename="rsmb/src/MQTTSClient/MQTTSClient.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>

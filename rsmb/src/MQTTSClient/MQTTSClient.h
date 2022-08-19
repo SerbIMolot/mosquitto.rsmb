@@ -3,11 +3,11 @@
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
- * and Eclipse Distribution License v1.0 which accompany this distribution. 
+ * and Eclipse Distribution License v1.0 which accompany this distribution.
  *
- * The Eclipse Public License is available at 
+ * The Eclipse Public License is available at
  *    http://www.eclipse.org/legal/epl-v10.html
- * and the Eclipse Distribution License is available at 
+ * and the Eclipse Distribution License is available at
  *   http://www.eclipse.org/org/documents/edl-v10.php.
  *
  * Contributors:
@@ -54,9 +54,11 @@
  *      typedef void MQTTS_connectionLost
  *
  */
- 
+
 #if !defined(MQTTSCLIENT_H)
 #define MQTTSCLIENT_H
+
+#include "MQTTSClientInternal.h"
 
 #if defined(WIN32)
   #define DLLImport __declspec(dllimport)
@@ -66,7 +68,7 @@
   #define DLLExport
 #endif
 
-DLLExport int MQTTSClient_create(MQTTClient* handle, char* serverURI, char* clientId, 
+DLLExport int MQTTSClient_create(Clients* handle, char* serverURI, char* clientId,
     int persistence_type, void* persistence_context);
-    
-DLLExport int MQTTSClient_connect(MQTTSClient handle, MQTTSClient_connectOptions* options);
+
+DLLExport int MQTTSClient_connect(MQTTSClients handle, MQTTSClient_connectOptions* options);

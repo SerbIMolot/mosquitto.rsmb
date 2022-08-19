@@ -407,7 +407,7 @@ Clients* Protocol_getclientbyid(char* client_name)
 	FUNC_ENTRY;
 	//node = TreeFindClientName(bstate->mqtts_clients, client_name);
 	node = TreeFindIndex(bstate->mqtts_clients, client_name, 1);
-	//client = TreeFindIndex3(bstate->mqtts_clients, client_name, 0, 0);
+
 	if ( node != NULL ) {
 		client = (Clients*)(node->content);
 	}

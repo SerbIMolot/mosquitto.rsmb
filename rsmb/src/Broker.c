@@ -210,6 +210,11 @@ int set_sigsegv()
 void getopts(int argc, char** argv)
 {
 	int count = 1;
+    char cwd[PATH_MAX];
+        if (getcwd(cwd, sizeof(cwd)) != NULL) {
+    } else {
+        perror("getcwd() error");
+    }
 
 	while (count < argc)
 	{
@@ -218,11 +223,13 @@ void getopts(int argc, char** argv)
 		else
 		{
 			config = argv[count];
-			Log(LOG_INFO, 49, "Configuration file name is %s", config);
+			//Log(LOG_INFO, 49, "Configuration file name is %s\\%s", cwd, config);
 			config_set = 1;
 		}
 		count++;
 	}
+
+    Log(LOG_INFO, 49, "Configuration file name is %s\\%s", cwd, config); // SERB print config path anyway
 }
 
 static char* features = ""
@@ -230,7 +237,8 @@ static char* features = ""
 	"bridge "
 #endif
 #if defined(MQTTS)
-	"MQTTS "
+	"MQTTS"
+	", NB-IoT"
 #endif
 	;
 
@@ -245,7 +253,7 @@ int main(int argc, char* argv[])
 {
 	int rc = 0;
 #define BUILD_TIMESTAMP __DATE__ " " __TIME__ /* __TIMESTAMP__ */
-#define BROKER_VERSION "1.3.0.2_CB" /* __VERSION__ */
+#define BROKER_VERSION "1.3.0.2_NB-IoT" /* __VERSION__ */
 #define PRODUCT_NAME "Really Small Message Broker (MODIFIED)"
 
 	static char* broker_version_eye ATTR_UNUSED = NULL;

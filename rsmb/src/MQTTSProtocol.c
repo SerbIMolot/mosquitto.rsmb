@@ -531,40 +531,21 @@ int char2int (char *array, size_t n)
     return number;
 }
 
-#define MAX_CLIENTID_NUM 65535
-
-static int clientID = 0;
-static bool registeredIDs[MAX_CLIENTID_NUM] = {false};
+#define MAX_CLIENT_INDEX 65535
+static bool registeredIDs[MAX_CLIENT_INDEX] = {false};
 
 
 void MQTTS_free_id( unsigned short id ){
     registeredIDs[id] = false;
 }
 unsigned short MQTTSProtocol_generateID(char* clientName) { //SERB GENERATE NEW CLIENT ID
-    //int size = 0;
-    //char* chr = clientName;
-    //bool foundStart = false;
-
-    //char resultArr[5];
-    //for(int i = 0; *chr != '\0'; chr++ ){
-
-    //    if(foundStart) {
-    //        resultArr[size] = chr[0];
-    //        size++;
-    //    }
-    //   if(chr[0] == '_') {
-    //        foundStart = true;
-    //    }
-    //}
-    //unsigned short result = (unsigned short)char2int(resultArr, 5);
-    for(int i = 0; i < MAX_CLIENTID_NUM; i++){
+    for(int i = 0; i < MAX_CLIENT_INDEX; i++){
         if(registeredIDs[i] == false) {
             registeredIDs[i] = true;
             return i+1;
         }
     }
-
-    return clientID++;
+    return 0;
 }
 int MQTTSProtocol_handleConnects(void* pack, int sock, char* clientAddr, Clients* client)
 {
@@ -644,7 +625,7 @@ int MQTTSProtocol_handleConnects(void* pack, int sock, char* clientAddr, Clients
 			client->registrations = ListInitialize();
 			client->noLocal = 0; /* (connect->version == PRIVATE_PROTOCOL_VERSION) ? 1 : 0; */
 			client->clientID = connect->clientID;
-			client->client_ID = MQTTSProtocol_generateID(connect->clientID);
+			client->client_index = MQTTSProtocol_generateID(connect->clientID);
 			connect->clientID = NULL; /* don't want to free this space as it is being used in the clients tree below */
 		}
 		else /* there is an existing disconnected client */

@@ -834,7 +834,7 @@ int MQTTSPacket_send_ack_with_ClientID(Clients* client, char type)
 	int rc = 0;
 
 	FUNC_ENTRY;
-	buf = MQTTSPacketSerialize_ack(type, client->client_ID );
+	buf = MQTTSPacketSerialize_ack(type, client->client_index );
 	rc = MQTTSPacket_sendPacketBuffer(client->socket, client->addr, buf);
 	free(buf.data);
 	FUNC_EXIT_RC(rc);
@@ -864,7 +864,7 @@ int MQTTSPacket_send_connack(Clients* client, int returnCode)
 	int rc = 0;
 
 	FUNC_ENTRY;
-	buf = MQTTSSerialize_connack_id(returnCode, client->client_ID);
+	buf = MQTTSSerialize_connack_id(returnCode, client->client_index);
 	rc = MQTTSPacket_sendPacketBuffer(client->socket, client->addr, buf);
 	free(buf.data);
 	//Log(LOG_PROTOCOL, 40, NULL, socket, client->addr, client->clientID, returnCode, rc);

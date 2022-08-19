@@ -296,41 +296,6 @@ Node* TreeFindIndex1(Tree* aTree, void* key, int index, int value)
 	return curnode;
 }
 
-Node* TreeFindIndex2(Tree* aTree, void* key, int index, int value)
-{
-	int result = 0;
-	Node* curnode = aTree->index[index].root;
-
-	while (curnode)
-	{
-
-	    result = clientIndexCompare(curnode->content, key, value);
-		//result = aTree->index[index].compare(curnode->content, key, value); SER
-		if (result == 0)
-			break;
-		else
-			curnode = curnode->child[result > 0];
-	}
-	return curnode;
-}
-
-Clients* TreeFindIndex3(Tree* aTree, void* key, int index, int value)
-{
-	int result = 0;
-	Node* curnode = aTree->index[index].root;
-
-	while (curnode)
-	{
-
-	    result = clientIndexCompare(curnode->content, key, value);
-		//result = aTree->index[index].compare(curnode->content, key, value); SER
-		if (result == 0)
-			break;
-		else
-			curnode = curnode->child[result > 0];
-	}
-	return curnode? (Clients*)(curnode->content) : NULL;
-}
 
 Node* TreeFindIndex(Tree* aTree, void* key, int index)
 {

@@ -40,9 +40,11 @@ int clientIDCompare(void* a, void* b, int value)
 
 	return strcmp(as, bs);
 }
+
+#if defined(MQTTS)
 int clientIndexCompare(void* client, void* other_name, int value)
 {
-    unsigned short as = ((Clients*)client)->client_ID;
+    unsigned short as = ((Clients*)client)->client_index;
 	unsigned short bs = ((unsigned short)other_name);
 
 	//char* as = ((Clients*)a)->clientID;
@@ -52,7 +54,7 @@ int clientIndexCompare(void* client, void* other_name, int value)
     if(as == bs) return 0;
 	//return as == bs ? 0;//strcmp(as, bs);
 }
-
+#endif
 
 /**
  * List callback function for comparing clients by socket

@@ -7,21 +7,26 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="MQTT">
-				<Option output="_bin/mqtt" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="$(PROJECT_DIR)/src" />
+				<Option output="_bin/$(TARGET)/mqtt" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="$(PROJECT_DIR)/_bin/$(TARGET)/" />
 				<Option object_output="_obj/mqtt/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add option="-DNO_BRIDGE_" />
+					<Add option="-DWIN32" />
 				</Compiler>
 				<Linker>
 					<Add library="ws2_32" />
 				</Linker>
+				<Environment>
+					<Variable name="TARGET" value="BROKER" />
+				</Environment>
 			</Target>
 			<Target title="MQTT_SN">
-				<Option output="_bin/mqtt-sn" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="$(PROJECT_DIR)/src" />
+				<Option output="_bin/$(TARGET)/mqtt-sn" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="$(PROJECT_DIR)/_bin/$(TARGET)/" />
 				<Option object_output="_obj/mqtt-sn/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -34,15 +39,32 @@
 				<Linker>
 					<Add library="ws2_32" />
 				</Linker>
+				<Environment>
+					<Variable name="TARGET" value="BROKER_SN" />
+				</Environment>
 			</Target>
-			<Target title="Linux">
-				<Option output="_unix/mqtt-sn" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="$(PROJECT_DIR)/src" />
-				<Option object_output="_obj/unix-mqtt-sn/" />
+			<Target title="Linux MQTT">
+				<Option output="_bin/$(TARGET)/mqtt" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="$(PROJECT_DIR)/_bin/$(TARGET)/" />
+				<Option object_output="_obj/unix-mqtt/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add option="-DNO_BRIDGE_" />
+				</Compiler>
+				<Environment>
+					<Variable name="TARGET" value="BROKER_Linux" />
+				</Environment>
+			</Target>
+			<Target title="Linux MQTT_SN">
+				<Option output="_bin/$(TARGET)/mqtt-sn" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="$(PROJECT_DIR)/_bin/$(TARGET)/" />
+				<Option object_output="_obj/unix-mqtt-sn/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option use_console_runner="0" />
+				<Compiler>
 					<Add option="-DNO_BRIDGE_" />
 					<Add option="-DMQTTS" />
 				</Compiler>
@@ -51,8 +73,6 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="_bin/broker.cfg" />
-		<Unit filename="broker.cfg" />
 		<Unit filename="src/Bridge.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -103,28 +123,53 @@
 		<Unit filename="src/MQTTProtocolOut.h" />
 		<Unit filename="src/MQTTSPacket.c">
 			<Option compilerVar="CC" />
+			<Option target="MQTT_SN" />
+			<Option target="Linux MQTT" />
+			<Option target="Linux MQTT_SN" />
 		</Unit>
-		<Unit filename="src/MQTTSPacket.h" />
+		<Unit filename="src/MQTTSPacket.h">
+			<Option target="MQTT_SN" />
+			<Option target="Linux MQTT" />
+			<Option target="Linux MQTT_SN" />
+		</Unit>
 		<Unit filename="src/MQTTSPacketSerialize.c">
 			<Option compilerVar="CC" />
+			<Option target="MQTT_SN" />
+			<Option target="Linux MQTT" />
+			<Option target="Linux MQTT_SN" />
 		</Unit>
-		<Unit filename="src/MQTTSPacketSerialize.h" />
+		<Unit filename="src/MQTTSPacketSerialize.h">
+			<Option target="MQTT_SN" />
+			<Option target="Linux MQTT" />
+			<Option target="Linux MQTT_SN" />
+		</Unit>
 		<Unit filename="src/MQTTSProtocol.c">
 			<Option compilerVar="CC" />
+			<Option target="MQTT_SN" />
+			<Option target="Linux MQTT" />
+			<Option target="Linux MQTT_SN" />
 		</Unit>
-		<Unit filename="src/MQTTSProtocol.h" />
+		<Unit filename="src/MQTTSProtocol.h">
+			<Option target="MQTT_SN" />
+			<Option target="Linux MQTT" />
+			<Option target="Linux MQTT_SN" />
+		</Unit>
 		<Unit filename="src/MQTTSProtocolOut.c">
 			<Option compilerVar="CC" />
+			<Option target="MQTT_SN" />
+			<Option target="Linux MQTT" />
+			<Option target="Linux MQTT_SN" />
 		</Unit>
-		<Unit filename="src/MQTTSProtocolOut.h" />
-		<Unit filename="src/Makefile" />
-		<Unit filename="src/Makefile.old" />
-		<Unit filename="src/Messages.1.3.0.2" />
+		<Unit filename="src/MQTTSProtocolOut.h">
+			<Option target="MQTT_SN" />
+			<Option target="Linux MQTT" />
+			<Option target="Linux MQTT_SN" />
+		</Unit>
+		<Unit filename="src/Messages.1.3.0.2_NB-IoT" />
 		<Unit filename="src/Messages.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/Messages.h" />
-		<Unit filename="src/Messages.txt" />
 		<Unit filename="src/Persistence.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -162,7 +207,6 @@
 		</Unit>
 		<Unit filename="src/Users.h" />
 		<Unit filename="src/broker.cfg" />
-		<Unit filename="src/rsmb.ini" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

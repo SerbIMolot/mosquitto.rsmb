@@ -1,3 +1,6 @@
+#ifndef HEADER_4498182E20E3410F
+#define HEADER_4498182E20E3410F
+
 /*******************************************************************************
  * Copyright (c) 2007, 2013 IBM Corp.
  *
@@ -116,7 +119,7 @@ BE*/
 /**
  * Client will message data
  */
-typedef struct
+typedef struct willMessages
 {
 	char *topic;
 	char *msg;
@@ -155,7 +158,7 @@ $else
 $endif
 }
 BE*/
-typedef struct
+typedef struct PendingRegistration
 {
 	Registration* registration;
 	int msgId;
@@ -178,7 +181,7 @@ $endif
 }
 $endif
 BE*/
-typedef struct
+typedef struct PendingSubscription
 {
 	char* topicName;
 	int qos;
@@ -246,7 +249,7 @@ BE*/
 /**
  * The information and state for each client.
  */
-typedef struct
+typedef struct Clients
 {
 	int socket;						/**< this client's socket */
 	char* addr;						/**< remote address as returned by getpeer */
@@ -275,7 +278,7 @@ typedef struct
 	int protocol;                   /**< 0=MQTT 1=MQTTS */
 	int sleep_state;                /***< MQTT-S sleep state: asleep, active, awake, lost */
 	List* registrations;
-	unsigned short client_ID;
+	unsigned short client_index;
 	PendingRegistration* pendingRegistration;
 #if !defined(NO_BRIDGE)
 	PendingSubscription* pendingSubscription;
@@ -295,3 +298,5 @@ int clientAddrCompare(void*a, void* b, int);
 #endif
 
 #endif
+#endif // header guard
+

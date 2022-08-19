@@ -4,9 +4,12 @@ rsmb/src/broker_mqtts
 rsmb/src/rsmb.ini
 *.depend
 *.layout
+mqtt-sn.workspace.layout
 *.cscope_file_list
 rsmb/_obj/
 rsmb/_unix/
 rsmb/_bin/
 *.dmp
 rsmb/src/.vscode
+rsmb/src/MQTTSClient/obj/
+rsmb/src/MQTTSClient/bin/

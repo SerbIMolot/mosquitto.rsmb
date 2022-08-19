@@ -2,9 +2,9 @@ rsmb/src/broker
 rsmb/src/broker_dbg
 rsmb/src/broker_mqtts
 rsmb/src/rsmb.ini
-rsmb/mqtt-sn.depend
-rsmb/mqtt-sn.layout
-rsmb/mqtt-sn.cscope_file_list
+*.depend
+*.layout
+*.cscope_file_list
 rsmb/_obj/
 rsmb/_unix/
 rsmb/_bin/

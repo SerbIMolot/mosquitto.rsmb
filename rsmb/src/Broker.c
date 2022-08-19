@@ -229,7 +229,7 @@ void getopts(int argc, char** argv)
 		count++;
 	}
 
-    Log(LOG_INFO, 49, "Configuration file name is %s\\%s", cwd, config); // SERB print config path anyway
+    Log(LOG_INFO, 49, "Used config file %s\\%s", cwd, config); // SERB print config path anyway
 }
 
 static char* features = ""

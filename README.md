@@ -13,6 +13,14 @@ To use modified MQTT-SN protocol client need to receive Client ID(unsigned short
 You can read more about the background of RSMB on the Eclipse project page for Mosquitto:
 https://www.eclipse.org/proposals/technology.mosquitto/
 
+
+## Spec Deviations
+There are a couple of deviations from official MQTT-SN v1.2 spec.
+
+The gateway now sends client index at the end of message with CONNACK or WILLTOPICREQ, while not changing original message lenght.
+The client now appends received from broker client index, adding to end of the sent messages. And broker uses this index to identify client.
+All other behaviour is implemented as specified.
+
 ## Getting started
 
 RSMB has been tested on Linux, Mac OS and Windows. 

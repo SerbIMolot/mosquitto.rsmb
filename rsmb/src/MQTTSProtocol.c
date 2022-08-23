@@ -673,6 +673,7 @@ int MQTTSProtocol_handleConnects(void* pack, int sock, char* clientAddr, Clients
 				Socket_close(client->socket);
 			}
 		}
+
 		client->socket = sock;
 		client->connected = 0; /* Do not connect until we know the connack has been sent */
 		client->connect_state = 0;

@@ -56,6 +56,9 @@
 	#include <sys/timeb.h>
 #endif
 
+#if defined(WIN32)
+    #include <shlwapi.h>
+#endif
 #include "Broker.h"
 #include "Log.h"
 #include "StackTrace.h"
@@ -209,18 +212,16 @@ int set_sigsegv()
 
 void getopts(int argc, char** argv)
 {
-	int count = 1;
-    char cwd[PATH_MAX];
-        if (getcwd(cwd, sizeof(cwd)) != NULL) {
-    } else {
-        perror("getcwd() error");
-    }
+    #ifndef PATH_MAX
+        #define PATH_MAX 255
+    #endif // PATH_MAX
 
+	int count = 1;
 	while (count < argc)
 	{
 		if (strcmp(argv[count], "--daemon") == 0)
 			trace_settings.isdaemon = 1;
-		else
+		else if (!config_set)
 		{
 			config = argv[count];
 			//Log(LOG_INFO, 49, "Configuration file name is %s\\%s", cwd, config);
@@ -229,7 +230,17 @@ void getopts(int argc, char** argv)
 		count++;
 	}
 
-    Log(LOG_INFO, 49, "Used config file %s\\%s", cwd, config); // SERB print config path anyway
+    char cwd[PATH_MAX];
+    if (getcwd(cwd, sizeof(cwd)) == NULL) {
+        perror("getcwd() error");
+    }
+
+    if(strchr(config, '\\') == NULL && strchr(config, '/') == NULL) {
+        Log(LOG_INFO, 49, "Used config file %s\\%s", cwd, config); // @@ SERB print config path anyway
+    } else {
+        Log(LOG_INFO, 49, "Current working dir %s", cwd);
+        Log(LOG_INFO, 49, "Used config file %s", config);
+    }
 }
 
 static char* features = ""
@@ -254,7 +265,7 @@ int main(int argc, char* argv[])
 	int rc = 0;
 #define BUILD_TIMESTAMP __DATE__ " " __TIME__ /* __TIMESTAMP__ */
 #define BROKER_VERSION "1.3.0.2_NB-IoT" /* __VERSION__ */
-#define PRODUCT_NAME "Really Small Message Broker (MODIFIED)"
+#define PRODUCT_NAME "Really Small Message Broker for NB-IoT"
 
 	static char* broker_version_eye ATTR_UNUSED = NULL;
 	static char* broker_timestamp_eye ATTR_UNUSED = NULL;

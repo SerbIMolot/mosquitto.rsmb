@@ -858,13 +858,31 @@ int MQTTSPacket_send_ack_with_msgId(Clients* client, char type, int msgId)
 }
 
 
-int MQTTSPacket_send_connack(Clients* client, int returnCode)
+int MQTTSPacket_send_connack_ClientId(Clients* client, int returnCode)
 {
 	PacketBuffer buf;
 	int rc = 0;
 
 	FUNC_ENTRY;
 	buf = MQTTSSerialize_connack_id(returnCode, client->client_index);
+	rc = MQTTSPacket_sendPacketBuffer(client->socket, client->addr, buf);
+	free(buf.data);
+	//Log(LOG_PROTOCOL, 40, NULL, socket, client->addr, client->clientID, returnCode, rc);
+	Log(LOG_PROTOCOL, 40, NULL, client->socket, client->addr, client->clientID, returnCode, rc);
+	FUNC_EXIT;
+	return rc;
+}
+int MQTTSPacket_send_connack(Clients* client, int returnCode)
+{
+	PacketBuffer buf;
+	int rc = 0;
+
+	FUNC_ENTRY;
+	if(client->protocol == PROTOCOL_MQTTS_UGT) {
+        buf = MQTTSSerialize_connack_id(returnCode, client->client_index);
+	} else if(client->protocol == PROTOCOL_MQTTS) {
+        buf = MQTTSSerialize_connack(returnCode);
+	}
 	rc = MQTTSPacket_sendPacketBuffer(client->socket, client->addr, buf);
 	free(buf.data);
 	//Log(LOG_PROTOCOL, 40, NULL, socket, client->addr, client->clientID, returnCode, rc);

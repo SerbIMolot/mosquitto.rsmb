@@ -239,17 +239,6 @@ int Messages_initialize(BrokerStates* bstate)
 	int count = 0;
 	int rc = -99;
 	char fn[20] = "Messages.";
-{
-  #ifndef PATH_MAX
-   #define PATH_MAX 255
-  #endif // PATH_MAX
-   char cwd[PATH_MAX];
-   if (getcwd(cwd, sizeof(cwd)) != NULL) {
-       printf("Current working dir: %s\n", cwd);
-   } else {
-       perror("getcwd() error");
-   }
-}
 	FUNC_ENTRY;
 	strcat(fn, bstate->version);
 	if ((rfile = fopen(fn, "r")) == NULL)

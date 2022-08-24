@@ -21,8 +21,8 @@
 					<Add library="ws2_32" />
 				</Linker>
 				<ExtraCommands>
-					<Add after='cmd /c IF NOT EXIST &quot;$(WORKSPACE_DIR)\rsmb\$(TARGET_OUTPUT_DIR)\broker.cfg&quot; COPY copy &quot;$(WORKSPACE_DIR)\rsmb\src\broker.cfg&quot; &quot;$(WORKSPACE_DIR)\rsmb\$(TARGET_OUTPUT_DIR)&quot;' />
-					<Add after='cmd /c IF NOT EXIST &quot;$(WORKSPACE_DIR)\rsmb\$(TARGET_OUTPUT_DIR)\Messages.1.3.0.2_NB-IoT&quot; COPY copy &quot;$(WORKSPACE_DIR)\rsmb\src\Messages.1.3.0.2_NB-IoT&quot; &quot;$(WORKSPACE_DIR)\rsmb\$(TARGET_OUTPUT_DIR)&quot;' />
+					<Add after='cmd /c IF NOT EXIST &quot;$(WORKSPACE_DIR)\rsmb\$(TARGET_OUTPUT_DIR)broker.cfg&quot; ( copy &quot;$(WORKSPACE_DIR)\rsmb\src\broker.cfg&quot; &quot;$(WORKSPACE_DIR)\rsmb\$(TARGET_OUTPUT_DIR)&quot;)' />
+					<Add after='cmd /c IF NOT EXIST &quot;$(WORKSPACE_DIR)\rsmb\$(TARGET_OUTPUT_DIR)Messages.1.3.0.2_NB-IoT&quot; (copy &quot;$(WORKSPACE_DIR)\rsmb\src\Messages.1.3.0.2_NB-IoT&quot; &quot;$(WORKSPACE_DIR)\rsmb\$(TARGET_OUTPUT_DIR)&quot;)' />
 				</ExtraCommands>
 				<Environment>
 					<Variable name="TARGET" value="BROKER" />
@@ -44,8 +44,8 @@
 					<Add library="ws2_32" />
 				</Linker>
 				<ExtraCommands>
-					<Add after='cmd /c IF NOT EXIST &quot;$(WORKSPACE_DIR)\rsmb\$(TARGET_OUTPUT_DIR)\broker.cfg&quot; COPY copy &quot;$(WORKSPACE_DIR)\rsmb\src\broker.cfg&quot; &quot;$(WORKSPACE_DIR)\rsmb\$(TARGET_OUTPUT_DIR)&quot;' />
-					<Add after='cmd /c IF NOT EXIST &quot;$(WORKSPACE_DIR)\rsmb\$(TARGET_OUTPUT_DIR)\Messages.1.3.0.2_NB-IoT&quot; COPY copy &quot;$(WORKSPACE_DIR)\rsmb\src\Messages.1.3.0.2_NB-IoT&quot; &quot;$(WORKSPACE_DIR)\rsmb\$(TARGET_OUTPUT_DIR)&quot;' />
+					<Add after='cmd /c IF NOT EXIST &quot;$(WORKSPACE_DIR)\rsmb\$(TARGET_OUTPUT_DIR)broker.cfg&quot; ( copy &quot;$(WORKSPACE_DIR)\rsmb\src\broker.cfg&quot; &quot;$(WORKSPACE_DIR)\rsmb\$(TARGET_OUTPUT_DIR)&quot;)' />
+					<Add after='cmd /c IF NOT EXIST &quot;$(WORKSPACE_DIR)\rsmb\$(TARGET_OUTPUT_DIR)Messages.1.3.0.2_NB-IoT&quot; (copy &quot;$(WORKSPACE_DIR)\rsmb\src\Messages.1.3.0.2_NB-IoT&quot; &quot;$(WORKSPACE_DIR)\rsmb\$(TARGET_OUTPUT_DIR)&quot;)' />
 				</ExtraCommands>
 				<Environment>
 					<Variable name="TARGET" value="BROKER_SN" />

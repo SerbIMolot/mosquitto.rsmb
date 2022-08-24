@@ -20,6 +20,10 @@
 				<Linker>
 					<Add library="ws2_32" />
 				</Linker>
+				<ExtraCommands>
+					<Add after='cmd /c IF NOT EXIST &quot;$(WORKSPACE_DIR)\rsmb\$(TARGET_OUTPUT_DIR)\broker.cfg&quot; COPY copy &quot;$(WORKSPACE_DIR)\rsmb\src\broker.cfg&quot; &quot;$(WORKSPACE_DIR)\rsmb\$(TARGET_OUTPUT_DIR)&quot;' />
+					<Add after='cmd /c IF NOT EXIST &quot;$(WORKSPACE_DIR)\rsmb\$(TARGET_OUTPUT_DIR)\Messages.1.3.0.2_NB-IoT&quot; COPY copy &quot;$(WORKSPACE_DIR)\rsmb\src\Messages.1.3.0.2_NB-IoT&quot; &quot;$(WORKSPACE_DIR)\rsmb\$(TARGET_OUTPUT_DIR)&quot;' />
+				</ExtraCommands>
 				<Environment>
 					<Variable name="TARGET" value="BROKER" />
 				</Environment>
@@ -39,6 +43,10 @@
 				<Linker>
 					<Add library="ws2_32" />
 				</Linker>
+				<ExtraCommands>
+					<Add after='cmd /c IF NOT EXIST &quot;$(WORKSPACE_DIR)\rsmb\$(TARGET_OUTPUT_DIR)\broker.cfg&quot; COPY copy &quot;$(WORKSPACE_DIR)\rsmb\src\broker.cfg&quot; &quot;$(WORKSPACE_DIR)\rsmb\$(TARGET_OUTPUT_DIR)&quot;' />
+					<Add after='cmd /c IF NOT EXIST &quot;$(WORKSPACE_DIR)\rsmb\$(TARGET_OUTPUT_DIR)\Messages.1.3.0.2_NB-IoT&quot; COPY copy &quot;$(WORKSPACE_DIR)\rsmb\src\Messages.1.3.0.2_NB-IoT&quot; &quot;$(WORKSPACE_DIR)\rsmb\$(TARGET_OUTPUT_DIR)&quot;' />
+				</ExtraCommands>
 				<Environment>
 					<Variable name="TARGET" value="BROKER_SN" />
 				</Environment>
@@ -53,6 +61,10 @@
 					<Add option="-g" />
 					<Add option="-DNO_BRIDGE_" />
 				</Compiler>
+				<ExtraCommands>
+					<Add after='cp -u &quot;$(WORKSPACE_DIR)\rsmb\src\broker.cfg&quot; &quot;$(WORKSPACE_DIR)\rsmb\$(TARGET_OUTPUT_DIR)&quot;' />
+					<Add after='cp -u &quot;$(WORKSPACE_DIR)\rsmb\src\Messages.1.3.0.2_NB-IoT&quot; &quot;$(WORKSPACE_DIR)\rsmb\$(TARGET_OUTPUT_DIR)&quot;' />
+				</ExtraCommands>
 				<Environment>
 					<Variable name="TARGET" value="BROKER_Linux" />
 				</Environment>
@@ -68,6 +80,13 @@
 					<Add option="-DNO_BRIDGE_" />
 					<Add option="-DMQTTS" />
 				</Compiler>
+				<ExtraCommands>
+					<Add after='cp -u &quot;$(WORKSPACE_DIR)\rsmb\src\broker.cfg&quot; &quot;$(WORKSPACE_DIR)\rsmb\$(TARGET_OUTPUT_DIR)&quot;' />
+					<Add after='cp -u &quot;$(WORKSPACE_DIR)\rsmb\src\Messages.1.3.0.2_NB-IoT&quot; &quot;$(WORKSPACE_DIR)\rsmb\$(TARGET_OUTPUT_DIR)&quot;' />
+				</ExtraCommands>
+				<Environment>
+					<Variable name="TARGET" value="BROKER_SN_Linux" />
+				</Environment>
 			</Target>
 		</Build>
 		<Compiler>

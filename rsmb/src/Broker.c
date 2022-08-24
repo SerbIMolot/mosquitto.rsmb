@@ -212,10 +212,6 @@ int set_sigsegv()
 
 void getopts(int argc, char** argv)
 {
-    #ifndef PATH_MAX
-        #define PATH_MAX 255
-    #endif // PATH_MAX
-
 	int count = 1;
 	while (count < argc)
 	{
@@ -229,18 +225,6 @@ void getopts(int argc, char** argv)
 		}
 		count++;
 	}
-
-    char cwd[PATH_MAX];
-    if (getcwd(cwd, sizeof(cwd)) == NULL) {
-        perror("getcwd() error");
-    }
-
-    if(strchr(config, '\\') == NULL && strchr(config, '/') == NULL) {
-        Log(LOG_INFO, 49, "Used config file %s\\%s", cwd, config); // @@ SERB print config path anyway
-    } else {
-        Log(LOG_INFO, 49, "Current working dir %s", cwd);
-        Log(LOG_INFO, 49, "Used config file %s", config);
-    }
 }
 
 static char* features = ""
@@ -266,6 +250,15 @@ int main(int argc, char* argv[])
 #define BUILD_TIMESTAMP __DATE__ " " __TIME__ /* __TIMESTAMP__ */
 #define BROKER_VERSION "1.3.0.2_NB-IoT" /* __VERSION__ */
 #define PRODUCT_NAME "Really Small Message Broker for NB-IoT"
+    #ifndef PATH_MAX
+        #define PATH_MAX 255
+    #endif // PATH_MAX
+
+    char cwd[PATH_MAX];
+
+    if (getcwd(cwd, sizeof(cwd)) == NULL) {
+        perror("getcwd() error");
+    }
 
 	static char* broker_version_eye ATTR_UNUSED = NULL;
 	static char* broker_timestamp_eye ATTR_UNUSED = NULL;
@@ -280,9 +273,19 @@ int main(int argc, char* argv[])
 	Log_initialize();
 
 	Log(LOG_INFO, 9999, PRODUCT_NAME);
+
 	Log(LOG_INFO, 9998, "Part of Project Mosquitto in Eclipse\n("
                       "http://projects.eclipse.org/projects/technology.mosquitto)");
+	Log(LOG_INFO, 49, "Used message file: %s\\Messages.%s", cwd, BROKER_VERSION);
 	getopts(argc, argv);
+
+
+    if(strchr(config, '\\') == NULL && strchr(config, '/') == NULL) {
+        Log(LOG_INFO, 49, "Used config file %s\\%s", cwd, config); // @@ SERB print config path anyway
+    } else {
+        Log(LOG_INFO, 49, "Current working dir %s", cwd);
+        Log(LOG_INFO, 49, "Used config file %s", config);
+    }
 
 	if (Messages_initialize(&BrokerState) != 0)
 		goto no_messages;
@@ -335,13 +338,14 @@ int main(int argc, char* argv[])
 		}
 	}
 	Broker_shutdown(rc);
-
 	Log(LOG_INFO, 47, NULL);
 
 no_messages:
 	Messages_terminate();
 	Log_terminate();
 	Heap_terminate();
+	printf("Press ENTER to close program");
+    getchar();
 
 	/*FUNC_EXIT_NOLOG(rc); would anyone ever see this? */
 	return rc;
